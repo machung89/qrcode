@@ -192,7 +192,11 @@ export function QrGenerator({ initialType = "url", labels, aside, fixedData, fil
         </div>
 
         {/* Tabs */}
-        <div className="flex overflow-x-auto border-b border-slate-100 px-2 sm:px-4" role="tablist">
+        {/* Cuộn ngang trên màn hình hẹp; khoá trục dọc và ẩn thanh cuộn (tab dùng -mb-px nên cao hơn khung 1px) */}
+        <div
+          className="flex overflow-x-auto overflow-y-hidden border-b border-slate-100 px-2 [scrollbar-width:none] sm:px-4 [&::-webkit-scrollbar]:hidden"
+          role="tablist"
+        >
           {tabs.filter((key) => !(fixed && key === "content")).map((key) => (
             <button
               key={key}
