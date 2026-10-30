@@ -1,26 +1,7 @@
 // Chạy ở Edge runtime: Cloudflare (OpenNext) hỗ trợ middleware Edge, chưa hỗ trợ proxy.ts (Node runtime) của Next 16
 import { NextResponse, type NextRequest } from "next/server";
-import { defaultLocale, isLocale, LOCALE_COOKIE, type Locale } from "@/i18n/config";
-
-function detectLocale(request: NextRequest): Locale {
-  const cookie = request.cookies.get(LOCALE_COOKIE)?.value;
-  if (isLocale(cookie)) return cookie;
-
-  const header = request.headers.get("accept-language") ?? "";
-  const preferred = header
-    .split(",")
-    .map((part) => {
-      const [tag, q] = part.trim().split(";q=");
-      return { tag: tag.toLowerCase(), q: q ? Number(q) : 1 };
-    })
-    .sort((a, b) => b.q - a.q);
-
-  for (const { tag } of preferred) {
-    const base = tag.split("-")[0];
-    if (isLocale(base)) return base;
-  }
-  return defaultLocale;
-}
+import { isLocale } from "@/i18n/config";
+import { detectLocale } from "@/i18n/detect";
 
 export function middleware(request: NextRequest) {
   // www.ten-mien -> ten-mien (301) để Google chỉ thấy một phiên bản của website
