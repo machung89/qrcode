@@ -61,7 +61,7 @@ export default async function QrDetailPage({ params }: PageProps<"/[locale]/dash
   return (
     <>
       <Link href={`/${locale}/dashboard`} className="text-sm text-slate-500 hover:text-brand-600">
-        ← {t.back}
+        <span className="inline-block rtl:-scale-x-100">←</span> {t.back}
       </Link>
       <div className="mt-2 mb-6 flex flex-wrap items-center gap-3">
         <h1 className="min-w-0 truncate text-2xl font-extrabold sm:text-3xl">{qr.name}</h1>

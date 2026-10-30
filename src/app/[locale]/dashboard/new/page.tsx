@@ -23,7 +23,7 @@ export default async function NewQrPage({ params }: PageProps<"/[locale]/dashboa
   return (
     <div className="mx-auto max-w-2xl">
       <Link href={`/${locale}/dashboard`} className="text-sm text-slate-500 hover:text-brand-600">
-        ← {t.back}
+        <span className="inline-block rtl:-scale-x-100">←</span> {t.back}
       </Link>
       <h1 className="mt-2 mb-6 text-2xl font-extrabold">{t.newQr}</h1>
       <CreateQrForm

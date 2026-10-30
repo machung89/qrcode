@@ -14,7 +14,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <LogoMark />
           <span className="hidden lg:inline">{siteName}</span>
         </Link>
-        <nav className="ml-auto flex items-center gap-1 text-sm font-medium sm:gap-2">
+        <nav className="ms-auto flex items-center gap-1 text-sm font-medium sm:gap-2">
           {/* Trên mobile logo đã dẫn về trang tạo mã */}
           <Link href={`/${locale}`} className="hidden rounded-lg px-2 py-1.5 text-slate-700 hover:bg-slate-100 sm:inline sm:px-3">
             {dict.nav.generator}

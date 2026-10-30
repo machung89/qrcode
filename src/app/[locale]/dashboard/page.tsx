@@ -44,7 +44,7 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
         <Link href={`/${locale}/dashboard/support`} className="btn-ghost relative">
           {dict.support.title}
           {unread > 0 && (
-            <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-bold text-white" aria-label={dict.support.newReply}>
+            <span className="absolute -top-1.5 -end-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-bold text-white" aria-label={dict.support.newReply}>
               {unread}
             </span>
           )}
@@ -99,15 +99,15 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
                 <span className="min-w-0 flex-1">
                   <span className="block truncate font-semibold">{qr.name}</span>
                   <span className="block truncate text-xs text-slate-500">
-                    {typeNames[type]} · {siteUrl.replace(/^https?:\/\//, "")}/r/{qr.slug} →{" "}
+                    {typeNames[type]} · {siteUrl.replace(/^https?:\/\//, "")}/r/{qr.slug} <span className="inline-block rtl:-scale-x-100">→</span>{" "}
                     {summarize(type, contentOf(qr), { url: qr.target_url, fileName: qr.file_name })}
                   </span>
                 </span>
-                <span className="text-right">
+                <span className="text-end">
                   <span className="block font-bold tabular-nums">{num.format(qr.scans)}</span>
                   <span className="block text-xs text-slate-500">{t.scansCount}</span>
                 </span>
-                <span className="hidden w-28 text-right text-xs text-slate-500 sm:block">{date.format(qr.created_at)}</span>
+                <span className="hidden w-28 text-end text-xs text-slate-500 sm:block">{date.format(qr.created_at)}</span>
                 <span
                   className={`rounded-full px-2 py-0.5 text-xs font-medium ${qr.active ? "bg-green-100 text-green-700" : "bg-slate-200 text-slate-600"}`}
                 >

@@ -8,9 +8,9 @@
   --color-brand-600: #2753e6;
   --color-brand-700: #1f42c4;
   --color-brand-900: #172a6b;
-  /* Inter không có chữ Nhật/Hàn: dùng font hệ thống làm dự phòng (không tải thêm file font) */
+  /* Inter không có chữ Nhật/Hàn/Ả Rập: dùng font hệ thống làm dự phòng (không tải thêm file font) */
   --font-sans:
-    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Noto Sans Arabic", Tahoma,
     Meiryo, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans JP", "Noto Sans KR", sans-serif;
 }
 

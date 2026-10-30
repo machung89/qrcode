@@ -29,7 +29,7 @@ export function StickyAd({ label, closeLabel }: { label: string; closeLabel: str
       <button
         type="button"
         onClick={() => setClosed(true)}
-        className="absolute -top-7 right-2 rounded-t-md border border-b-0 border-slate-200 bg-white px-2 py-1 text-xs text-slate-500 hover:text-slate-900"
+        className="absolute -top-7 end-2 rounded-t-md border border-b-0 border-slate-200 bg-white px-2 py-1 text-xs text-slate-500 hover:text-slate-900"
         aria-label={closeLabel}
       >
         ✕ {closeLabel}

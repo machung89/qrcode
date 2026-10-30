@@ -68,7 +68,7 @@ export function BreakdownList({ title, rows, empty, format }: { title: string; r
               <li key={r.label}>
                 <div className="mb-1 flex justify-between text-sm">
                   <span className="truncate text-slate-700">{format ? format(r.label) : r.label}</span>
-                  <span className="shrink-0 pl-2 text-slate-500 tabular-nums">
+                  <span className="shrink-0 ps-2 text-slate-500 tabular-nums">
                     {r.count} · {pct}%
                   </span>
                 </div>

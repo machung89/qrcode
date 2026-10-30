@@ -1,4 +1,4 @@
-export const locales = ["en", "vi", "es", "fr", "de", "pt", "ja", "ko"] as const;
+export const locales = ["en", "vi", "es", "fr", "de", "pt", "ja", "ko", "ar"] as const;
 export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = "en";
@@ -13,6 +13,7 @@ export const localeNames: Record<Locale, string> = {
   pt: "Português",
   ja: "日本語",
   ko: "한국어",
+  ar: "العربية",
 };
 
 /** Mã dùng cho Open Graph (og:locale). */
@@ -25,7 +26,11 @@ export const ogLocales: Record<Locale, string> = {
   pt: "pt_BR",
   ja: "ja_JP",
   ko: "ko_KR",
+  ar: "ar_AR",
 };
+
+/** Hướng chữ: tiếng Ả Rập viết từ phải sang trái */
+export const localeDir = (locale: Locale): "ltr" | "rtl" => (locale === "ar" ? "rtl" : "ltr");
 
 export function isLocale(value: string | undefined | null): value is Locale {
   return !!value && (locales as readonly string[]).includes(value);

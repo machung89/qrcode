@@ -61,7 +61,7 @@ export function GeneratorPage({ locale, dict, type }: Props) {
             <p className="mt-1 text-sm text-brand-100">{dict.dashboard.ctaText}</p>
           </div>
           <Link href={`/${locale}/dashboard`} className="shrink-0 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 hover:bg-brand-50">
-            {dict.dashboard.ctaButton} →
+            {dict.dashboard.ctaButton} <span className="inline-block rtl:-scale-x-100">→</span>
           </Link>
         </section>
 

@@ -27,7 +27,7 @@ export default async function SupportPage({ params, searchParams }: PageProps<"/
   return (
     <>
       <Link href={`/${locale}/dashboard`} className="text-sm text-slate-500 hover:text-brand-600">
-        ← {dict.dashboard.back}
+        <span className="inline-block rtl:-scale-x-100">←</span> {dict.dashboard.back}
       </Link>
       <h1 className="mt-2 text-2xl font-extrabold sm:text-3xl">{t.title}</h1>
       <p className="mt-1 mb-6 text-slate-600">{t.subtitle}</p>
@@ -43,7 +43,7 @@ export default async function SupportPage({ params, searchParams }: PageProps<"/
               <Link key={tk.id} href={`/${locale}/dashboard/support/${tk.id}`} className="flex items-start gap-3 p-4 transition hover:bg-slate-50">
                 <div className="min-w-0 flex-1">
                   <p className={`truncate ${tk.user_unread ? "font-bold" : "font-medium"}`}>
-                    {tk.user_unread ? <span className="mr-1.5 inline-block h-2 w-2 rounded-full bg-brand-600" aria-label={t.newReply} /> : null}
+                    {tk.user_unread ? <span className="me-1.5 inline-block h-2 w-2 rounded-full bg-brand-600" aria-label={t.newReply} /> : null}
                     {tk.subject}
                   </p>
                   <p className="mt-0.5 text-xs text-slate-500">

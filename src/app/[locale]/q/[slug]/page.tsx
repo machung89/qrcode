@@ -228,7 +228,7 @@ export default async function DynamicLandingPage({ params }: PageProps<"/[locale
       <AdSlot placement="in_content" label={dict.ads.label} />
       <p className="mt-6 text-center">
         <Link href={`/${locale}`} className="text-sm font-semibold text-brand-600 hover:underline">
-          {dict.landing.createOwn} →
+          {dict.landing.createOwn} <span className="inline-block rtl:-scale-x-100">→</span>
         </Link>
       </p>
     </div>

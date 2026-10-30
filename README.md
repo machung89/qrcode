@@ -12,9 +12,13 @@ Chạy trên **Cloudflare Workers** (qua [OpenNext](https://opennext.js.org/clou
 - **Quét mã QR** từ ảnh (tải lên, kéo thả, dán) hoặc camera.
 
 ### Đa ngôn ngữ
-8 ngôn ngữ: `en, vi, es, fr, de, pt, ja, ko`, URL dạng `/vi/qr/wifi`. Truy cập `/` sẽ tự chuyển theo cookie hoặc ngôn ngữ trình duyệt.
+9 ngôn ngữ: `en, vi, es, fr, de, pt, ja, ko, ar`, URL dạng `/vi/qr/wifi`. Truy cập `/` sẽ tự chuyển theo cookie hoặc ngôn ngữ trình duyệt.
 
 Thêm ngôn ngữ: tạo `src/i18n/dictionaries/xx.json` (khóa nào thiếu sẽ tự dùng tiếng Anh), rồi thêm `xx` vào `src/i18n/config.ts` và `src/i18n/get-dictionary.ts`.
+
+Tiếng Ả Rập hiển thị từ phải sang trái (`<html dir="rtl">`, xem `localeDir` trong `src/i18n/config.ts`). Khi viết giao diện, dùng class logic
+của Tailwind để tự lật theo hướng chữ: `ms-/me-` thay `ml-/mr-`, `ps-/pe-` thay `pl-/pr-`, `start-/end-` thay `left-/right-`, `text-start/text-end`
+thay `text-left/text-right`. Mũi tên chỉ hướng: `rtl:-scale-x-100`. Giá tiền, URL: bọc `<bdi dir="ltr">` / `dir="ltr"`.
 
 ### SEO
 - 112 trang dựng sẵn lúc build (8 ngôn ngữ × trang chủ, 10 trang loại QR, trang quét, chính sách, điều khoản), phát thẳng từ static assets của Cloudflare.

@@ -27,7 +27,7 @@ export default async function TicketPage({ params }: PageProps<"/[locale]/dashbo
   return (
     <div className="mx-auto max-w-3xl">
       <Link href={`/${locale}/dashboard/support`} className="text-sm text-slate-500 hover:text-brand-600">
-        ← {t.title}
+        <span className="inline-block rtl:-scale-x-100">←</span> {t.title}
       </Link>
       <div className="mt-2 mb-6 flex flex-wrap items-start gap-3">
         <div className="min-w-0 flex-1">
@@ -44,7 +44,7 @@ export default async function TicketPage({ params }: PageProps<"/[locale]/dashbo
       <div className="mt-6 space-y-3">
         <ReplyForm t={t} action={replyTicketAction.bind(null, locale, ticket.id)} closed={ticket.status === "closed"} />
         {ticket.status !== "closed" && (
-          <form action={closeTicketAction.bind(null, locale, ticket.id)} className="text-right">
+          <form action={closeTicketAction.bind(null, locale, ticket.id)} className="text-end">
             <button type="submit" className="text-sm text-slate-500 underline hover:text-slate-700">
               {t.close}
             </button>

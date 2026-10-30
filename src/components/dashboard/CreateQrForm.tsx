@@ -97,7 +97,7 @@ export function CreateQrForm({ action, t, fields, typeNames, chooseType, maxPdfB
             type="file"
             accept="application/pdf,.pdf"
             required
-            className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:font-semibold file:text-brand-700 hover:file:bg-brand-100"
+            className="block w-full text-sm text-slate-600 file:me-3 file:rounded-lg file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:font-semibold file:text-brand-700 hover:file:bg-brand-100"
           />
           <p className="mt-1 text-xs text-slate-500">{withMb(t.pdfHint, maxPdfBytes)}</p>
         </div>

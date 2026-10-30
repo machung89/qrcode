@@ -55,7 +55,7 @@ export default async function BillingPage({ params, searchParams }: PageProps<"/
   return (
     <>
       <Link href={`/${locale}/dashboard`} className="text-sm text-slate-500 hover:text-brand-600">
-        ← {dict.dashboard.back}
+        <span className="inline-block rtl:-scale-x-100">←</span> {dict.dashboard.back}
       </Link>
       <h1 className="mt-2 mb-6 text-2xl font-extrabold sm:text-3xl">{t.title}</h1>
 
@@ -97,12 +97,12 @@ export default async function BillingPage({ params, searchParams }: PageProps<"/
         {payments.length === 0 ? (
           <p className="p-5 text-sm text-slate-500">{t.noPayments}</p>
         ) : (
-          <table className="w-full text-left text-sm">
+          <table className="w-full text-start text-sm">
             <thead className="border-b border-slate-100 text-xs text-slate-500">
               <tr>
                 <th className="p-3 font-medium">{t.date}</th>
                 <th className="p-3 font-medium">{t.plan}</th>
-                <th className="p-3 text-right font-medium">{t.amount}</th>
+                <th className="p-3 text-end font-medium">{t.amount}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -112,8 +112,10 @@ export default async function BillingPage({ params, searchParams }: PageProps<"/
                   <td className="p-3">
                     {dict.pricing.planNames[p.plan]} · {p.period === "month" ? dict.pricing.monthly : dict.pricing.yearly}
                   </td>
-                  <td className="p-3 text-right tabular-nums">
-                    {p.amount} {p.currency}
+                  <td className="p-3 text-end tabular-nums">
+                    <bdi dir="ltr">
+                      {p.amount} {p.currency}
+                    </bdi>
                   </td>
                 </tr>
               ))}

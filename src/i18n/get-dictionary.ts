@@ -7,11 +7,12 @@ import de from "./dictionaries/de.json";
 import pt from "./dictionaries/pt.json";
 import ja from "./dictionaries/ja.json";
 import ko from "./dictionaries/ko.json";
+import ar from "./dictionaries/ar.json";
 import type { Locale } from "./config";
 
 export type Dictionary = typeof en;
 
-const raw: Record<Locale, unknown> = { en, vi, es, fr, de, pt, ja, ko };
+const raw: Record<Locale, unknown> = { en, vi, es, fr, de, pt, ja, ko, ar };
 
 /** Ghép bản dịch lên bản tiếng Anh: khóa nào thiếu sẽ dùng tiếng Anh. */
 function merge<T>(base: T, override: unknown): T {

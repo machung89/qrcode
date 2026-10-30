@@ -61,7 +61,7 @@ export function PricingPlans({ locale, t, currentPlan }: Props) {
             >
               {p === "month" ? t.monthly : t.yearly}
               {p === "year" && savePct > 0 && (
-                <span className={`ml-2 rounded-full px-2 py-0.5 text-xs ${period === p ? "bg-white/20" : "bg-green-100 text-green-700"}`}>
+                <span className={`ms-2 rounded-full px-2 py-0.5 text-xs ${period === p ? "bg-white/20" : "bg-green-100 text-green-700"}`}>
                   {fill(t.save, { n: savePct })}
                 </span>
               )}
@@ -84,10 +84,10 @@ export function PricingPlans({ locale, t, currentPlan }: Props) {
               <p className="text-sm text-slate-500">{t.planDesc[plan]}</p>
               <p className="mt-4 mb-5 min-h-12">
                 {!paid ? (
-                  <span className="text-4xl font-extrabold">{data ? money(0) : "…"}</span>
+                  <bdi dir="ltr" className="text-4xl font-extrabold">{data ? money(0) : "…"}</bdi>
                 ) : data ? (
                   <>
-                    <span className="text-4xl font-extrabold">{money(data.prices[plan][period])}</span>
+                    <bdi dir="ltr" className="text-4xl font-extrabold">{money(data.prices[plan][period])}</bdi>
                     <span className="text-slate-500">{period === "month" ? t.perMonth : t.perYear}</span>
                   </>
                 ) : (

@@ -6,7 +6,7 @@ import { AdSlot, StickyAd } from "@/components/ads/AdSlot";
 import { AdsProvider } from "@/components/ads/AdsProvider";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { isLocale, locales, ogLocales } from "@/i18n/config";
+import { isLocale, localeDir, locales, ogLocales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { siteMetaTags } from "@/lib/ads/meta";
 import { alternatesFor, siteName, siteUrl } from "@/lib/site";
@@ -53,7 +53,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   const dict = getDictionary(locale);
 
   return (
-    <html lang={locale} className={inter.variable}>
+    <html lang={locale} dir={localeDir(locale)} className={inter.variable}>
       <body className="min-h-screen font-sans antialiased">
         <AdsProvider locale={locale}>
           <Header locale={locale} dict={dict} />
