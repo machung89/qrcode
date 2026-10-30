@@ -58,7 +58,13 @@
     "locating": "Obteniendo tu ubicación...",
     "locationDenied": "El acceso a la ubicación está bloqueado. Permite la ubicación para este sitio en los ajustes del navegador (y activa la ubicación del teléfono) e inténtalo de nuevo. También puedes pegar coordenadas de Google Maps.",
     "locationUnavailable": "No se pudo obtener tu ubicación. Activa la ubicación/GPS e inténtalo de nuevo, o pega coordenadas de Google Maps.",
-    "locationUnsupported": "Este navegador no puede compartir tu ubicación. Si abriste el enlace dentro de Facebook o Messenger, ábrelo en Chrome o Safari."
+    "locationUnsupported": "Este navegador no puede compartir tu ubicación. Si abriste el enlace dentro de Facebook o Messenger, ábrelo en Chrome o Safari.",
+    "searchPlace": "Busca un lugar o dirección",
+    "search": "Buscar",
+    "searching": "Buscando...",
+    "searchError": "La búsqueda no está disponible ahora. Haz clic en el mapa.",
+    "noPlaceFound": "No se encontraron lugares. Prueba otro nombre.",
+    "mapHint": "Haz clic en el mapa o arrastra el marcador para fijar la ubicación exacta."
   },
   "types": {
     "url": { "name": "URL", "short": "Abrir un enlace web", "title": "Generador de código QR para URL", "metaDescription": "Convierte cualquier enlace en un código QR gratis. Personaliza colores, añade tu logo y descárgalo en PNG o SVG.", "intro": "Un código QR de URL lleva a las personas directamente a una página web al escanearlo. Úsalo en carteles, envases, tarjetas y menús para atraer tráfico a tu web o tienda online." },

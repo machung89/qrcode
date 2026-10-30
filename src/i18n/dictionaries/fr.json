@@ -58,7 +58,13 @@
     "locating": "Localisation en cours...",
     "locationDenied": "L’accès à la position est bloqué. Autorisez la localisation pour ce site dans les réglages du navigateur (et activez la localisation du téléphone), puis réessayez. Vous pouvez aussi coller des coordonnées depuis Google Maps.",
     "locationUnavailable": "Impossible d’obtenir votre position. Activez la localisation/GPS et réessayez, ou collez des coordonnées depuis Google Maps.",
-    "locationUnsupported": "Ce navigateur ne peut pas partager votre position. Si vous avez ouvert le lien dans Facebook ou Messenger, ouvrez-le plutôt dans Chrome ou Safari."
+    "locationUnsupported": "Ce navigateur ne peut pas partager votre position. Si vous avez ouvert le lien dans Facebook ou Messenger, ouvrez-le plutôt dans Chrome ou Safari.",
+    "searchPlace": "Rechercher un lieu ou une adresse",
+    "search": "Rechercher",
+    "searching": "Recherche...",
+    "searchError": "La recherche est indisponible pour le moment. Cliquez sur la carte.",
+    "noPlaceFound": "Aucun lieu trouvé. Essayez un autre nom.",
+    "mapHint": "Cliquez sur la carte ou déplacez le repère pour choisir l’emplacement exact."
   },
   "types": {
     "url": { "name": "URL", "short": "Ouvrir un lien web", "title": "Générateur de QR code URL", "metaDescription": "Transformez n’importe quel lien en QR code gratuitement. Personnalisez les couleurs, ajoutez votre logo et téléchargez en PNG ou SVG.", "intro": "Un QR code URL dirige directement vers une page web. Utilisez-le sur vos affiches, emballages, cartes de visite et menus pour générer du trafic." },

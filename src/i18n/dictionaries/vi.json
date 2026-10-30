@@ -101,7 +101,13 @@
     "locating": "Đang lấy vị trí...",
     "locationDenied": "Trình duyệt đang chặn quyền vị trí. Hãy cho phép vị trí cho trang này trong cài đặt trình duyệt (và bật Vị trí trên điện thoại) rồi thử lại. Bạn cũng có thể dán toạ độ từ Google Maps.",
     "locationUnavailable": "Không lấy được vị trí. Hãy bật Vị trí / GPS rồi thử lại, hoặc dán toạ độ từ Google Maps.",
-    "locationUnsupported": "Trình duyệt này không cho lấy vị trí. Nếu bạn mở link trong Zalo, Facebook hay Messenger, hãy mở bằng Chrome hoặc Safari."
+    "locationUnsupported": "Trình duyệt này không cho lấy vị trí. Nếu bạn mở link trong Zalo, Facebook hay Messenger, hãy mở bằng Chrome hoặc Safari.",
+    "searchPlace": "Tìm địa điểm hoặc địa chỉ",
+    "search": "Tìm",
+    "searching": "Đang tìm...",
+    "searchError": "Chưa tìm kiếm được lúc này. Hãy bấm trực tiếp lên bản đồ.",
+    "noPlaceFound": "Không tìm thấy địa điểm. Thử tên khác.",
+    "mapHint": "Bấm lên bản đồ hoặc kéo ghim để chọn đúng vị trí."
   },
   "types": {
     "url": {

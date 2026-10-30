@@ -101,7 +101,13 @@
     "locating": "Getting your location...",
     "locationDenied": "Location access is blocked. Allow location for this site in your browser settings (and turn on Location on your phone), then try again. You can also paste coordinates from Google Maps.",
     "locationUnavailable": "Could not get your location. Turn on Location / GPS and try again, or paste coordinates from Google Maps.",
-    "locationUnsupported": "This browser cannot share your location. If you opened the link inside Zalo, Facebook or Messenger, open it in Chrome or Safari instead."
+    "locationUnsupported": "This browser cannot share your location. If you opened the link inside Zalo, Facebook or Messenger, open it in Chrome or Safari instead.",
+    "searchPlace": "Search for a place or address",
+    "search": "Search",
+    "searching": "Searching...",
+    "searchError": "Search is not available right now. Click on the map instead.",
+    "noPlaceFound": "No places found. Try another name.",
+    "mapHint": "Click on the map or drag the pin to set the exact location."
   },
   "types": {
     "url": {

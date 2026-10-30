@@ -101,7 +101,13 @@
     "locating": "現在地を取得中...",
     "locationDenied": "位置情報へのアクセスがブロックされています。ブラウザの設定でこのサイトの位置情報を許可し（スマホの位置情報もオンにして）、もう一度お試しください。Google マップの座標を貼り付けることもできます。",
     "locationUnavailable": "現在地を取得できませんでした。位置情報／GPS をオンにして再度お試しいただくか、Google マップの座標を貼り付けてください。",
-    "locationUnsupported": "このブラウザでは位置情報を利用できません。LINE や Facebook などのアプリ内でリンクを開いた場合は、Chrome または Safari で開いてください。"
+    "locationUnsupported": "このブラウザでは位置情報を利用できません。LINE や Facebook などのアプリ内でリンクを開いた場合は、Chrome または Safari で開いてください。",
+    "searchPlace": "場所や住所を検索",
+    "search": "検索",
+    "searching": "検索中...",
+    "searchError": "現在検索できません。地図を直接クリックしてください。",
+    "noPlaceFound": "場所が見つかりません。別の名前でお試しください。",
+    "mapHint": "地図をクリックするか、ピンをドラッグして正確な位置を指定します。"
   },
   "types": {
     "url": {
