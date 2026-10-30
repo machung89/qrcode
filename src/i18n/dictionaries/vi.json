@@ -327,12 +327,28 @@
       "notFound": "Không tìm thấy mã QR.",
       "limit": "Bạn đã đạt số lượng mã QR tối đa.",
       "nameRequired": "Vui lòng nhập tên.",
+      "required": "Vui lòng điền đủ các trường bắt buộc.",
+      "invalidValue": "Một số thông tin chưa hợp lệ. Vui lòng kiểm tra lại.",
+      "invalidType": "Loại mã QR không được hỗ trợ.",
       "unknown": "Có lỗi xảy ra. Vui lòng thử lại."
     },
     "scanPage": {
       "paused": { "title": "Mã QR đang tạm dừng", "text": "Chủ sở hữu đã tạm thời tắt mã QR này." },
       "missing": { "title": "Không tìm thấy mã QR", "text": "Mã QR này không tồn tại hoặc đã bị xóa." }
     }
+  },
+  "landing": {
+    "call": "Gọi điện",
+    "sendSms": "Gửi tin nhắn",
+    "sendEmail": "Gửi email",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép!",
+    "copyPassword": "Sao chép mật khẩu",
+    "saveContact": "Lưu vào danh bạ",
+    "addToGoogle": "Thêm vào Google Calendar",
+    "downloadIcs": "Tải file .ics (Apple, Outlook)",
+    "wifiHint": "Mở cài đặt Wi-Fi trên điện thoại, chọn mạng này rồi dán mật khẩu.",
+    "createOwn": "Tạo mã QR của riêng bạn miễn phí"
   },
   "ads": {
     "label": "Quảng cáo",

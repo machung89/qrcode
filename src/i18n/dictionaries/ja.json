@@ -327,12 +327,28 @@
       "notFound": "QRコードが見つかりません。",
       "limit": "作成できるQRコードの上限に達しました。",
       "nameRequired": "名前を入力してください。",
+      "required": "必須項目をすべて入力してください。",
+      "invalidValue": "入力内容に誤りがあります。確認してもう一度お試しください。",
+      "invalidType": "対応していないQRコードの種類です。",
       "unknown": "エラーが発生しました。もう一度お試しください。"
     },
     "scanPage": {
       "paused": { "title": "このQRコードは停止中です", "text": "所有者によって一時的に無効化されています。" },
       "missing": { "title": "QRコードが見つかりません", "text": "このQRコードは存在しないか、削除されました。" }
     }
+  },
+  "landing": {
+    "call": "電話をかける",
+    "sendSms": "メッセージを送る",
+    "sendEmail": "メールを送る",
+    "copy": "コピー",
+    "copied": "コピーしました！",
+    "copyPassword": "パスワードをコピー",
+    "saveContact": "連絡先に保存",
+    "addToGoogle": "Googleカレンダーに追加",
+    "downloadIcs": ".icsをダウンロード（Apple・Outlook）",
+    "wifiHint": "スマートフォンのWi-Fi設定を開き、このネットワークを選んでパスワードを貼り付けてください。",
+    "createOwn": "無料でQRコードを作成する"
   },
   "ads": {
     "label": "広告",

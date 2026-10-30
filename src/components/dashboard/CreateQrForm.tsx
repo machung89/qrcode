@@ -1,8 +1,11 @@
 "use client";
 
 import { useActionState, useState } from "react";
-import type { Dictionary } from "@/i18n/get-dictionary";
 import type { FormState } from "@/app/[locale]/dashboard/actions";
+import type { Dictionary } from "@/i18n/get-dictionary";
+import { dynamicTypes, type DynamicType } from "@/lib/dynamic-types";
+import { TypeIcon } from "../TypeIcon";
+import { DynamicFields } from "./DynamicFields";
 
 type Labels = Dictionary["dashboard"];
 
@@ -19,9 +22,26 @@ export function rejectLargePdf(e: React.FormEvent<HTMLFormElement>) {
   return false;
 }
 
-export function CreateQrForm({ action, t }: { action: (prev: FormState, formData: FormData) => Promise<FormState>; t: Labels }) {
+export function PdfIcon({ className = "h-6 w-6" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5M9 13h6M9 17h4" />
+    </svg>
+  );
+}
+
+type Props = {
+  action: (prev: FormState, formData: FormData) => Promise<FormState>;
+  t: Labels;
+  fields: Dictionary["fields"];
+  typeNames: Record<DynamicType, string>;
+  chooseType: string;
+};
+
+export function CreateQrForm({ action, t, fields, typeNames, chooseType }: Props) {
   const [state, formAction, pending] = useActionState(action, undefined);
-  const [kind, setKind] = useState<"url" | "pdf">("url");
+  const [type, setType] = useState<DynamicType>("url");
   const [tooLarge, setTooLarge] = useState(false);
 
   return (
@@ -30,34 +50,40 @@ export function CreateQrForm({ action, t }: { action: (prev: FormState, formData
         <label className="label" htmlFor="name">
           {t.name}
         </label>
-        <input id="name" name="name" className="input" required maxLength={120} placeholder={t.namePlaceholder} />
+        <input
+          id="name"
+          name="name"
+          className="input"
+          required
+          maxLength={120}
+          placeholder={t.namePlaceholder}
+          defaultValue={state?.name}
+          key={`name-${state?.name}`}
+        />
       </div>
 
       <fieldset>
-        <legend className="label">{t.type}</legend>
-        <div className="grid grid-cols-2 gap-3">
-          {(["url", "pdf"] as const).map((k) => (
-            <label
+        <legend className="label">{chooseType}</legend>
+        <input type="hidden" name="type" value={type} />
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+          {dynamicTypes.map((k) => (
+            <button
               key={k}
-              className={`flex cursor-pointer items-center gap-2 rounded-xl border p-3 text-sm font-medium transition ${
-                kind === k ? "border-brand-500 bg-brand-50 text-brand-700 ring-1 ring-brand-500" : "border-slate-200 hover:bg-slate-50"
+              type="button"
+              onClick={() => setType(k)}
+              aria-pressed={type === k}
+              className={`flex flex-col items-center gap-1 rounded-xl border px-2 py-3 text-xs font-medium transition ${
+                type === k ? "border-brand-500 bg-brand-50 text-brand-700 ring-1 ring-brand-500" : "border-slate-200 text-slate-600 hover:bg-slate-50"
               }`}
             >
-              <input type="radio" name="kind" value={k} checked={kind === k} onChange={() => setKind(k)} className="accent-brand-600" />
-              {k === "url" ? t.kindUrl : t.kindPdf}
-            </label>
+              {k === "pdf" ? <PdfIcon /> : <TypeIcon type={k} className="h-6 w-6" />}
+              {typeNames[k]}
+            </button>
           ))}
         </div>
       </fieldset>
 
-      {kind === "url" ? (
-        <div>
-          <label className="label" htmlFor="url">
-            {t.targetUrl}
-          </label>
-          <input id="url" name="url" type="text" inputMode="url" autoComplete="url" className="input" required placeholder="https://example.com" />
-        </div>
-      ) : (
+      {type === "pdf" ? (
         <div>
           <label className="label" htmlFor="file">
             {t.pdfFile}
@@ -72,10 +98,13 @@ export function CreateQrForm({ action, t }: { action: (prev: FormState, formData
           />
           <p className="mt-1 text-xs text-slate-500">{t.pdfHint}</p>
         </div>
+      ) : (
+        // key: đổi loại hoặc có lỗi từ server thì tạo lại các ô nhập với giá trị phù hợp
+        <DynamicFields key={`${type}-${JSON.stringify(state?.values ?? {})}`} type={type} labels={fields} values={state?.values} />
       )}
 
       {(tooLarge || state?.error) && (
-        <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">
+        <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-700">
           {tooLarge ? t.errors.fileTooLarge : (t.errors[state!.error as keyof Labels["errors"]] ?? t.errors.unknown)}
         </p>
       )}

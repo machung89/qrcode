@@ -34,6 +34,10 @@ CREATE TABLE qr_codes (
   target_url TEXT,
   file_id TEXT REFERENCES files(id) ON DELETE SET NULL,
   design TEXT,
+  -- Loại mã (url, pdf, text, wifi, vcard...); kind chỉ còn phân biệt có file PDF ('pdf') hay không ('url')
+  qr_type TEXT,
+  -- Nội dung JSON theo loại (vd {"ssid":"...","password":"..."})
+  content TEXT,
   active INTEGER NOT NULL DEFAULT 1,
   created_at INTEGER NOT NULL,
   updated_at INTEGER NOT NULL

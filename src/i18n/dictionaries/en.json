@@ -327,12 +327,28 @@
       "notFound": "QR code not found.",
       "limit": "You have reached the maximum number of QR codes.",
       "nameRequired": "Please enter a name.",
+      "required": "Please fill in all required fields.",
+      "invalidValue": "Some values are not valid. Please check and try again.",
+      "invalidType": "Unsupported QR code type.",
       "unknown": "Something went wrong. Please try again."
     },
     "scanPage": {
       "paused": { "title": "This QR code is paused", "text": "The owner has temporarily disabled this QR code." },
       "missing": { "title": "QR code not found", "text": "This QR code does not exist or has been deleted." }
     }
+  },
+  "landing": {
+    "call": "Call",
+    "sendSms": "Send message",
+    "sendEmail": "Send email",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "copyPassword": "Copy password",
+    "saveContact": "Save contact",
+    "addToGoogle": "Add to Google Calendar",
+    "downloadIcs": "Download .ics (Apple, Outlook)",
+    "wifiHint": "Open Wi-Fi settings on your phone, choose this network and paste the password.",
+    "createOwn": "Create your own free QR code"
   },
   "ads": {
     "label": "Advertisement",

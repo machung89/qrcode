@@ -174,3 +174,49 @@ export function buildQrData(type: QrType, v: FieldValues): string {
     }
   }
 }
+
+/** File danh bạ .vcf (vCard 3.0, xuống dòng CRLF theo chuẩn). */
+export function buildVcf(v: FieldValues) {
+  return buildQrData("vcard", v).replace(/\n/g, "\r\n") + "\r\n";
+}
+
+/** File lịch .ics hoàn chỉnh (VCALENDAR) cho mã QR sự kiện; không có giờ kết thúc thì mặc định 1 tiếng. */
+export function buildIcs(v: FieldValues, uid: string) {
+  const start = icsDate(v.start);
+  const end = v.end ? icsDate(v.end) : icsDate(addHour(v.start));
+  const stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//QR Code Generator//EN",
+    "BEGIN:VEVENT",
+    `UID:${uid}`,
+    `DTSTAMP:${stamp}`,
+    `SUMMARY:${vEscape(v.title)}`,
+    `DTSTART:${start}`,
+    `DTEND:${end}`,
+  ];
+  if (v.location) lines.push(`LOCATION:${vEscape(v.location)}`);
+  if (v.description) lines.push(`DESCRIPTION:${vEscape(v.description)}`);
+  lines.push("END:VEVENT", "END:VCALENDAR");
+  return lines.join("\r\n") + "\r\n";
+}
+
+/** Link "Thêm vào Google Calendar" cho mã QR sự kiện (giờ địa phương của người xem). */
+export function googleCalendarUrl(v: FieldValues) {
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: v.title,
+    dates: `${icsDate(v.start)}/${icsDate(v.end || addHour(v.start))}`,
+  });
+  if (v.location) params.set("location", v.location);
+  if (v.description) params.set("details", v.description);
+  return `https://calendar.google.com/calendar/render?${params}`;
+}
+
+/** "2026-12-24T19:00" -> "2026-12-24T20:00" (không đổi múi giờ) */
+function addHour(value: string) {
+  const d = new Date(`${value.slice(0, 16)}:00Z`);
+  if (Number.isNaN(d.getTime())) return value;
+  return new Date(d.getTime() + 3600_000).toISOString().slice(0, 16);
+}

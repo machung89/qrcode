@@ -1,21 +1,26 @@
 "use client";
 
 import { useActionState, useState, useTransition } from "react";
-import type { Dictionary } from "@/i18n/get-dictionary";
 import type { FormState } from "@/app/[locale]/dashboard/actions";
+import type { Dictionary } from "@/i18n/get-dictionary";
+import type { DynamicType } from "@/lib/dynamic-types";
+import type { FieldValues } from "@/lib/qr-types";
 import { rejectLargePdf } from "./CreateQrForm";
+import { DynamicFields } from "./DynamicFields";
 
 type Labels = Dictionary["dashboard"];
 
 type Props = {
   t: Labels;
-  qr: { name: string; kind: "url" | "pdf"; targetUrl: string | null; fileName: string | null; fileUrl: string | null; active: boolean };
+  fields: Dictionary["fields"];
+  /** values: nội dung hiện tại theo trường (loại url: { url }) */
+  qr: { name: string; type: DynamicType; values: FieldValues | null; fileName: string | null; fileUrl: string | null; active: boolean };
   update: (prev: FormState, formData: FormData) => Promise<FormState>;
   setActive: (active: boolean) => Promise<void>;
   remove: () => Promise<void>;
 };
 
-export function QrSettings({ t, qr, update, setActive, remove }: Props) {
+export function QrSettings({ t, fields, qr, update, setActive, remove }: Props) {
   const [state, formAction, pending] = useActionState(update, undefined);
   const [busy, startTransition] = useTransition();
   const [tooLarge, setTooLarge] = useState(false);
@@ -28,15 +33,16 @@ export function QrSettings({ t, qr, update, setActive, remove }: Props) {
           <label className="label" htmlFor="name">
             {t.name}
           </label>
-          <input id="name" name="name" className="input" required maxLength={120} defaultValue={qr.name} />
+          <input id="name" name="name" className="input" required maxLength={120} defaultValue={state?.error ? state.name : qr.name} key={`name-${qr.name}-${state?.name}`} />
         </div>
-        {qr.kind === "url" ? (
-          <div>
-            <label className="label" htmlFor="url">
-              {t.targetUrl}
-            </label>
-            <input id="url" name="url" type="text" inputMode="url" className="input" required defaultValue={qr.targetUrl ?? ""} />
-          </div>
+        {qr.type !== "pdf" ? (
+          // Lỗi từ server: điền lại giá trị vừa nhập; lưu xong: dựng lại theo nội dung mới
+          <DynamicFields
+            key={JSON.stringify(state?.error ? state.values : qr.values)}
+            type={qr.type}
+            labels={fields}
+            values={state?.error ? state.values : qr.values}
+          />
         ) : (
           <div className="space-y-2">
             <p className="text-sm text-slate-600">

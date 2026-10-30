@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PdfIcon } from "@/components/dashboard/CreateQrForm";
+import { dynamicTypeNames } from "@/components/dashboard/labels";
 import { StatCard } from "@/components/dashboard/Stats";
+import { TypeIcon } from "@/components/TypeIcon";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { listQrs, userTotals } from "@/lib/dynamic-qr";
+import { contentOf, listQrs, typeOf, userTotals } from "@/lib/dynamic-qr";
+import { summarize } from "@/lib/dynamic-types";
 import { siteUrl } from "@/lib/site";
 import { requireUser } from "@/lib/user-auth";
 
@@ -17,7 +21,9 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const user = await requireUser(locale);
-  const t = getDictionary(locale).dashboard;
+  const dict = getDictionary(locale);
+  const t = dict.dashboard;
+  const typeNames = dynamicTypeNames(dict);
   const [codes, totals] = await Promise.all([listQrs(user.id), userTotals(user.id)]);
   const date = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
   const num = new Intl.NumberFormat(locale);
@@ -51,20 +57,24 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
         </div>
       ) : (
         <ul className="card divide-y divide-slate-100">
-          {codes.map((qr) => (
+          {codes.map((qr) => {
+            const type = typeOf(qr);
+            return (
             <li key={qr.id}>
               <Link href={`/${locale}/dashboard/qr/${qr.id}`} className="flex flex-wrap items-center gap-x-4 gap-y-1 p-4 transition hover:bg-slate-50">
                 <span
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-xs font-bold ${
-                    qr.kind === "pdf" ? "bg-red-50 text-red-600" : "bg-brand-50 text-brand-600"
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
+                    type === "pdf" ? "bg-red-50 text-red-600" : "bg-brand-50 text-brand-600"
                   }`}
+                  title={typeNames[type]}
                 >
-                  {qr.kind === "pdf" ? "PDF" : "URL"}
+                  {type === "pdf" ? <PdfIcon className="h-5 w-5" /> : <TypeIcon type={type} className="h-5 w-5" />}
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block truncate font-semibold">{qr.name}</span>
                   <span className="block truncate text-xs text-slate-500">
-                    {siteUrl.replace(/^https?:\/\//, "")}/r/{qr.slug} → {qr.kind === "pdf" ? qr.file_name : qr.target_url}
+                    {typeNames[type]} · {siteUrl.replace(/^https?:\/\//, "")}/r/{qr.slug} →{" "}
+                    {summarize(type, contentOf(qr), { url: qr.target_url, fileName: qr.file_name })}
                   </span>
                 </span>
                 <span className="text-right">
@@ -79,7 +89,8 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
                 </span>
               </Link>
             </li>
-          ))}
+            );
+          })}
         </ul>
       )}
     </>

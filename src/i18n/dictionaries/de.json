@@ -216,12 +216,28 @@
       "notFound": "QR-Code nicht gefunden.",
       "limit": "Sie haben die maximale Anzahl an QR-Codes erreicht.",
       "nameRequired": "Bitte einen Namen eingeben.",
+      "required": "Bitte alle Pflichtfelder ausfüllen.",
+      "invalidValue": "Einige Angaben sind ungültig. Bitte prüfen und erneut versuchen.",
+      "invalidType": "Nicht unterstützter QR-Code-Typ.",
       "unknown": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
     },
     "scanPage": {
       "paused": { "title": "Dieser QR-Code ist pausiert", "text": "Der Inhaber hat diesen QR-Code vorübergehend deaktiviert." },
       "missing": { "title": "QR-Code nicht gefunden", "text": "Dieser QR-Code existiert nicht oder wurde gelöscht." }
     }
+  },
+  "landing": {
+    "call": "Anrufen",
+    "sendSms": "Nachricht senden",
+    "sendEmail": "E-Mail senden",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "copyPassword": "Passwort kopieren",
+    "saveContact": "Kontakt speichern",
+    "addToGoogle": "Zu Google Kalender hinzufügen",
+    "downloadIcs": ".ics herunterladen (Apple, Outlook)",
+    "wifiHint": "Öffnen Sie die WLAN-Einstellungen, wählen Sie dieses Netzwerk und fügen Sie das Passwort ein.",
+    "createOwn": "Eigenen QR-Code kostenlos erstellen"
   },
   "ads": { "label": "Anzeige", "close": "Schließen" }
 }

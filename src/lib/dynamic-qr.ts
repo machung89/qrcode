@@ -1,11 +1,14 @@
 import "server-only";
 import { createHash, randomInt } from "crypto";
 import { db, filesBucket } from "./db";
+import { type DynamicType, parseContent, validateContent } from "./dynamic-types";
+import type { FieldValues } from "./qr-types";
 import { newId } from "./user-auth";
 
 export const MAX_PDF_BYTES = 10 * 1024 * 1024;
 export const MAX_CODES_PER_USER = 100;
 
+/** Cột kind (cũ): 'pdf' = có file PDF, 'url' = mọi loại khác. Loại thật nằm ở qr_type. */
 export type QrKind = "url" | "pdf";
 
 export type DynamicQr = {
@@ -13,6 +16,8 @@ export type DynamicQr = {
   slug: string;
   name: string;
   kind: QrKind;
+  qr_type: DynamicType | null;
+  content: string | null;
   target_url: string | null;
   file_id: string | null;
   file_name: string | null;
@@ -22,6 +27,10 @@ export type DynamicQr = {
   created_at: number;
   updated_at: number;
 };
+
+/** Loại mã: mã tạo trước khi có cột qr_type thì suy ra từ kind. */
+export const typeOf = (qr: Pick<DynamicQr, "qr_type" | "kind">): DynamicType => qr.qr_type ?? qr.kind;
+export const contentOf = (qr: Pick<DynamicQr, "content">) => parseContent(qr.content);
 
 export type QrListItem = DynamicQr & { scans: number; last_scan: number | null };
 
@@ -84,7 +93,9 @@ export async function readFile(fileId: string) {
 // ---------- Mã QR động ----------
 
 export class QrError extends Error {
-  constructor(public code: "invalidUrl" | "fileRequired" | "fileTooLarge" | "fileType" | "notFound" | "limit" | "nameRequired") {
+  constructor(
+    public code: "invalidUrl" | "fileRequired" | "fileTooLarge" | "fileType" | "notFound" | "limit" | "nameRequired" | "required" | "invalidValue" | "invalidType",
+  ) {
     super(code);
   }
 }
@@ -110,7 +121,15 @@ export async function getQr(userId: string, id: string) {
   return (await db()).prepare(`${SELECT_QR} WHERE q.id = ? AND q.user_id = ?`).bind(id, userId).first<DynamicQr>();
 }
 
-export async function createQr(userId: string, input: { name: string; kind: QrKind; url?: string; file?: File | null }) {
+/** Kiểm tra nội dung của các loại không phải url/pdf; ném QrError nếu sai. */
+function contentJson(type: DynamicType, fields: FieldValues | undefined) {
+  if (type === "url" || type === "pdf") return null;
+  const result = validateContent(type, fields ?? {});
+  if ("error" in result) throw new QrError(result.error);
+  return JSON.stringify(result.content);
+}
+
+export async function createQr(userId: string, input: { name: string; type: DynamicType; url?: string; file?: File | null; fields?: FieldValues }) {
   const name = input.name.trim().slice(0, 120);
   if (!name) throw new QrError("nameRequired");
   const d = await db();
@@ -119,10 +138,11 @@ export async function createQr(userId: string, input: { name: string; kind: QrKi
 
   let targetUrl: string | null = null;
   let fileId: string | null = null;
-  if (input.kind === "url") {
+  const content = contentJson(input.type, input.fields);
+  if (input.type === "url") {
     targetUrl = normalizeUrl(input.url ?? "");
     if (!targetUrl) throw new QrError("invalidUrl");
-  } else {
+  } else if (input.type === "pdf") {
     if (!input.file || !input.file.size) throw new QrError("fileRequired");
     fileId = await savePdf(userId, input.file);
   }
@@ -131,34 +151,41 @@ export async function createQr(userId: string, input: { name: string; kind: QrKi
   const now = Date.now();
   await d
     .prepare(
-      `INSERT INTO qr_codes (id, user_id, slug, name, kind, target_url, file_id, active, created_at, updated_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, ?)`,
+      `INSERT INTO qr_codes (id, user_id, slug, name, kind, qr_type, content, target_url, file_id, active, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?)`,
     )
-    .bind(id, userId, await newSlug(), name, input.kind, targetUrl, fileId, now, now)
+    .bind(id, userId, await newSlug(), name, input.type === "pdf" ? "pdf" : "url", input.type, content, targetUrl, fileId, now, now)
     .run();
   return id;
 }
 
-export async function updateQr(userId: string, id: string, input: { name?: string; url?: string; file?: File | null; active?: boolean }) {
+export async function updateQr(
+  userId: string,
+  id: string,
+  input: { name?: string; url?: string; file?: File | null; fields?: FieldValues; active?: boolean },
+) {
   const qr = await getQr(userId, id);
   if (!qr) throw new QrError("notFound");
+  const type = typeOf(qr);
   const name = input.name !== undefined ? input.name.trim().slice(0, 120) : qr.name;
   if (!name) throw new QrError("nameRequired");
 
   let targetUrl = qr.target_url;
   let fileId = qr.file_id;
-  if (qr.kind === "url" && input.url !== undefined) {
+  let content = qr.content;
+  if (type === "url" && input.url !== undefined) {
     targetUrl = normalizeUrl(input.url);
     if (!targetUrl) throw new QrError("invalidUrl");
   }
-  if (qr.kind === "pdf" && input.file && input.file.size) {
+  if (type === "pdf" && input.file && input.file.size) {
     fileId = await savePdf(userId, input.file);
   }
+  if (input.fields !== undefined) content = contentJson(type, input.fields) ?? content;
   const active = input.active !== undefined ? (input.active ? 1 : 0) : qr.active;
 
   await (await db())
-    .prepare("UPDATE qr_codes SET name = ?, target_url = ?, file_id = ?, active = ?, updated_at = ? WHERE id = ? AND user_id = ?")
-    .bind(name, targetUrl, fileId, active, Date.now(), id, userId)
+    .prepare("UPDATE qr_codes SET name = ?, target_url = ?, file_id = ?, content = ?, active = ?, updated_at = ? WHERE id = ? AND user_id = ?")
+    .bind(name, targetUrl, fileId, content, active, Date.now(), id, userId)
     .run();
   if (qr.file_id && qr.file_id !== fileId) await deleteFile(qr.file_id);
 }
@@ -178,9 +205,9 @@ export async function deleteQr(userId: string, id: string) {
 
 export async function findBySlug(slug: string) {
   return (await db())
-    .prepare("SELECT id, kind, target_url, file_id, active FROM qr_codes WHERE slug = ?")
+    .prepare("SELECT id, slug, name, kind, qr_type, content, target_url, file_id, active FROM qr_codes WHERE slug = ?")
     .bind(slug)
-    .first<Pick<DynamicQr, "id" | "kind" | "target_url" | "file_id" | "active">>();
+    .first<Pick<DynamicQr, "id" | "slug" | "name" | "kind" | "qr_type" | "content" | "target_url" | "file_id" | "active">>();
 }
 
 export async function recordScan(qrId: string, info: { ip: string; device: string; os: string; browser: string; country: string }) {

@@ -4,10 +4,13 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import type { SavedDesign } from "@/components/QrGenerator";
 import { isLocale } from "@/i18n/config";
-import { createQr, deleteQr, QrError, saveDesign, updateQr, type QrKind } from "@/lib/dynamic-qr";
+import { createQr, deleteQr, QrError, saveDesign, updateQr } from "@/lib/dynamic-qr";
+import { isDynamicType, readFields } from "@/lib/dynamic-types";
+import type { FieldValues } from "@/lib/qr-types";
 import { getUser } from "@/lib/user-auth";
 
-export type FormState = { error?: string; ok?: boolean } | undefined;
+/** values/name: giá trị đã nhập, trả lại khi lỗi để form điền lại (React 19 xoá trắng form sau khi gửi). */
+export type FormState = { error?: string; ok?: boolean; values?: FieldValues; name?: string } | undefined;
 
 function errorCode(e: unknown) {
   if (e instanceof QrError) return e.code;
@@ -23,16 +26,15 @@ const fileOf = (formData: FormData) => {
 export async function createQrAction(locale: string, _prev: FormState, formData: FormData): Promise<FormState> {
   const user = await getUser();
   if (!user || !isLocale(locale)) return { error: "unknown" };
+  const type = formData.get("type");
+  const name = String(formData.get("name") ?? "");
+  const fields = readFields(formData);
+  if (!isDynamicType(type)) return { error: "invalidType", name, values: fields };
   let id: string;
   try {
-    id = await createQr(user.id, {
-      name: String(formData.get("name") ?? ""),
-      kind: (formData.get("kind") === "pdf" ? "pdf" : "url") as QrKind,
-      url: String(formData.get("url") ?? ""),
-      file: fileOf(formData),
-    });
+    id = await createQr(user.id, { name, type, url: fields?.url, file: fileOf(formData), fields });
   } catch (e) {
-    return { error: errorCode(e) };
+    return { error: errorCode(e), name, values: fields };
   }
   revalidatePath(`/${locale}/dashboard`);
   redirect(`/${locale}/dashboard/qr/${id}`);
@@ -40,15 +42,14 @@ export async function createQrAction(locale: string, _prev: FormState, formData:
 
 export async function updateQrAction(locale: string, id: string, _prev: FormState, formData: FormData): Promise<FormState> {
   const user = await getUser();
-  if (!user) return { error: "unknown" };
+  const name = String(formData.get("name") ?? "");
+  const fields = readFields(formData);
+  if (!user) return { error: "unknown", name, values: fields };
   try {
-    await updateQr(user.id, id, {
-      name: String(formData.get("name") ?? ""),
-      url: formData.has("url") ? String(formData.get("url")) : undefined,
-      file: fileOf(formData),
-    });
+    await updateQr(user.id, id, { name, url: fields?.url, file: fileOf(formData), fields });
   } catch (e) {
-    return { error: errorCode(e) };
+    // Trả lại giá trị đã nhập để form điền lại (React xoá trắng form sau khi gửi)
+    return { error: errorCode(e), name, values: fields };
   }
   revalidatePath(`/${locale}/dashboard`, "layout");
   return { ok: true };

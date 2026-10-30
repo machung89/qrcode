@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { CopyLink } from "@/components/dashboard/CopyLink";
+import { dynamicTypeNames } from "@/components/dashboard/labels";
 import { QrSettings } from "@/components/dashboard/QrSettings";
 import { BreakdownList, DailyChart, StatCard } from "@/components/dashboard/Stats";
 import { QrGenerator, type SavedDesign } from "@/components/QrGenerator";
 import { generatorLabels } from "@/components/Sections";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { getQr, getStats } from "@/lib/dynamic-qr";
+import { contentOf, getQr, getStats, typeOf } from "@/lib/dynamic-qr";
 import { siteUrl } from "@/lib/site";
 import { getUser, requireUser } from "@/lib/user-auth";
 import { deleteQrAction, saveDesignAction, setActiveAction, updateQrAction } from "../../actions";
@@ -42,6 +43,7 @@ export default async function QrDetailPage({ params }: PageProps<"/[locale]/dash
   const dict = getDictionary(locale);
   const t = dict.dashboard;
   const stats = await getStats(qr.id);
+  const type = typeOf(qr);
   const shortUrl = `${siteUrl}/r/${qr.slug}`;
   const num = new Intl.NumberFormat(locale);
   const dateTime = new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeStyle: "short" });
@@ -64,7 +66,7 @@ export default async function QrDetailPage({ params }: PageProps<"/[locale]/dash
         <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${qr.active ? "bg-green-100 text-green-700" : "bg-slate-200 text-slate-600"}`}>
           {qr.active ? t.active : t.paused}
         </span>
-        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">{qr.kind === "pdf" ? t.kindPdf : t.kindUrl}</span>
+        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">{dynamicTypeNames(dict)[type]}</span>
       </div>
 
       <div className="mb-10 grid gap-6 lg:grid-cols-[1fr_360px]">
@@ -91,20 +93,21 @@ export default async function QrDetailPage({ params }: PageProps<"/[locale]/dash
           </div>
         </div>
 
-        <div className="lg:sticky lg:top-20 lg:self-start">
+        <div className="lg:self-start">
           <QrSettings
-          t={t}
-          qr={{
-            name: qr.name,
-            kind: qr.kind,
-            targetUrl: qr.target_url,
-            fileName: qr.file_name,
-            fileUrl: qr.file_id ? `/f/${qr.file_id}` : null,
-            active: !!qr.active,
-          }}
-          update={updateQrAction.bind(null, locale, qr.id)}
-          setActive={setActiveAction.bind(null, locale, qr.id)}
-          remove={deleteQrAction.bind(null, locale, qr.id)}
+            t={t}
+            fields={dict.fields}
+            qr={{
+              name: qr.name,
+              type,
+              values: type === "url" ? { url: qr.target_url ?? "" } : contentOf(qr),
+              fileName: qr.file_name,
+              fileUrl: qr.file_id ? `/f/${qr.file_id}` : null,
+              active: !!qr.active,
+            }}
+            update={updateQrAction.bind(null, locale, qr.id)}
+            setActive={setActiveAction.bind(null, locale, qr.id)}
+            remove={deleteQrAction.bind(null, locale, qr.id)}
           />
         </div>
       </div>
