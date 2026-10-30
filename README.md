@@ -66,9 +66,9 @@ nhiều lỗi *1102 Worker exceeded resource limits* thì nâng lên Workers Pai
    ```
 3. **Nối GitHub**: *Workers & Pages → Create → Import a repository* → chọn repo.
    - Build command: `npx @opennextjs/cloudflare build`
-   - Deploy command: `npx @opennextjs/cloudflare deploy`
+   - Deploy command: `npx @opennextjs/cloudflare deploy -- --keep-vars` (giữ lại biến đặt trên dashboard)
    - Build variables: `NEXT_PUBLIC_SITE_URL=https://ten-mien-cua-ban`, `NEXT_PUBLIC_SITE_NAME=...`, (tuỳ chọn) `SITE_META_TAGS=...`
-4. **Bí mật** (nhập trực tiếp, không lưu vào code):
+4. **Bí mật**: đặt ở Worker → Settings → Variables and Secrets với kiểu **Secret** (kiểu *Text* có thể bị xoá khi deploy), hoặc bằng lệnh:
    ```bash
    npx wrangler secret put ADMIN_PASSWORD
    npx wrangler secret put ADMIN_SECRET
