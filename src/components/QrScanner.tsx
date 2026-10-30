@@ -5,18 +5,52 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 
 type Labels = Dictionary["scanner"];
 
-async function decode(source: CanvasImageSource, width: number, height: number) {
-  const { default: jsQR } = await import("jsqr");
-  // Thu nhỏ ảnh lớn để quét nhanh hơn
-  const scale = Math.min(1, 1200 / Math.max(width, height));
-  const canvas = document.createElement("canvas");
-  canvas.width = Math.round(width * scale);
-  canvas.height = Math.round(height * scale);
-  const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
-  ctx.drawImage(source, 0, 0, canvas.width, canvas.height);
-  const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  return jsQR(img.data, img.width, img.height, { inversionAttempts: "attemptBoth" })?.data ?? null;
+type Detector = { detect(source: ImageBitmapSource): Promise<{ rawValue: string }[]> };
+
+/** Bộ quét có sẵn của trình duyệt (Chrome Android, Safari mới...), null nếu không có */
+async function nativeDecode(source: ImageBitmapSource) {
+  const BarcodeDetector = (window as unknown as { BarcodeDetector?: new (o: { formats: string[] }) => Detector }).BarcodeDetector;
+  if (!BarcodeDetector) return null;
+  try {
+    const codes = await new BarcodeDetector({ formats: ["qr_code"] }).detect(source);
+    return codes[0]?.rawValue ?? null;
+  } catch {
+    return null;
+  }
 }
+
+/**
+ * Quét bằng jsQR, lần lượt ở các cạnh dài trong `sizes` (px).
+ * jsQR hay trượt với ảnh nét, ô vuông lớn (vd PNG 1000px xuất từ trang tạo mã) nhưng đọc được khi thu nhỏ,
+ * nên ảnh tải lên thử vài kích thước. Lót nền trắng (ảnh PNG nền trong suốt) và thêm viền trắng (ảnh cắt sát mã).
+ */
+async function decode(source: CanvasImageSource, width: number, height: number, sizes: number[]) {
+  const { default: jsQR } = await import("jsqr");
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
+  const tried = new Set<number>();
+  for (const size of sizes) {
+    const scale = Math.min(1, size / Math.max(width, height));
+    const w = Math.round(width * scale);
+    const h = Math.round(height * scale);
+    // Ảnh nhỏ: các kích thước cho ra cùng một ảnh, khỏi quét lại
+    if (tried.has(w)) continue;
+    tried.add(w);
+    const pad = Math.round(Math.max(w, h) / 12);
+    canvas.width = w + pad * 2;
+    canvas.height = h + pad * 2;
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(source, pad, pad, w, h);
+    const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = jsQR(img.data, img.width, img.height, { inversionAttempts: "attemptBoth" })?.data;
+    if (data) return data;
+  }
+  return null;
+}
+
+const UPLOAD_SIZES = [1200, 800, 500, 300];
+const CAMERA_SIZES = [800];
 
 export function QrScanner({ labels }: { labels: Labels }) {
   const [result, setResult] = useState<string | null>(null);
@@ -44,7 +78,7 @@ export function QrScanner({ labels }: { labels: Labels }) {
       setResult(null);
       try {
         const bitmap = await createImageBitmap(file);
-        const data = await decode(bitmap, bitmap.width, bitmap.height);
+        const data = (await nativeDecode(bitmap)) ?? (await decode(bitmap, bitmap.width, bitmap.height, UPLOAD_SIZES));
         if (data) setResult(data);
         else setError(labels.noResult);
       } catch {
@@ -77,7 +111,7 @@ export function QrScanner({ labels }: { labels: Labels }) {
       const tick = async () => {
         if (!streamRef.current) return;
         if (video.readyState >= 2) {
-          const data = await decode(video, video.videoWidth, video.videoHeight);
+          const data = await decode(video, video.videoWidth, video.videoHeight, CAMERA_SIZES);
           if (data) {
             setResult(data);
             stopCamera();
