@@ -34,7 +34,7 @@ export function LanguageSwitcher({ locale, label }: { locale: Locale; label: str
       >
         {locales.map((l) => (
           <option key={l} value={l}>
-            {localeNames[l]}
+            {l.toUpperCase()} {localeNames[l]}
           </option>
         ))}
       </select>
