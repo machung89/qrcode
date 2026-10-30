@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { cache } from "react";
 import type { Locale } from "@/i18n/config";
 import { db } from "./db";
+import { effectivePlan, type Plan } from "./plans";
 import { siteUrl } from "./site";
 
 export const USER_COOKIE = "qr_session";
@@ -12,7 +13,10 @@ export const USER_COOKIE = "qr_session";
 export const LOGGED_IN_COOKIE = "qr_li";
 const SESSION_DAYS = 30;
 
-export type User = { id: string; email: string; name: string; avatar: string };
+export type User = { id: string; email: string; name: string; avatar: string; plan: string | null; plan_expires_at: number | null };
+
+/** Gói đang có hiệu lực của người dùng (gói trả phí hết hạn -> free). */
+export const userPlan = (user: Pick<User, "plan" | "plan_expires_at">): Plan => effectivePlan(user.plan, user.plan_expires_at);
 
 export const newId = (bytes = 12) => randomBytes(bytes).toString("base64url");
 const hash = (value: string) => createHash("sha256").update(value).digest("hex");
@@ -73,7 +77,7 @@ export const getUser = cache(async (): Promise<User | null> => {
   if (!token) return null;
   return (await db())
     .prepare(
-      `SELECT u.id, u.email, u.name, u.avatar FROM sessions s JOIN users u ON u.id = s.user_id
+      `SELECT u.id, u.email, u.name, u.avatar, u.plan, u.plan_expires_at FROM sessions s JOIN users u ON u.id = s.user_id
        WHERE s.token_hash = ? AND s.expires_at > ?`,
     )
     .bind(hash(token), Date.now())

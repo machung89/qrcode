@@ -3,7 +3,7 @@
     "title": "Generador de códigos QR gratis – Crea códigos QR con logo",
     "description": "Crea códigos QR gratis para URL, WiFi, vCard, email, SMS, WhatsApp, ubicación y eventos. Personaliza colores, formas y añade tu logo. Descarga PNG, SVG, JPG. Sin registro."
   },
-  "nav": { "generator": "Generador QR", "scanner": "Escáner QR", "types": "Tipos de QR", "language": "Idioma", "menu": "Menú" },
+  "nav": { "generator": "Generador QR", "scanner": "Escáner QR", "types": "Tipos de QR", "pricing": "Precios", "language": "Idioma", "menu": "Menú" },
   "hero": {
     "title": "Generador de códigos QR gratis",
     "subtitle": "Crea códigos QR personalizados con tu logo, colores y estilo en segundos. Gratis para siempre, sin registro y sin caducidad."
@@ -214,8 +214,9 @@
       "fileTooLarge": "El PDF supera los 10 MB.",
       "fileType": "El archivo no es un PDF válido.",
       "notFound": "Código QR no encontrado.",
-      "limit": "Has alcanzado el número máximo de códigos QR.",
+      "limit": "Has alcanzado el límite de códigos QR dinámicos de tu plan. Mejora tu plan para crear más.",
       "nameRequired": "Introduce un nombre.",
+      "pdfLimit": "Has alcanzado el límite de archivos PDF de tu plan. Mejora tu plan para subir más.",
       "required": "Completa todos los campos obligatorios.",
       "invalidValue": "Algunos datos no son válidos. Revísalos e inténtalo de nuevo.",
       "invalidType": "Tipo de código QR no compatible.",
@@ -225,6 +226,68 @@
       "paused": { "title": "Este código QR está en pausa", "text": "El propietario ha desactivado temporalmente este código QR." },
       "missing": { "title": "Código QR no encontrado", "text": "Este código QR no existe o ha sido eliminado." }
     }
+  },
+  "pricing": {
+    "title": "Precios",
+    "metaTitle": "Precios – Planes gratis y Pro de códigos QR",
+    "metaDescription": "Los códigos QR estáticos son gratis para siempre. Mejora tu plan para más códigos dinámicos, PDF, estadísticas completas y sin anuncios. Paga con PayPal.",
+    "subtitle": "Los códigos QR estáticos son gratis para siempre. Mejora para más códigos dinámicos, PDF, estadísticas completas y sin anuncios.",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "save": "Ahorra {n}%",
+    "perMonth": "/mes",
+    "perYear": "/año",
+    "planNames": {
+      "free": "Gratis",
+      "personal": "Personal",
+      "business": "Empresa"
+    },
+    "planDesc": {
+      "free": "Prueba los códigos QR dinámicos",
+      "personal": "Para autónomos y tiendas pequeñas",
+      "business": "Para empresas y agencias"
+    },
+    "features": {
+      "staticUnlimited": "Códigos QR estáticos ilimitados",
+      "codes": "{n} códigos QR dinámicos",
+      "pdf": "{n} archivos PDF, hasta {mb} MB cada uno",
+      "stats7": "Estadísticas de escaneos (últimos 7 días)",
+      "statsFull": "Estadísticas completas: dispositivos, países, gráfico de 30 días",
+      "ads": "Anuncios en las páginas del QR",
+      "noAds": "Sin anuncios",
+      "unlimitedScans": "Escaneos ilimitados",
+      "keepWorking": "Los códigos impresos siguen funcionando, aunque bajes de plan"
+    },
+    "startFree": "Empieza gratis",
+    "buy": "Comprar con PayPal",
+    "extend": "Ampliar con PayPal",
+    "current": "Plan actual",
+    "popular": "Más popular",
+    "loading": "Cargando precios…",
+    "unavailable": "Los planes de pago aún no están disponibles.",
+    "oneTime": "Pago único con PayPal. Sin renovación automática.",
+    "loginToBuy": "Inicia sesión para comprar"
+  },
+  "billing": {
+    "title": "Plan y facturación",
+    "currentPlan": "Plan actual",
+    "expires": "Válido hasta {date}",
+    "freeForever": "Gratis para siempre",
+    "usage": "Uso",
+    "codesUsed": "Códigos QR dinámicos",
+    "pdfUsed": "Archivos PDF",
+    "upgrade": "Mejorar",
+    "paid": "¡Pago completado! Tu plan se ha mejorado.",
+    "canceled": "Pago cancelado. No se ha realizado ningún cargo.",
+    "errorCheckout": "No se pudo iniciar el pago. Inténtalo más tarde.",
+    "errorPayment": "No se pudo confirmar el pago. Si se te ha cobrado, contáctanos con el ID de transacción de PayPal y activaremos tu plan.",
+    "history": "Historial de pagos",
+    "noPayments": "Aún no hay pagos",
+    "date": "Fecha",
+    "plan": "Plan",
+    "amount": "Importe",
+    "statsLocked": "Mejora tu plan para ver dispositivos, sistemas operativos, navegadores y países.",
+    "expiredNote": "Cuando un plan vence, tus códigos QR siguen funcionando; solo no puedes crear más del límite gratuito."
   },
   "landing": {
     "call": "Llamar",

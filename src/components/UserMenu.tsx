@@ -7,7 +7,7 @@ import type { Locale } from "@/i18n/config";
 
 type Me = { name: string; email: string; avatar: string } | null;
 
-export function UserMenu({ locale, labels }: { locale: Locale; labels: { signIn: string; menu: string; signOut: string } }) {
+export function UserMenu({ locale, labels }: { locale: Locale; labels: { signIn: string; menu: string; billing: string; signOut: string } }) {
   // undefined = đang tải; trang công khai là trang tĩnh nên lấy trạng thái đăng nhập phía client
   const [me, setMe] = useState<Me | undefined>(undefined);
   const [open, setOpen] = useState(false);
@@ -83,6 +83,9 @@ export function UserMenu({ locale, labels }: { locale: Locale; labels: { signIn:
           </div>
           <Link href={`/${locale}/dashboard`} className="block rounded-lg px-3 py-2 text-sm hover:bg-slate-50" onClick={() => setOpen(false)}>
             {labels.menu}
+          </Link>
+          <Link href={`/${locale}/dashboard/billing`} className="block rounded-lg px-3 py-2 text-sm hover:bg-slate-50" onClick={() => setOpen(false)}>
+            {labels.billing}
           </Link>
           <form action={`/api/auth/logout?locale=${locale}`} method="post">
             <button type="submit" className="w-full rounded-lg px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50">

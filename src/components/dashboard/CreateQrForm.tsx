@@ -9,13 +9,14 @@ import { DynamicFields } from "./DynamicFields";
 
 type Labels = Dictionary["dashboard"];
 
-const MAX_PDF_BYTES = 10 * 1024 * 1024;
+/** "PDF tối đa 10 MB" -> thay 10 bằng giới hạn của gói */
+export const withMb = (text: string, maxBytes: number) => text.replace("10", String(Math.round(maxBytes / 1048576)));
 
-/** Chặn gửi form nếu PDF vượt giới hạn (server action sẽ từ chối body quá lớn mà không báo lỗi rõ ràng). */
-export function rejectLargePdf(e: React.FormEvent<HTMLFormElement>) {
+/** Chặn gửi form nếu PDF vượt giới hạn của gói (server action sẽ từ chối body quá lớn mà không báo lỗi rõ ràng). */
+export function rejectLargePdf(e: React.FormEvent<HTMLFormElement>, maxBytes: number) {
   const input = e.currentTarget.elements.namedItem("file");
   const file = input instanceof HTMLInputElement ? input.files?.[0] : undefined;
-  if (file && file.size > MAX_PDF_BYTES) {
+  if (file && file.size > maxBytes) {
     e.preventDefault();
     return true;
   }
@@ -37,15 +38,17 @@ type Props = {
   fields: Dictionary["fields"];
   typeNames: Record<DynamicType, string>;
   chooseType: string;
+  /** Dung lượng PDF tối đa theo gói */
+  maxPdfBytes: number;
 };
 
-export function CreateQrForm({ action, t, fields, typeNames, chooseType }: Props) {
+export function CreateQrForm({ action, t, fields, typeNames, chooseType, maxPdfBytes }: Props) {
   const [state, formAction, pending] = useActionState(action, undefined);
   const [type, setType] = useState<DynamicType>("url");
   const [tooLarge, setTooLarge] = useState(false);
 
   return (
-    <form action={formAction} onSubmit={(e) => setTooLarge(rejectLargePdf(e))} className="card space-y-5 p-6">
+    <form action={formAction} onSubmit={(e) => setTooLarge(rejectLargePdf(e, maxPdfBytes))} className="card space-y-5 p-6">
       <div>
         <label className="label" htmlFor="name">
           {t.name}
@@ -96,7 +99,7 @@ export function CreateQrForm({ action, t, fields, typeNames, chooseType }: Props
             required
             className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:font-semibold file:text-brand-700 hover:file:bg-brand-100"
           />
-          <p className="mt-1 text-xs text-slate-500">{t.pdfHint}</p>
+          <p className="mt-1 text-xs text-slate-500">{withMb(t.pdfHint, maxPdfBytes)}</p>
         </div>
       ) : (
         // key: đổi loại hoặc có lỗi từ server thì tạo lại các ô nhập với giá trị phù hợp
@@ -105,7 +108,7 @@ export function CreateQrForm({ action, t, fields, typeNames, chooseType }: Props
 
       {(tooLarge || state?.error) && (
         <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-700">
-          {tooLarge ? t.errors.fileTooLarge : (t.errors[state!.error as keyof Labels["errors"]] ?? t.errors.unknown)}
+          {tooLarge || state?.error === "fileTooLarge" ? withMb(t.errors.fileTooLarge, maxPdfBytes) : (t.errors[state!.error as keyof Labels["errors"]] ?? t.errors.unknown)}
         </p>
       )}
 

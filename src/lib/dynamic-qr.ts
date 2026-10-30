@@ -2,11 +2,10 @@ import "server-only";
 import { createHash, randomInt } from "crypto";
 import { db, filesBucket } from "./db";
 import { type DynamicType, parseContent, validateContent } from "./dynamic-types";
+import { planLimits, type Plan } from "./plans";
 import type { FieldValues } from "./qr-types";
 import { newId } from "./user-auth";
 
-export const MAX_PDF_BYTES = 10 * 1024 * 1024;
-export const MAX_CODES_PER_USER = 100;
 
 /** Cột kind (cũ): 'pdf' = có file PDF, 'url' = mọi loại khác. Loại thật nằm ở qr_type. */
 export type QrKind = "url" | "pdf";
@@ -59,8 +58,12 @@ export function normalizeUrl(input: string): string | null {
 
 // ---------- File PDF (R2) ----------
 
-export async function savePdf(userId: string, file: File) {
-  if (file.size > MAX_PDF_BYTES) throw new QrError("fileTooLarge");
+/** Lưu PDF lên R2. `replacing`: đang thay file cũ (file cũ sẽ bị xoá nên không tính vào giới hạn). */
+export async function savePdf(userId: string, file: File, plan: Plan, replacing = false) {
+  const limits = planLimits[plan];
+  if (file.size > limits.pdfBytes) throw new QrError("fileTooLarge");
+  const used = (await (await db()).prepare("SELECT COUNT(*) AS n FROM files WHERE user_id = ?").bind(userId).first<{ n: number }>())?.n ?? 0;
+  if (used - (replacing ? 1 : 0) >= limits.pdfFiles) throw new QrError("pdfLimit");
   const bytes = new Uint8Array(await file.arrayBuffer());
   // Kiểm tra chữ ký "%PDF-" thay vì tin vào phần mở rộng
   if (String.fromCharCode(...bytes.subarray(0, 5)) !== "%PDF-") throw new QrError("fileType");
@@ -94,7 +97,18 @@ export async function readFile(fileId: string) {
 
 export class QrError extends Error {
   constructor(
-    public code: "invalidUrl" | "fileRequired" | "fileTooLarge" | "fileType" | "notFound" | "limit" | "nameRequired" | "required" | "invalidValue" | "invalidType",
+    public code:
+      | "invalidUrl"
+      | "fileRequired"
+      | "fileTooLarge"
+      | "fileType"
+      | "notFound"
+      | "limit"
+      | "pdfLimit"
+      | "nameRequired"
+      | "required"
+      | "invalidValue"
+      | "invalidType",
   ) {
     super(code);
   }
@@ -129,12 +143,12 @@ function contentJson(type: DynamicType, fields: FieldValues | undefined) {
   return JSON.stringify(result.content);
 }
 
-export async function createQr(userId: string, input: { name: string; type: DynamicType; url?: string; file?: File | null; fields?: FieldValues }) {
+export async function createQr(userId: string, plan: Plan, input: { name: string; type: DynamicType; url?: string; file?: File | null; fields?: FieldValues }) {
   const name = input.name.trim().slice(0, 120);
   if (!name) throw new QrError("nameRequired");
   const d = await db();
   const count = (await d.prepare("SELECT COUNT(*) AS n FROM qr_codes WHERE user_id = ?").bind(userId).first<{ n: number }>())?.n ?? 0;
-  if (count >= MAX_CODES_PER_USER) throw new QrError("limit");
+  if (count >= planLimits[plan].codes) throw new QrError("limit");
 
   let targetUrl: string | null = null;
   let fileId: string | null = null;
@@ -144,7 +158,7 @@ export async function createQr(userId: string, input: { name: string; type: Dyna
     if (!targetUrl) throw new QrError("invalidUrl");
   } else if (input.type === "pdf") {
     if (!input.file || !input.file.size) throw new QrError("fileRequired");
-    fileId = await savePdf(userId, input.file);
+    fileId = await savePdf(userId, input.file, plan);
   }
 
   const id = newId();
@@ -161,6 +175,7 @@ export async function createQr(userId: string, input: { name: string; type: Dyna
 
 export async function updateQr(
   userId: string,
+  plan: Plan,
   id: string,
   input: { name?: string; url?: string; file?: File | null; fields?: FieldValues; active?: boolean },
 ) {
@@ -178,7 +193,7 @@ export async function updateQr(
     if (!targetUrl) throw new QrError("invalidUrl");
   }
   if (type === "pdf" && input.file && input.file.size) {
-    fileId = await savePdf(userId, input.file);
+    fileId = await savePdf(userId, input.file, plan, !!qr.file_id);
   }
   if (input.fields !== undefined) content = contentJson(type, input.fields) ?? content;
   const active = input.active !== undefined ? (input.active ? 1 : 0) : qr.active;
@@ -188,6 +203,14 @@ export async function updateQr(
     .bind(name, targetUrl, fileId, content, active, Date.now(), id, userId)
     .run();
   if (qr.file_id && qr.file_id !== fileId) await deleteFile(qr.file_id);
+}
+
+export async function usage(userId: string) {
+  const row = await (await db())
+    .prepare("SELECT (SELECT COUNT(*) FROM qr_codes WHERE user_id = ?1) AS codes, (SELECT COUNT(*) FROM files WHERE user_id = ?1) AS pdfFiles")
+    .bind(userId)
+    .first<{ codes: number; pdfFiles: number }>();
+  return row ?? { codes: 0, pdfFiles: 0 };
 }
 
 export async function saveDesign(userId: string, id: string, design: string) {
@@ -203,11 +226,21 @@ export async function deleteQr(userId: string, id: string) {
 
 // ---------- Lượt quét ----------
 
+/** Tra mã theo slug (kèm gói của chủ mã để trang hiển thị biết có hiện quảng cáo không). */
 export async function findBySlug(slug: string) {
   return (await db())
-    .prepare("SELECT id, slug, name, kind, qr_type, content, target_url, file_id, active FROM qr_codes WHERE slug = ?")
+    .prepare(
+      `SELECT q.id, q.slug, q.name, q.kind, q.qr_type, q.content, q.target_url, q.file_id, q.active,
+         u.plan AS owner_plan, u.plan_expires_at AS owner_plan_expires_at
+       FROM qr_codes q JOIN users u ON u.id = q.user_id WHERE q.slug = ?`,
+    )
     .bind(slug)
-    .first<Pick<DynamicQr, "id" | "slug" | "name" | "kind" | "qr_type" | "content" | "target_url" | "file_id" | "active">>();
+    .first<
+      Pick<DynamicQr, "id" | "slug" | "name" | "kind" | "qr_type" | "content" | "target_url" | "file_id" | "active"> & {
+        owner_plan: string | null;
+        owner_plan_expires_at: number | null;
+      }
+    >();
 }
 
 export async function recordScan(qrId: string, info: { ip: string; device: string; os: string; browser: string; country: string }) {
@@ -222,9 +255,9 @@ export async function recordScan(qrId: string, info: { ip: string; device: strin
 
 export type Breakdown = { label: string; count: number }[];
 
-export async function getStats(qrId: string) {
+export async function getStats(qrId: string, days = 30) {
   const d = await db();
-  const since = Date.now() - 30 * 86400000;
+  const since = Date.now() - days * 86400000;
   const breakdown = (column: "device" | "os" | "browser" | "country") =>
     d.prepare(`SELECT ${column} AS label, COUNT(*) AS count FROM scans WHERE qr_id = ? GROUP BY ${column} ORDER BY count DESC LIMIT 8`).bind(qrId);
   // Gộp 6 truy vấn vào 1 lần gọi D1
@@ -238,7 +271,7 @@ export async function getStats(qrId: string) {
   ]);
   const byDay = new Map((dailyRows.results as { day: string; count: number }[]).map((r) => [r.day, r.count]));
   const daily: { day: string; count: number }[] = [];
-  for (let i = 29; i >= 0; i--) {
+  for (let i = days - 1; i >= 0; i--) {
     const day = new Date(Date.now() - i * 86400000).toISOString().slice(0, 10);
     daily.push({ day, count: byDay.get(day) ?? 0 });
   }

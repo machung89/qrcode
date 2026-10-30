@@ -5,7 +5,8 @@ import { CreateQrForm } from "@/components/dashboard/CreateQrForm";
 import { dynamicTypeNames } from "@/components/dashboard/labels";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { requireUser } from "@/lib/user-auth";
+import { planLimits } from "@/lib/plans";
+import { requireUser, userPlan } from "@/lib/user-auth";
 import { createQrAction } from "../actions";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/dashboard/new">): Promise<Metadata> {
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/dashboar
 export default async function NewQrPage({ params }: PageProps<"/[locale]/dashboard/new">) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  await requireUser(locale);
+  const user = await requireUser(locale);
   const dict = getDictionary(locale);
   const t = dict.dashboard;
   return (
@@ -31,6 +32,7 @@ export default async function NewQrPage({ params }: PageProps<"/[locale]/dashboa
         fields={dict.fields}
         typeNames={dynamicTypeNames(dict)}
         chooseType={dict.generator.chooseType}
+        maxPdfBytes={planLimits[userPlan(user)].pdfBytes}
       />
     </div>
   );

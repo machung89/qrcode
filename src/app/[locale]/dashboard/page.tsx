@@ -10,7 +10,8 @@ import { getDictionary } from "@/i18n/get-dictionary";
 import { contentOf, listQrs, typeOf, userTotals } from "@/lib/dynamic-qr";
 import { summarize } from "@/lib/dynamic-types";
 import { siteUrl } from "@/lib/site";
-import { requireUser } from "@/lib/user-auth";
+import { planLimits } from "@/lib/plans";
+import { requireUser, userPlan } from "@/lib/user-auth";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/dashboard">): Promise<Metadata> {
   const { locale } = await params;
@@ -27,21 +28,37 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
   const [codes, totals] = await Promise.all([listQrs(user.id), userTotals(user.id)]);
   const date = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
   const num = new Intl.NumberFormat(locale);
+  const plan = userPlan(user);
+  const limit = planLimits[plan].codes;
 
   return (
     <>
       <div className="mb-6 flex flex-wrap items-center gap-4">
         <div className="flex-1">
           <h1 className="text-2xl font-extrabold sm:text-3xl">{t.title}</h1>
-          <p className="text-sm text-slate-500">{user.email}</p>
+          <p className="text-sm text-slate-500">
+            {user.email} · {dict.pricing.planNames[plan]}
+          </p>
         </div>
+        <Link href={`/${locale}/dashboard/billing`} className="btn-ghost">
+          {dict.billing.title}
+        </Link>
         <Link href={`/${locale}/dashboard/new`} className="btn-primary">
           + {t.newQr}
         </Link>
       </div>
 
+      {codes.length >= limit && (
+        <div className="mb-6 flex flex-wrap items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          <span className="flex-1">{t.errors.limit}</span>
+          <Link href={`/${locale}/dashboard/billing`} className="btn-primary">
+            {dict.billing.upgrade}
+          </Link>
+        </div>
+      )}
+
       <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-        <StatCard label={t.totalCodes} value={num.format(codes.length)} />
+        <StatCard label={t.totalCodes} value={`${num.format(codes.length)}/${num.format(limit)}`} />
         <StatCard label={t.totalScans} value={num.format(totals.total)} />
         <StatCard label={t.scansToday} value={num.format(totals.today ?? 0)} />
         <StatCard label={t.scans30} value={num.format(totals.last30 ?? 0)} />

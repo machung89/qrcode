@@ -6,7 +6,7 @@
   "nav": {
     "generator": "QR Generator",
     "scanner": "QR Scanner",
-    "types": "QR Types",
+    "types": "QR Types", "pricing": "Pricing",
     "language": "Language",
     "menu": "Menu"
   },
@@ -325,8 +325,9 @@
       "fileTooLarge": "The PDF is larger than 10 MB.",
       "fileType": "The file is not a valid PDF.",
       "notFound": "QR code not found.",
-      "limit": "You have reached the maximum number of QR codes.",
+      "limit": "You have reached the dynamic QR code limit of your plan. Upgrade to create more.",
       "nameRequired": "Please enter a name.",
+      "pdfLimit": "You have reached the PDF file limit of your plan. Upgrade to upload more.",
       "required": "Please fill in all required fields.",
       "invalidValue": "Some values are not valid. Please check and try again.",
       "invalidType": "Unsupported QR code type.",
@@ -336,6 +337,68 @@
       "paused": { "title": "This QR code is paused", "text": "The owner has temporarily disabled this QR code." },
       "missing": { "title": "QR code not found", "text": "This QR code does not exist or has been deleted." }
     }
+  },
+  "pricing": {
+    "title": "Pricing",
+    "metaTitle": "Pricing – Free & Pro QR Code Plans",
+    "metaDescription": "Static QR codes are free forever. Upgrade for more dynamic QR codes, PDF storage, full scan statistics and no ads. Pay securely with PayPal.",
+    "subtitle": "Static QR codes are free forever. Upgrade for more dynamic QR codes, PDF storage, full statistics and no ads.",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "save": "Save {n}%",
+    "perMonth": "/month",
+    "perYear": "/year",
+    "planNames": {
+      "free": "Free",
+      "personal": "Personal",
+      "business": "Business"
+    },
+    "planDesc": {
+      "free": "Try dynamic QR codes",
+      "personal": "For freelancers and small shops",
+      "business": "For companies and agencies"
+    },
+    "features": {
+      "staticUnlimited": "Unlimited static QR codes",
+      "codes": "{n} dynamic QR codes",
+      "pdf": "{n} PDF files, up to {mb} MB each",
+      "stats7": "Scan statistics (last 7 days)",
+      "statsFull": "Full statistics: devices, countries, 30-day chart",
+      "ads": "Ads on QR landing pages",
+      "noAds": "No ads",
+      "unlimitedScans": "Unlimited scans",
+      "keepWorking": "Printed codes keep working, even after downgrading"
+    },
+    "startFree": "Start free",
+    "buy": "Buy with PayPal",
+    "extend": "Extend with PayPal",
+    "current": "Current plan",
+    "popular": "Most popular",
+    "loading": "Loading prices…",
+    "unavailable": "Paid plans are not available yet.",
+    "oneTime": "One-time payment via PayPal. No automatic renewal.",
+    "loginToBuy": "Sign in to buy"
+  },
+  "billing": {
+    "title": "Plan & billing",
+    "currentPlan": "Current plan",
+    "expires": "Valid until {date}",
+    "freeForever": "Free forever",
+    "usage": "Usage",
+    "codesUsed": "Dynamic QR codes",
+    "pdfUsed": "PDF files",
+    "upgrade": "Upgrade",
+    "paid": "Payment successful! Your plan has been upgraded.",
+    "canceled": "Payment was canceled. You have not been charged.",
+    "errorCheckout": "Could not start the payment. Please try again later.",
+    "errorPayment": "The payment could not be confirmed. If you were charged, contact us with your PayPal transaction ID and we will activate your plan.",
+    "history": "Payment history",
+    "noPayments": "No payments yet",
+    "date": "Date",
+    "plan": "Plan",
+    "amount": "Amount",
+    "statsLocked": "Upgrade to see devices, operating systems, browsers and countries.",
+    "expiredNote": "When a plan expires, your QR codes keep working. You just can't create more than the free limit."
   },
   "landing": {
     "call": "Call",

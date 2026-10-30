@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { NoAds } from "@/components/ads/AdsProvider";
 import { CopyButton } from "@/components/CopyButton";
 import { TypeIcon } from "@/components/TypeIcon";
 import { isLocale } from "@/i18n/config";
 import { getDictionary, type Dictionary } from "@/i18n/get-dictionary";
 import { contentOf, findBySlug, typeOf } from "@/lib/dynamic-qr";
+import { effectivePlan, planLimits } from "@/lib/plans";
 import { buildQrData, googleCalendarUrl, type FieldValues, type QrType } from "@/lib/qr-types";
 
 // Trang hiển thị nội dung mã QR động (văn bản, WiFi, vCard...). Không cho Google index.
@@ -196,8 +198,12 @@ export default async function DynamicLandingPage({ params }: PageProps<"/[locale
   const ok = qr && qr.active && content && type && type !== "url" && type !== "pdf";
   const message = !qr || !content ? dict.dashboard.scanPage.missing : !qr.active ? dict.dashboard.scanPage.paused : null;
 
+  // Chủ mã dùng gói trả phí: trang hiển thị không có quảng cáo
+  const noAds = !!qr && planLimits[effectivePlan(qr.owner_plan, qr.owner_plan_expires_at)].noAds;
+
   return (
     <div className="mx-auto max-w-md px-4 py-8">
+      {noAds && <NoAds />}
       <div className="card space-y-5 p-6">
         {ok ? (
           <>

@@ -6,6 +6,9 @@ CREATE TABLE users (
   email TEXT NOT NULL,
   name TEXT NOT NULL DEFAULT '',
   avatar TEXT NOT NULL DEFAULT '',
+  -- Gói dịch vụ (free / personal / business) và hạn dùng (ms); hết hạn thì coi như free
+  plan TEXT NOT NULL DEFAULT 'free',
+  plan_expires_at INTEGER,
   created_at INTEGER NOT NULL
 );
 
@@ -55,6 +58,23 @@ CREATE TABLE scans (
   country TEXT NOT NULL
 );
 CREATE INDEX scans_qr_ts ON scans(qr_id, ts);
+
+-- Giao dịch thanh toán (PayPal). status: created -> completed / failed
+CREATE TABLE payments (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  provider TEXT NOT NULL,
+  order_id TEXT UNIQUE,
+  plan TEXT NOT NULL,
+  period TEXT NOT NULL,
+  amount TEXT NOT NULL,
+  currency TEXT NOT NULL,
+  status TEXT NOT NULL,
+  payer_email TEXT,
+  created_at INTEGER NOT NULL,
+  completed_at INTEGER
+);
+CREATE INDEX payments_user ON payments(user_id, created_at);
 
 -- Cấu hình chung dạng key/value (vd: key 'ads' chứa JSON cấu hình quảng cáo + ads.txt)
 CREATE TABLE settings (

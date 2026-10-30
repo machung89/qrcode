@@ -30,6 +30,19 @@ Thêm ngôn ngữ: tạo `src/i18n/dictionaries/xx.json` (khóa nào thiếu s�
 - **Thống kê**: tổng lượt, người dùng duy nhất, lần quét gần nhất, biểu đồ 30 ngày, thiết bị, hệ điều hành, trình duyệt, quốc gia
   (lấy từ Cloudflare). Bot/link preview không được tính. IP chỉ lưu dạng băm.
 
+### Gói dịch vụ & thanh toán PayPal
+| | Miễn phí | Cá nhân | Doanh nghiệp |
+| --- | --- | --- | --- |
+| Mã QR động | 3 | 50 | 500 |
+| File PDF | 1 × 2 MB | 20 × 10 MB | 200 × 25 MB |
+| Thống kê | 7 ngày, chỉ số lượt | 30 ngày + thiết bị, HĐH, trình duyệt, quốc gia | như Cá nhân |
+| Quảng cáo | có | không (cả trang đích của mã) | không |
+
+- Bảng giá công khai ở `/{ngôn ngữ}/pricing`; người dùng mua và xem lịch sử ở `/{ngôn ngữ}/dashboard/billing`.
+- Thanh toán một lần qua PayPal (Orders v2), mua theo tháng hoặc năm; mua tiếp cùng gói thì **cộng dồn** hạn dùng.
+- Hết hạn thì tự về gói Miễn phí: **mã đã in vẫn chạy**, chỉ không tạo thêm được nếu vượt giới hạn.
+- Server tự xác nhận số tiền, đơn vị tiền và chủ đơn với PayPal trước khi nâng gói; tải lại trang trả về không cộng hạn 2 lần.
+
 ### Trang quản trị quảng cáo: `/admin`
 Đăng nhập bằng `ADMIN_PASSWORD`. Thêm/sửa/xoá/bật-tắt mã quảng cáo HTML/JS của bất kỳ mạng nào, chọn vị trí
 (`<head>`, cuối `<body>`, banner dưới menu, dưới công cụ, cột bên, giữa nội dung, trên footer, thanh dính đáy),
@@ -99,6 +112,17 @@ Khi thay đổi cấu trúc CSDL: thêm file `migrations/000X_ten.sql` rồi ch�
 2. **Credentials → Create credentials → OAuth client ID** → *Web application*.
 3. **Authorized redirect URIs**: `http://localhost:3000/api/auth/google/callback` (máy dev) và `https://ten-mien-cua-ban/api/auth/google/callback`.
 4. Bấm **Publish app** trong OAuth consent screen trước khi cho người ngoài đăng nhập (chế độ *Testing* chỉ cho email test).
+
+### Cấu hình PayPal (tài khoản nhận tiền)
+Không cần biến môi trường: tài khoản nhận tiền đặt ở `/admin` → **Thanh toán PayPal**.
+1. Đăng nhập [developer.paypal.com](https://developer.paypal.com/dashboard/applications) bằng tài khoản PayPal **Business** sẽ nhận tiền.
+2. **Apps & Credentials** → tab **Sandbox** → *Create App* → chép **Client ID** và **Secret**.
+3. Vào `/admin`: chọn chế độ *Sandbox*, dán Client ID / Secret, chỉnh giá, tích **Bật bán gói trả phí** → Lưu.
+4. Mua thử bằng tài khoản *Personal* sandbox (mục **Testing Tools → Sandbox Accounts**).
+5. Chạy thật: tạo app ở tab **Live**, dán Client ID / Secret của Live và đổi chế độ sang *Live*.
+
+Client Secret chỉ lưu trên server (bảng `settings` trong D1), không bao giờ gửi xuống trình duyệt. Muốn đổi tài khoản nhận tiền chỉ cần dán cặp khoá mới.
+PayPal không hỗ trợ VND nên giá mặc định tính bằng USD. Admin cũng có thể đổi gói thủ công cho người dùng (vd khi khách chuyển khoản).
 
 ## Cấu trúc chính
 

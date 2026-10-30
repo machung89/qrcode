@@ -4,8 +4,8 @@ import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   experimental: {
-    // Cho phép tải PDF tới 10 MB qua server action
-    serverActions: { bodySizeLimit: "11mb" },
+    // Cho phép tải PDF tới 25 MB (gói Doanh nghiệp) qua server action
+    serverActions: { bodySizeLimit: "26mb" },
   },
 };
 

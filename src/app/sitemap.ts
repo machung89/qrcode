@@ -7,6 +7,7 @@ const pages: { path: string; priority: number }[] = [
   { path: "", priority: 1 },
   ...qrTypes.map((t) => ({ path: `/qr/${t}`, priority: 0.9 })),
   { path: "/scanner", priority: 0.8 },
+  { path: "/pricing", priority: 0.7 },
   { path: "/privacy", priority: 0.3 },
   { path: "/terms", priority: 0.3 },
 ];

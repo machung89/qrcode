@@ -3,7 +3,7 @@
     "title": "Kostenloser QR-Code-Generator – QR-Codes mit Logo erstellen",
     "description": "Erstellen Sie kostenlos QR-Codes für URL, WLAN, vCard, E-Mail, SMS, WhatsApp, Standort und Termine. Farben, Formen und Logo anpassen. Download als PNG, SVG, JPG. Ohne Anmeldung."
   },
-  "nav": { "generator": "QR-Generator", "scanner": "QR-Scanner", "types": "QR-Typen", "language": "Sprache", "menu": "Menü" },
+  "nav": { "generator": "QR-Generator", "scanner": "QR-Scanner", "types": "QR-Typen", "pricing": "Preise", "language": "Sprache", "menu": "Menü" },
   "hero": {
     "title": "Kostenloser QR-Code-Generator",
     "subtitle": "Erstellen Sie in Sekunden individuelle QR-Codes mit Logo, Farben und Stil. Für immer kostenlos, ohne Anmeldung, ohne Ablaufdatum."
@@ -214,8 +214,9 @@
       "fileTooLarge": "Die PDF-Datei ist größer als 10 MB.",
       "fileType": "Die Datei ist keine gültige PDF.",
       "notFound": "QR-Code nicht gefunden.",
-      "limit": "Sie haben die maximale Anzahl an QR-Codes erreicht.",
+      "limit": "Sie haben das Limit an dynamischen QR-Codes Ihres Tarifs erreicht. Upgraden Sie, um mehr zu erstellen.",
       "nameRequired": "Bitte einen Namen eingeben.",
+      "pdfLimit": "Sie haben das PDF-Limit Ihres Tarifs erreicht. Upgraden Sie, um mehr hochzuladen.",
       "required": "Bitte alle Pflichtfelder ausfüllen.",
       "invalidValue": "Einige Angaben sind ungültig. Bitte prüfen und erneut versuchen.",
       "invalidType": "Nicht unterstützter QR-Code-Typ.",
@@ -225,6 +226,68 @@
       "paused": { "title": "Dieser QR-Code ist pausiert", "text": "Der Inhaber hat diesen QR-Code vorübergehend deaktiviert." },
       "missing": { "title": "QR-Code nicht gefunden", "text": "Dieser QR-Code existiert nicht oder wurde gelöscht." }
     }
+  },
+  "pricing": {
+    "title": "Preise",
+    "metaTitle": "Preise – Kostenlose und Pro-Tarife für QR-Codes",
+    "metaDescription": "Statische QR-Codes sind für immer kostenlos. Upgraden Sie für mehr dynamische QR-Codes, PDF-Speicher, vollständige Statistiken und keine Werbung. Sicher bezahlen mit PayPal.",
+    "subtitle": "Statische QR-Codes sind für immer kostenlos. Upgrade für mehr dynamische QR-Codes, PDF-Speicher, volle Statistiken und keine Werbung.",
+    "monthly": "Monatlich",
+    "yearly": "Jährlich",
+    "save": "{n} % sparen",
+    "perMonth": "/Monat",
+    "perYear": "/Jahr",
+    "planNames": {
+      "free": "Kostenlos",
+      "personal": "Persönlich",
+      "business": "Business"
+    },
+    "planDesc": {
+      "free": "Dynamische QR-Codes testen",
+      "personal": "Für Freelancer und kleine Läden",
+      "business": "Für Unternehmen und Agenturen"
+    },
+    "features": {
+      "staticUnlimited": "Unbegrenzt statische QR-Codes",
+      "codes": "{n} dynamische QR-Codes",
+      "pdf": "{n} PDF-Dateien, je bis {mb} MB",
+      "stats7": "Scan-Statistik (letzte 7 Tage)",
+      "statsFull": "Volle Statistik: Geräte, Länder, 30-Tage-Diagramm",
+      "ads": "Werbung auf den QR-Seiten",
+      "noAds": "Keine Werbung",
+      "unlimitedScans": "Unbegrenzte Scans",
+      "keepWorking": "Gedruckte Codes funktionieren weiter, auch nach einem Downgrade"
+    },
+    "startFree": "Kostenlos starten",
+    "buy": "Mit PayPal kaufen",
+    "extend": "Mit PayPal verlängern",
+    "current": "Aktueller Tarif",
+    "popular": "Am beliebtesten",
+    "loading": "Preise werden geladen…",
+    "unavailable": "Bezahlte Tarife sind noch nicht verfügbar.",
+    "oneTime": "Einmalzahlung über PayPal. Keine automatische Verlängerung.",
+    "loginToBuy": "Zum Kaufen anmelden"
+  },
+  "billing": {
+    "title": "Tarif & Zahlung",
+    "currentPlan": "Aktueller Tarif",
+    "expires": "Gültig bis {date}",
+    "freeForever": "Für immer kostenlos",
+    "usage": "Nutzung",
+    "codesUsed": "Dynamische QR-Codes",
+    "pdfUsed": "PDF-Dateien",
+    "upgrade": "Upgrade",
+    "paid": "Zahlung erfolgreich! Ihr Tarif wurde aktualisiert.",
+    "canceled": "Zahlung abgebrochen. Es wurde nichts abgebucht.",
+    "errorCheckout": "Die Zahlung konnte nicht gestartet werden. Bitte später erneut versuchen.",
+    "errorPayment": "Die Zahlung konnte nicht bestätigt werden. Falls dir etwas abgebucht wurde, kontaktiere uns mit der PayPal-Transaktions-ID, damit wir deinen Tarif aktivieren.",
+    "history": "Zahlungsverlauf",
+    "noPayments": "Noch keine Zahlungen",
+    "date": "Datum",
+    "plan": "Tarif",
+    "amount": "Betrag",
+    "statsLocked": "Upgraden Sie, um Geräte, Betriebssysteme, Browser und Länder zu sehen.",
+    "expiredNote": "Läuft ein Tarif ab, funktionieren Ihre QR-Codes weiter; Sie können nur nicht mehr als das kostenlose Limit erstellen."
   },
   "landing": {
     "call": "Anrufen",

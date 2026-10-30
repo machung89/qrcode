@@ -22,12 +22,12 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <Link href={`/${locale}/scanner`} className="rounded-lg px-2 py-1.5 text-slate-700 hover:bg-slate-100 sm:px-3">
             {dict.nav.scanner}
           </Link>
-          <Link href={`/${locale}#types`} className="hidden rounded-lg px-3 py-1.5 text-slate-700 hover:bg-slate-100 md:inline">
-            {dict.nav.types}
+          <Link href={`/${locale}/pricing`} className="hidden rounded-lg px-3 py-1.5 text-slate-700 hover:bg-slate-100 md:inline">
+            {dict.nav.pricing}
           </Link>
         </nav>
         <LanguageSwitcher locale={locale} label={dict.nav.language} />
-        <UserMenu locale={locale} labels={{ signIn: dict.dashboard.signIn, menu: dict.dashboard.menu, signOut: dict.dashboard.signOut }} />
+        <UserMenu locale={locale} labels={{ signIn: dict.dashboard.signIn, menu: dict.dashboard.menu, billing: dict.billing.title, signOut: dict.dashboard.signOut }} />
       </div>
     </header>
   );

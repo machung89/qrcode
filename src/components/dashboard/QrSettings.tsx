@@ -5,7 +5,7 @@ import type { FormState } from "@/app/[locale]/dashboard/actions";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { DynamicType } from "@/lib/dynamic-types";
 import type { FieldValues } from "@/lib/qr-types";
-import { rejectLargePdf } from "./CreateQrForm";
+import { rejectLargePdf, withMb } from "./CreateQrForm";
 import { DynamicFields } from "./DynamicFields";
 
 type Labels = Dictionary["dashboard"];
@@ -18,9 +18,11 @@ type Props = {
   update: (prev: FormState, formData: FormData) => Promise<FormState>;
   setActive: (active: boolean) => Promise<void>;
   remove: () => Promise<void>;
+  /** Dung lượng PDF tối đa theo gói */
+  maxPdfBytes: number;
 };
 
-export function QrSettings({ t, fields, qr, update, setActive, remove }: Props) {
+export function QrSettings({ t, fields, qr, update, setActive, remove, maxPdfBytes }: Props) {
   const [state, formAction, pending] = useActionState(update, undefined);
   const [busy, startTransition] = useTransition();
   const [tooLarge, setTooLarge] = useState(false);
@@ -28,7 +30,7 @@ export function QrSettings({ t, fields, qr, update, setActive, remove }: Props) 
   return (
     <div className="card space-y-5 p-6">
       <h2 className="font-semibold">{t.settings}</h2>
-      <form action={formAction} onSubmit={(e) => setTooLarge(rejectLargePdf(e))} className="space-y-4">
+      <form action={formAction} onSubmit={(e) => setTooLarge(rejectLargePdf(e, maxPdfBytes))} className="space-y-4">
         <div>
           <label className="label" htmlFor="name">
             {t.name}
@@ -65,12 +67,12 @@ export function QrSettings({ t, fields, qr, update, setActive, remove }: Props) 
               accept="application/pdf,.pdf"
               className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:font-semibold file:text-brand-700 hover:file:bg-brand-100"
             />
-            <p className="text-xs text-slate-500">{t.pdfHint}</p>
+            <p className="text-xs text-slate-500">{withMb(t.pdfHint, maxPdfBytes)}</p>
           </div>
         )}
         {(tooLarge || state?.error) && (
           <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">
-            {tooLarge ? t.errors.fileTooLarge : (t.errors[state!.error as keyof Labels["errors"]] ?? t.errors.unknown)}
+            {tooLarge || state?.error === "fileTooLarge" ? withMb(t.errors.fileTooLarge, maxPdfBytes) : (t.errors[state!.error as keyof Labels["errors"]] ?? t.errors.unknown)}
           </p>
         )}
         {state?.ok && !pending && !tooLarge && <p className="rounded-lg bg-green-50 p-3 text-sm text-green-700">✓ {t.saved}</p>}

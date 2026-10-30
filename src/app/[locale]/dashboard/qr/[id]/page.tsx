@@ -11,7 +11,8 @@ import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { contentOf, getQr, getStats, typeOf } from "@/lib/dynamic-qr";
 import { siteUrl } from "@/lib/site";
-import { getUser, requireUser } from "@/lib/user-auth";
+import { planLimits } from "@/lib/plans";
+import { getUser, requireUser, userPlan } from "@/lib/user-auth";
 import { deleteQrAction, saveDesignAction, setActiveAction, updateQrAction } from "../../actions";
 
 // Trang riêng tư, id bất kỳ -> không dựng sẵn
@@ -42,7 +43,8 @@ export default async function QrDetailPage({ params }: PageProps<"/[locale]/dash
 
   const dict = getDictionary(locale);
   const t = dict.dashboard;
-  const stats = await getStats(qr.id);
+  const limits = planLimits[userPlan(user)];
+  const stats = await getStats(qr.id, limits.statsDays);
   const type = typeOf(qr);
   const shortUrl = `${siteUrl}/r/${qr.slug}`;
   const num = new Intl.NumberFormat(locale);
@@ -84,13 +86,23 @@ export default async function QrDetailPage({ params }: PageProps<"/[locale]/dash
               <StatCard label={t.lastScan} value={stats.last_scan ? dateTime.format(stats.last_scan) : t.never} />
             </div>
           </div>
-          <DailyChart data={stats.daily} locale={locale} title={t.scansOverTime} />
-          <div className="grid gap-4 sm:grid-cols-2">
-            <BreakdownList title={t.byDevice} rows={stats.devices} empty={t.noData} />
-            <BreakdownList title={t.byOs} rows={stats.os} empty={t.noData} />
-            <BreakdownList title={t.byBrowser} rows={stats.browsers} empty={t.noData} />
-            <BreakdownList title={t.byCountry} rows={stats.countries} empty={t.noData} format={countryName} />
-          </div>
+          <DailyChart data={stats.daily} locale={locale} title={t.scansOverTime.replace("30", String(limits.statsDays))} />
+          {limits.breakdowns ? (
+            <div className="grid gap-4 sm:grid-cols-2">
+              <BreakdownList title={t.byDevice} rows={stats.devices} empty={t.noData} />
+              <BreakdownList title={t.byOs} rows={stats.os} empty={t.noData} />
+              <BreakdownList title={t.byBrowser} rows={stats.browsers} empty={t.noData} />
+              <BreakdownList title={t.byCountry} rows={stats.countries} empty={t.noData} format={countryName} />
+            </div>
+          ) : (
+            // Gói miễn phí: chỉ có tổng lượt quét + biểu đồ 7 ngày
+            <div className="card flex flex-wrap items-center gap-4 p-5">
+              <p className="flex-1 text-sm text-slate-600">🔒 {dict.billing.statsLocked}</p>
+              <Link href={`/${locale}/dashboard/billing`} className="btn-primary">
+                {dict.billing.upgrade}
+              </Link>
+            </div>
+          )}
         </div>
 
         <div className="lg:self-start">
@@ -108,6 +120,7 @@ export default async function QrDetailPage({ params }: PageProps<"/[locale]/dash
             update={updateQrAction.bind(null, locale, qr.id)}
             setActive={setActiveAction.bind(null, locale, qr.id)}
             remove={deleteQrAction.bind(null, locale, qr.id)}
+            maxPdfBytes={limits.pdfBytes}
           />
         </div>
       </div>

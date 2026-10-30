@@ -6,7 +6,7 @@
   "nav": {
     "generator": "QRコード作成",
     "scanner": "QRコード読み取り",
-    "types": "QRコードの種類",
+    "types": "QRコードの種類", "pricing": "料金プラン",
     "language": "言語",
     "menu": "メニュー"
   },
@@ -325,8 +325,9 @@
       "fileTooLarge": "PDFのサイズが10MBを超えています。",
       "fileType": "有効なPDFファイルではありません。",
       "notFound": "QRコードが見つかりません。",
-      "limit": "作成できるQRコードの上限に達しました。",
+      "limit": "現在のプランの動的QRコード数の上限に達しました。アップグレードすると追加できます。",
       "nameRequired": "名前を入力してください。",
+      "pdfLimit": "現在のプランのPDFファイル数の上限に達しました。アップグレードすると追加できます。",
       "required": "必須項目をすべて入力してください。",
       "invalidValue": "入力内容に誤りがあります。確認してもう一度お試しください。",
       "invalidType": "対応していないQRコードの種類です。",
@@ -336,6 +337,68 @@
       "paused": { "title": "このQRコードは停止中です", "text": "所有者によって一時的に無効化されています。" },
       "missing": { "title": "QRコードが見つかりません", "text": "このQRコードは存在しないか、削除されました。" }
     }
+  },
+  "pricing": {
+    "title": "料金プラン",
+    "metaTitle": "料金プラン – 無料・有料のQRコードプラン",
+    "metaDescription": "静的QRコードはずっと無料。有料プランで動的QRコードの追加、PDF保存、詳しい読み取り統計、広告なしが使えます。PayPalで安全にお支払い。",
+    "subtitle": "静的QRコードはずっと無料。有料プランで動的QRコード、PDF保存、詳しい統計、広告なしが使えます。",
+    "monthly": "月払い",
+    "yearly": "年払い",
+    "save": "{n}%お得",
+    "perMonth": "/月",
+    "perYear": "/年",
+    "planNames": {
+      "free": "無料",
+      "personal": "パーソナル",
+      "business": "ビジネス"
+    },
+    "planDesc": {
+      "free": "動的QRコードをお試し",
+      "personal": "個人事業主・小規模店舗向け",
+      "business": "企業・代理店向け"
+    },
+    "features": {
+      "staticUnlimited": "静的QRコード無制限",
+      "codes": "動的QRコード {n}個",
+      "pdf": "PDFファイル {n}個（1ファイル最大{mb}MB）",
+      "stats7": "読み取り統計（直近7日間）",
+      "statsFull": "詳しい統計：デバイス・国・30日間のグラフ",
+      "ads": "QRコードの表示ページに広告あり",
+      "noAds": "広告なし",
+      "unlimitedScans": "読み取り回数無制限",
+      "keepWorking": "プランを下げても印刷済みのコードは使い続けられます"
+    },
+    "startFree": "無料ではじめる",
+    "buy": "PayPalで購入",
+    "extend": "PayPalで延長",
+    "current": "現在のプラン",
+    "popular": "人気No.1",
+    "loading": "料金を読み込み中…",
+    "unavailable": "有料プランはまだ販売していません。",
+    "oneTime": "PayPalでの一回払い。自動更新はありません。",
+    "loginToBuy": "ログインして購入"
+  },
+  "billing": {
+    "title": "プランとお支払い",
+    "currentPlan": "現在のプラン",
+    "expires": "{date}まで有効",
+    "freeForever": "ずっと無料",
+    "usage": "利用状況",
+    "codesUsed": "動的QRコード",
+    "pdfUsed": "PDFファイル",
+    "upgrade": "アップグレード",
+    "paid": "お支払いが完了しました！プランがアップグレードされました。",
+    "canceled": "お支払いがキャンセルされました。請求は発生していません。",
+    "errorCheckout": "お支払いを開始できませんでした。しばらくしてからもう一度お試しください。",
+    "errorPayment": "お支払いを確認できませんでした。請求が発生している場合は、PayPal の取引 ID を添えてお問い合わせください。プランを有効化します。",
+    "history": "お支払い履歴",
+    "noPayments": "お支払い履歴はありません",
+    "date": "日付",
+    "plan": "プラン",
+    "amount": "金額",
+    "statsLocked": "アップグレードすると、デバイス・OS・ブラウザ・国別の統計が見られます。",
+    "expiredNote": "プランの期限が切れてもQRコードはそのまま使えます。無料プランの上限を超えて作成できなくなるだけです。"
   },
   "landing": {
     "call": "電話をかける",

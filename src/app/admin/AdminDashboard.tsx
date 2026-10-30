@@ -76,7 +76,8 @@ const newUnit = (): AdUnit => ({
   updatedAt: new Date().toISOString(),
 });
 
-export function AdminDashboard({ initial }: { initial: AdsConfig }) {
+/** children: các khu vực quản trị khác (vd thanh toán) hiển thị dưới phần quảng cáo */
+export function AdminDashboard({ initial, children }: { initial: AdsConfig; children?: React.ReactNode }) {
   const [config, setConfig] = useState(initial);
   const [saved, setSaved] = useState(initial);
   const [editing, setEditing] = useState<AdUnit | null>(null);
@@ -112,7 +113,7 @@ export function AdminDashboard({ initial }: { initial: AdsConfig }) {
       <header className="sticky top-0 z-20 border-b border-slate-200 bg-white">
         <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4">
           <LogoMark className="h-7 w-7" />
-          <h1 className="font-bold">Quản trị quảng cáo</h1>
+          <h1 className="font-bold">Quản trị</h1>
           <div className="ml-auto flex items-center gap-2">
             <a href="/" target="_blank" className="btn-ghost">
               Xem website ↗
@@ -216,6 +217,8 @@ export function AdminDashboard({ initial }: { initial: AdsConfig }) {
         </section>
 
         {(pending || dirty) && <p className="text-center text-xs text-slate-400">{pending ? "Đang lưu..." : "Có thay đổi chưa lưu"}</p>}
+
+        {children}
       </main>
 
       {editing && <UnitEditor unit={editing} onCancel={() => setEditing(null)} onSave={saveUnit} />}

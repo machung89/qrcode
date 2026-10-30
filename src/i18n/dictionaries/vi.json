@@ -6,7 +6,7 @@
   "nav": {
     "generator": "Tạo mã QR",
     "scanner": "Quét mã QR",
-    "types": "Loại mã QR",
+    "types": "Loại mã QR", "pricing": "Bảng giá",
     "language": "Ngôn ngữ",
     "menu": "Menu"
   },
@@ -325,8 +325,9 @@
       "fileTooLarge": "File PDF lớn hơn 10 MB.",
       "fileType": "File không phải PDF hợp lệ.",
       "notFound": "Không tìm thấy mã QR.",
-      "limit": "Bạn đã đạt số lượng mã QR tối đa.",
+      "limit": "Bạn đã dùng hết số mã QR động của gói hiện tại. Nâng cấp để tạo thêm.",
       "nameRequired": "Vui lòng nhập tên.",
+      "pdfLimit": "Bạn đã dùng hết số file PDF của gói hiện tại. Nâng cấp để tải thêm.",
       "required": "Vui lòng điền đủ các trường bắt buộc.",
       "invalidValue": "Một số thông tin chưa hợp lệ. Vui lòng kiểm tra lại.",
       "invalidType": "Loại mã QR không được hỗ trợ.",
@@ -336,6 +337,68 @@
       "paused": { "title": "Mã QR đang tạm dừng", "text": "Chủ sở hữu đã tạm thời tắt mã QR này." },
       "missing": { "title": "Không tìm thấy mã QR", "text": "Mã QR này không tồn tại hoặc đã bị xóa." }
     }
+  },
+  "pricing": {
+    "title": "Bảng giá",
+    "metaTitle": "Bảng giá – Gói Miễn phí & Trả phí cho mã QR",
+    "metaDescription": "Mã QR tĩnh miễn phí mãi mãi. Nâng cấp để có thêm mã QR động, lưu file PDF, thống kê đầy đủ và không quảng cáo. Thanh toán an toàn qua PayPal.",
+    "subtitle": "Mã QR tĩnh miễn phí mãi mãi. Nâng cấp để có thêm mã QR động, lưu PDF, thống kê đầy đủ và không quảng cáo.",
+    "monthly": "Theo tháng",
+    "yearly": "Theo năm",
+    "save": "Tiết kiệm {n}%",
+    "perMonth": "/tháng",
+    "perYear": "/năm",
+    "planNames": {
+      "free": "Miễn phí",
+      "personal": "Cá nhân",
+      "business": "Doanh nghiệp"
+    },
+    "planDesc": {
+      "free": "Dùng thử mã QR động",
+      "personal": "Cho freelancer và cửa hàng nhỏ",
+      "business": "Cho công ty và agency"
+    },
+    "features": {
+      "staticUnlimited": "Mã QR tĩnh không giới hạn",
+      "codes": "{n} mã QR động",
+      "pdf": "{n} file PDF, tối đa {mb} MB mỗi file",
+      "stats7": "Thống kê lượt quét (7 ngày gần nhất)",
+      "statsFull": "Thống kê đầy đủ: thiết bị, quốc gia, biểu đồ 30 ngày",
+      "ads": "Có quảng cáo trên trang hiển thị mã",
+      "noAds": "Không quảng cáo",
+      "unlimitedScans": "Không giới hạn lượt quét",
+      "keepWorking": "Mã đã in vẫn hoạt động, kể cả khi hạ gói"
+    },
+    "startFree": "Bắt đầu miễn phí",
+    "buy": "Mua qua PayPal",
+    "extend": "Gia hạn qua PayPal",
+    "current": "Gói hiện tại",
+    "popular": "Phổ biến nhất",
+    "loading": "Đang tải giá…",
+    "unavailable": "Gói trả phí chưa mở bán.",
+    "oneTime": "Thanh toán một lần qua PayPal. Không tự động gia hạn.",
+    "loginToBuy": "Đăng nhập để mua"
+  },
+  "billing": {
+    "title": "Gói & thanh toán",
+    "currentPlan": "Gói hiện tại",
+    "expires": "Hiệu lực đến {date}",
+    "freeForever": "Miễn phí vĩnh viễn",
+    "usage": "Mức sử dụng",
+    "codesUsed": "Mã QR động",
+    "pdfUsed": "File PDF",
+    "upgrade": "Nâng cấp",
+    "paid": "Thanh toán thành công! Gói của bạn đã được nâng cấp.",
+    "canceled": "Bạn đã huỷ thanh toán. Không có khoản tiền nào bị trừ.",
+    "errorCheckout": "Chưa thể bắt đầu thanh toán. Vui lòng thử lại sau.",
+    "errorPayment": "Không xác nhận được thanh toán. Nếu bạn đã bị trừ tiền, hãy liên hệ kèm mã giao dịch PayPal để được kích hoạt gói.",
+    "history": "Lịch sử thanh toán",
+    "noPayments": "Chưa có giao dịch",
+    "date": "Ngày",
+    "plan": "Gói",
+    "amount": "Số tiền",
+    "statsLocked": "Nâng cấp để xem thống kê thiết bị, hệ điều hành, trình duyệt và quốc gia.",
+    "expiredNote": "Khi gói hết hạn, các mã QR của bạn vẫn hoạt động bình thường; chỉ không tạo thêm quá giới hạn của gói miễn phí."
   },
   "landing": {
     "call": "Gọi điện",
