@@ -417,6 +417,47 @@
     "wifiHint": "Mở cài đặt Wi-Fi trên điện thoại, chọn mạng này rồi dán mật khẩu.",
     "createOwn": "Tạo mã QR của riêng bạn miễn phí"
   },
+  "support": {
+    "title": "Hỗ trợ",
+    "subtitle": "Có câu hỏi, vấn đề thanh toán hay lỗi? Gửi ticket, chúng tôi sẽ trả lời ngay tại đây.",
+    "newTicket": "Gửi yêu cầu mới",
+    "subject": "Tiêu đề",
+    "subjectPlaceholder": "Mô tả ngắn vấn đề của bạn",
+    "category": "Loại",
+    "categories": {
+      "general": "Câu hỏi chung",
+      "billing": "Thanh toán & gói",
+      "qr": "Mã QR",
+      "bug": "Báo lỗi",
+      "other": "Khác"
+    },
+    "message": "Nội dung",
+    "messagePlaceholder": "Mô tả chi tiết: bạn đã làm gì, mong muốn gì và điều gì đã xảy ra.",
+    "messageHint": "Vấn đề thanh toán: ghi kèm mã giao dịch PayPal. Không gửi mật khẩu.",
+    "send": "Gửi",
+    "sending": "Đang gửi...",
+    "myTickets": "Yêu cầu của bạn",
+    "empty": "Bạn chưa gửi yêu cầu nào.",
+    "newReply": "Có trả lời mới",
+    "statuses": {
+      "open": "Chờ trả lời",
+      "answered": "Đã trả lời",
+      "closed": "Đã đóng"
+    },
+    "reply": "Trả lời",
+    "closedHint": "Yêu cầu này đã đóng. Gửi trả lời sẽ mở lại.",
+    "close": "Đóng yêu cầu",
+    "you": "Bạn",
+    "supportTeam": "Đội hỗ trợ",
+    "contact": "Liên hệ hỗ trợ",
+    "errors": {
+      "required": "Hãy nhập tiêu đề và nội dung.",
+      "tooLong": "Nội dung quá dài (tiêu đề tối đa 150 ký tự, nội dung tối đa 5.000).",
+      "tooMany": "Bạn đang có 5 yêu cầu chưa đóng. Hãy chờ trả lời hoặc đóng bớt yêu cầu.",
+      "notFound": "Không tìm thấy yêu cầu.",
+      "unknown": "Đã có lỗi, vui lòng thử lại."
+    }
+  },
   "ads": {
     "label": "Quảng cáo",
     "close": "Đóng"

@@ -417,6 +417,47 @@
     "wifiHint": "Open Wi-Fi settings on your phone, choose this network and paste the password.",
     "createOwn": "Create your own free QR code"
   },
+  "support": {
+    "title": "Support",
+    "subtitle": "Questions, payment issues or bugs? Send us a ticket and we will reply here.",
+    "newTicket": "New ticket",
+    "subject": "Subject",
+    "subjectPlaceholder": "Briefly describe your issue",
+    "category": "Category",
+    "categories": {
+      "general": "General question",
+      "billing": "Billing & plans",
+      "qr": "QR codes",
+      "bug": "Bug report",
+      "other": "Other"
+    },
+    "message": "Message",
+    "messagePlaceholder": "Describe the problem in detail: what you did, what you expected, and what happened.",
+    "messageHint": "For payment issues, include your PayPal transaction ID. Never send passwords.",
+    "send": "Send",
+    "sending": "Sending...",
+    "myTickets": "Your tickets",
+    "empty": "You have no tickets yet.",
+    "newReply": "New reply",
+    "statuses": {
+      "open": "Waiting for reply",
+      "answered": "Answered",
+      "closed": "Closed"
+    },
+    "reply": "Your reply",
+    "closedHint": "This ticket is closed. Replying will reopen it.",
+    "close": "Close ticket",
+    "you": "You",
+    "supportTeam": "Support team",
+    "contact": "Contact support",
+    "errors": {
+      "required": "Please fill in the subject and message.",
+      "tooLong": "The text is too long (subject up to 150 characters, message up to 5,000).",
+      "tooMany": "You already have 5 open tickets. Please wait for a reply or close a ticket first.",
+      "notFound": "Ticket not found.",
+      "unknown": "Something went wrong. Please try again."
+    }
+  },
   "ads": {
     "label": "Advertisement",
     "close": "Close"

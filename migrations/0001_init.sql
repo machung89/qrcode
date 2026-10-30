@@ -82,3 +82,27 @@ CREATE TABLE settings (
   value TEXT NOT NULL,
   updated_at INTEGER NOT NULL
 );
+
+-- Ticket hỗ trợ. status: open (chờ admin) -> answered (admin đã trả lời) -> closed
+CREATE TABLE tickets (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  subject TEXT NOT NULL,
+  category TEXT NOT NULL,
+  status TEXT NOT NULL,
+  user_unread INTEGER NOT NULL DEFAULT 0,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+CREATE INDEX tickets_user ON tickets(user_id, updated_at);
+CREATE INDEX tickets_status ON tickets(status, updated_at);
+
+-- Tin nhắn trong ticket. author: user | admin
+CREATE TABLE ticket_messages (
+  id TEXT PRIMARY KEY,
+  ticket_id TEXT NOT NULL REFERENCES tickets(id) ON DELETE CASCADE,
+  author TEXT NOT NULL,
+  body TEXT NOT NULL,
+  created_at INTEGER NOT NULL
+);
+CREATE INDEX ticket_messages_ticket ON ticket_messages(ticket_id, created_at);

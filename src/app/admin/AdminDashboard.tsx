@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { LogoMark } from "@/components/TypeIcon";
 import { localeNames, locales } from "@/i18n/config";
 import { placements, type AdsConfig, type AdUnit, type Device, type Placement } from "@/lib/ads/types";
-import { logout, saveConfig } from "./actions";
+import { saveConfig } from "./actions";
+import { AdminHeader } from "./AdminHeader";
 
 const placementInfo: Record<Placement, { name: string; desc: string }> = {
   head: { name: "Trong <head> (toàn trang)", desc: "Script khởi tạo mạng quảng cáo, Auto Ads, Analytics... (thẻ meta xác minh: dùng biến SITE_META_TAGS)" },
@@ -77,7 +77,7 @@ const newUnit = (): AdUnit => ({
 });
 
 /** children: các khu vực quản trị khác (vd thanh toán) hiển thị dưới phần quảng cáo */
-export function AdminDashboard({ initial, children }: { initial: AdsConfig; children?: React.ReactNode }) {
+export function AdminDashboard({ initial, openTickets, children }: { initial: AdsConfig; openTickets?: number; children?: React.ReactNode }) {
   const [config, setConfig] = useState(initial);
   const [saved, setSaved] = useState(initial);
   const [editing, setEditing] = useState<AdUnit | null>(null);
@@ -110,20 +110,7 @@ export function AdminDashboard({ initial, children }: { initial: AdsConfig; chil
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-20 border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4">
-          <LogoMark className="h-7 w-7" />
-          <h1 className="font-bold">Quản trị</h1>
-          <div className="ml-auto flex items-center gap-2">
-            <a href="/" target="_blank" className="btn-ghost">
-              Xem website ↗
-            </a>
-            <form action={logout}>
-              <button className="btn-ghost">Đăng xuất</button>
-            </form>
-          </div>
-        </div>
-      </header>
+      <AdminHeader active="home" openTickets={openTickets} />
 
       <main className="mx-auto max-w-6xl space-y-6 px-4 py-6">
         {message && (

@@ -11,6 +11,7 @@ import { contentOf, listQrs, typeOf, userTotals } from "@/lib/dynamic-qr";
 import { summarize } from "@/lib/dynamic-types";
 import { siteUrl } from "@/lib/site";
 import { planLimits } from "@/lib/plans";
+import { unreadTickets } from "@/lib/support";
 import { requireUser, userPlan } from "@/lib/user-auth";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/dashboard">): Promise<Metadata> {
@@ -25,7 +26,7 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
   const dict = getDictionary(locale);
   const t = dict.dashboard;
   const typeNames = dynamicTypeNames(dict);
-  const [codes, totals] = await Promise.all([listQrs(user.id), userTotals(user.id)]);
+  const [codes, totals, unread] = await Promise.all([listQrs(user.id), userTotals(user.id), unreadTickets(user.id)]);
   const date = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
   const num = new Intl.NumberFormat(locale);
   const plan = userPlan(user);
@@ -40,6 +41,14 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
             {user.email} · {dict.pricing.planNames[plan]}
           </p>
         </div>
+        <Link href={`/${locale}/dashboard/support`} className="btn-ghost relative">
+          {dict.support.title}
+          {unread > 0 && (
+            <span className="absolute -top-1.5 -right-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-bold text-white" aria-label={dict.support.newReply}>
+              {unread}
+            </span>
+          )}
+        </Link>
         <Link href={`/${locale}/dashboard/billing`} className="btn-ghost">
           {dict.billing.title}
         </Link>

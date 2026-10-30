@@ -306,5 +306,46 @@
     "wifiHint": "Abre los ajustes de Wi-Fi de tu móvil, elige esta red y pega la contraseña.",
     "createOwn": "Crea tu propio código QR gratis"
   },
+  "support": {
+    "title": "Soporte",
+    "subtitle": "¿Preguntas, problemas de pago o errores? Envíanos un ticket y te responderemos aquí.",
+    "newTicket": "Nuevo ticket",
+    "subject": "Asunto",
+    "subjectPlaceholder": "Describe brevemente tu problema",
+    "category": "Categoría",
+    "categories": {
+      "general": "Pregunta general",
+      "billing": "Pagos y planes",
+      "qr": "Códigos QR",
+      "bug": "Informar de un error",
+      "other": "Otro"
+    },
+    "message": "Mensaje",
+    "messagePlaceholder": "Describe el problema en detalle: qué hiciste, qué esperabas y qué ocurrió.",
+    "messageHint": "Para problemas de pago, incluye el ID de transacción de PayPal. Nunca envíes contraseñas.",
+    "send": "Enviar",
+    "sending": "Enviando...",
+    "myTickets": "Tus tickets",
+    "empty": "Aún no tienes tickets.",
+    "newReply": "Nueva respuesta",
+    "statuses": {
+      "open": "Esperando respuesta",
+      "answered": "Respondido",
+      "closed": "Cerrado"
+    },
+    "reply": "Tu respuesta",
+    "closedHint": "Este ticket está cerrado. Si respondes, se volverá a abrir.",
+    "close": "Cerrar ticket",
+    "you": "Tú",
+    "supportTeam": "Equipo de soporte",
+    "contact": "Contactar con soporte",
+    "errors": {
+      "required": "Rellena el asunto y el mensaje.",
+      "tooLong": "El texto es demasiado largo (asunto hasta 150 caracteres, mensaje hasta 5000).",
+      "tooMany": "Ya tienes 5 tickets abiertos. Espera una respuesta o cierra alguno primero.",
+      "notFound": "No se encontró el ticket.",
+      "unknown": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
   "ads": { "label": "Publicidad", "close": "Cerrar" }
 }

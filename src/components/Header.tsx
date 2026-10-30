@@ -27,7 +27,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           </Link>
         </nav>
         <LanguageSwitcher locale={locale} label={dict.nav.language} />
-        <UserMenu locale={locale} labels={{ signIn: dict.dashboard.signIn, menu: dict.dashboard.menu, billing: dict.billing.title, signOut: dict.dashboard.signOut }} />
+        <UserMenu locale={locale} labels={{ signIn: dict.dashboard.signIn, menu: dict.dashboard.menu, billing: dict.billing.title, support: dict.support.title, signOut: dict.dashboard.signOut }} />
       </div>
     </header>
   );

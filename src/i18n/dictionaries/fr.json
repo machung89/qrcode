@@ -306,5 +306,46 @@
     "wifiHint": "Ouvrez les réglages Wi-Fi de votre téléphone, choisissez ce réseau et collez le mot de passe.",
     "createOwn": "Créez votre QR code gratuitement"
   },
+  "support": {
+    "title": "Support",
+    "subtitle": "Une question, un problème de paiement ou un bug ? Envoyez-nous un ticket, nous répondrons ici.",
+    "newTicket": "Nouveau ticket",
+    "subject": "Objet",
+    "subjectPlaceholder": "Décrivez brièvement votre problème",
+    "category": "Catégorie",
+    "categories": {
+      "general": "Question générale",
+      "billing": "Paiement et forfaits",
+      "qr": "Codes QR",
+      "bug": "Signaler un bug",
+      "other": "Autre"
+    },
+    "message": "Message",
+    "messagePlaceholder": "Décrivez le problème en détail : ce que vous avez fait, ce que vous attendiez et ce qui s’est passé.",
+    "messageHint": "Pour un problème de paiement, indiquez l’identifiant de transaction PayPal. N’envoyez jamais de mot de passe.",
+    "send": "Envoyer",
+    "sending": "Envoi...",
+    "myTickets": "Vos tickets",
+    "empty": "Vous n’avez encore aucun ticket.",
+    "newReply": "Nouvelle réponse",
+    "statuses": {
+      "open": "En attente de réponse",
+      "answered": "Répondu",
+      "closed": "Fermé"
+    },
+    "reply": "Votre réponse",
+    "closedHint": "Ce ticket est fermé. Répondre le rouvrira.",
+    "close": "Fermer le ticket",
+    "you": "Vous",
+    "supportTeam": "Équipe support",
+    "contact": "Contacter le support",
+    "errors": {
+      "required": "Veuillez renseigner l’objet et le message.",
+      "tooLong": "Le texte est trop long (objet 150 caractères max, message 5 000 max).",
+      "tooMany": "Vous avez déjà 5 tickets ouverts. Attendez une réponse ou fermez-en un d’abord.",
+      "notFound": "Ticket introuvable.",
+      "unknown": "Une erreur est survenue. Veuillez réessayer."
+    }
+  },
   "ads": { "label": "Publicité", "close": "Fermer" }
 }

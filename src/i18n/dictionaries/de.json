@@ -306,5 +306,46 @@
     "wifiHint": "Öffnen Sie die WLAN-Einstellungen, wählen Sie dieses Netzwerk und fügen Sie das Passwort ein.",
     "createOwn": "Eigenen QR-Code kostenlos erstellen"
   },
+  "support": {
+    "title": "Support",
+    "subtitle": "Fragen, Zahlungsprobleme oder Fehler? Sende uns ein Ticket, wir antworten hier.",
+    "newTicket": "Neues Ticket",
+    "subject": "Betreff",
+    "subjectPlaceholder": "Beschreibe dein Anliegen kurz",
+    "category": "Kategorie",
+    "categories": {
+      "general": "Allgemeine Frage",
+      "billing": "Zahlung & Tarife",
+      "qr": "QR-Codes",
+      "bug": "Fehler melden",
+      "other": "Sonstiges"
+    },
+    "message": "Nachricht",
+    "messagePlaceholder": "Beschreibe das Problem genau: was du getan hast, was du erwartet hast und was passiert ist.",
+    "messageHint": "Bei Zahlungsproblemen bitte die PayPal-Transaktions-ID angeben. Sende niemals Passwörter.",
+    "send": "Senden",
+    "sending": "Wird gesendet...",
+    "myTickets": "Deine Tickets",
+    "empty": "Du hast noch keine Tickets.",
+    "newReply": "Neue Antwort",
+    "statuses": {
+      "open": "Wartet auf Antwort",
+      "answered": "Beantwortet",
+      "closed": "Geschlossen"
+    },
+    "reply": "Deine Antwort",
+    "closedHint": "Dieses Ticket ist geschlossen. Mit einer Antwort wird es wieder geöffnet.",
+    "close": "Ticket schließen",
+    "you": "Du",
+    "supportTeam": "Support-Team",
+    "contact": "Support kontaktieren",
+    "errors": {
+      "required": "Bitte Betreff und Nachricht ausfüllen.",
+      "tooLong": "Der Text ist zu lang (Betreff max. 150 Zeichen, Nachricht max. 5.000).",
+      "tooMany": "Du hast bereits 5 offene Tickets. Warte auf eine Antwort oder schließe zuerst ein Ticket.",
+      "notFound": "Ticket nicht gefunden.",
+      "unknown": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+    }
+  },
   "ads": { "label": "Anzeige", "close": "Schließen" }
 }

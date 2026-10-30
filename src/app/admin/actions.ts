@@ -1,9 +1,11 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { checkPassword, createSession, destroySession, isAuthenticated } from "@/lib/auth";
 import { sanitizeConfig, writeAdsConfig } from "@/lib/ads/store";
 import type { AdsConfig } from "@/lib/ads/types";
+import { adminReply, adminSetStatus, isTicketStatus, SupportError } from "@/lib/support";
 import { readBilling, sanitizeBilling, setUserPlan, writeBilling, type BillingConfig } from "@/lib/billing";
 
 export async function login(_prev: { error?: string } | undefined, formData: FormData) {
@@ -51,4 +53,25 @@ export async function setUserPlanAction(email: string, plan: string, expires: st
   if (plan !== "free" && !(expiresAt > Date.now())) return { ok: false, error: "Ngày hết hạn phải ở tương lai." };
   const changed = await setUserPlan(email, plan, Number.isNaN(expiresAt) ? null : expiresAt);
   return changed ? { ok: true } : { ok: false, error: `Không tìm thấy người dùng có email ${email}` };
+}
+
+/** Trả lời ticket hỗ trợ (close = trả lời và đóng luôn) */
+export async function replyTicketAdminAction(id: string, body: string, close: boolean): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthenticated())) return { ok: false, error: "Phiên đăng nhập đã hết hạn, hãy đăng nhập lại." };
+  try {
+    await adminReply(id, body, close);
+  } catch (e) {
+    if (e instanceof SupportError) return { ok: false, error: e.code === "tooLong" ? "Nội dung quá dài (tối đa 5000 ký tự)." : e.code === "notFound" ? "Không tìm thấy ticket." : "Hãy nhập nội dung trả lời." };
+    return { ok: false, error: `Không gửi được: ${(e as Error).message}` };
+  }
+  revalidatePath("/admin/support");
+  return { ok: true };
+}
+
+export async function setTicketStatusAction(id: string, status: string): Promise<{ ok: boolean; error?: string }> {
+  if (!(await isAuthenticated())) return { ok: false, error: "Phiên đăng nhập đã hết hạn, hãy đăng nhập lại." };
+  if (!isTicketStatus(status)) return { ok: false, error: "Trạng thái không hợp lệ" };
+  await adminSetStatus(id, status);
+  revalidatePath("/admin/support");
+  return { ok: true };
 }

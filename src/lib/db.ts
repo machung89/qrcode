@@ -34,6 +34,27 @@ const ADDED_TABLES = [
     completed_at INTEGER
   )`,
   "CREATE INDEX IF NOT EXISTS payments_user ON payments(user_id, created_at)",
+  // Ticket hỗ trợ. status: open = chờ admin trả lời, answered = admin đã trả lời, closed = đã đóng
+  `CREATE TABLE IF NOT EXISTS tickets (
+    id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    subject TEXT NOT NULL,
+    category TEXT NOT NULL,
+    status TEXT NOT NULL,
+    user_unread INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL
+  )`,
+  "CREATE INDEX IF NOT EXISTS tickets_user ON tickets(user_id, updated_at)",
+  "CREATE INDEX IF NOT EXISTS tickets_status ON tickets(status, updated_at)",
+  `CREATE TABLE IF NOT EXISTS ticket_messages (
+    id TEXT PRIMARY KEY,
+    ticket_id TEXT NOT NULL REFERENCES tickets(id) ON DELETE CASCADE,
+    author TEXT NOT NULL,
+    body TEXT NOT NULL,
+    created_at INTEGER NOT NULL
+  )`,
+  "CREATE INDEX IF NOT EXISTS ticket_messages_ticket ON ticket_messages(ticket_id, created_at)",
 ];
 
 // Chỉ nhớ cờ "đã kiểm tra" (không giữ Promise/kết nối giữa các request)

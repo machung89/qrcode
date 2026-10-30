@@ -43,6 +43,12 @@ Thêm ngôn ngữ: tạo `src/i18n/dictionaries/xx.json` (khóa nào thiếu s�
 - Hết hạn thì tự về gói Miễn phí: **mã đã in vẫn chạy**, chỉ không tạo thêm được nếu vượt giới hạn.
 - Server tự xác nhận số tiền, đơn vị tiền và chủ đơn với PayPal trước khi nâng gói; tải lại trang trả về không cộng hạn 2 lần.
 
+### Hỗ trợ (ticket)
+- Người dùng gửi yêu cầu ở `/{ngôn ngữ}/dashboard/support` (tiêu đề, loại, nội dung), xem và trả lời tiếp trong cùng ticket, tự đóng khi xong.
+  Có câu trả lời mới thì nút **Hỗ trợ** trong dashboard hiện số đỏ. Tối đa 5 ticket chưa đóng mỗi người để chống spam.
+- Admin trả lời ở `/admin/support`: lọc theo trạng thái, thấy email và gói của khách, *Gửi trả lời* / *Gửi và đóng* / *Mở lại*.
+- Chưa gửi email thông báo: admin cần vào `/admin` để xem (header hiện số ticket đang chờ).
+
 ### Trang quản trị quảng cáo: `/admin`
 Đăng nhập bằng `ADMIN_PASSWORD`. Thêm/sửa/xoá/bật-tắt mã quảng cáo HTML/JS của bất kỳ mạng nào, chọn vị trí
 (`<head>`, cuối `<body>`, banner dưới menu, dưới công cụ, cột bên, giữa nội dung, trên footer, thanh dính đáy),

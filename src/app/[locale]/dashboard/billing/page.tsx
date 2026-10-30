@@ -63,6 +63,14 @@ export default async function BillingPage({ params, searchParams }: PageProps<"/
         <p role="status" className={`mb-6 rounded-lg p-4 text-sm font-medium ${notice.ok ? "bg-green-50 text-green-800" : "bg-amber-50 text-amber-800"}`}>
           {notice.ok ? "✓ " : ""}
           {notice.text}
+          {q.error === "payment" && (
+            <>
+              {" "}
+              <Link href={`/${locale}/dashboard/support?category=billing`} className="underline">
+                {dict.support.contact}
+              </Link>
+            </>
+          )}
         </p>
       )}
 
