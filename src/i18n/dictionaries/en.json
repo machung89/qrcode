@@ -6,7 +6,7 @@
   "nav": {
     "generator": "QR Generator",
     "scanner": "QR Scanner",
-    "types": "QR Types", "pricing": "Pricing",
+    "types": "QR Types", "pricing": "Pricing", "blog": "Blog",
     "language": "Language",
     "menu": "Menu"
   },
@@ -513,6 +513,22 @@
       "notFound": "Ticket not found.",
       "unknown": "Something went wrong. Please try again."
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "metaTitle": "QR Code Blog – Guides, Tips and Ideas",
+    "metaDescription": "Practical guides to creating, printing and scanning QR codes: static vs dynamic codes, WiFi QR codes, printing tips and more.",
+    "subtitle": "Practical guides to creating, printing and scanning QR codes.",
+    "readMore": "Read more",
+    "minRead": "{n} min read",
+    "toc": "In this article",
+    "related": "Related articles",
+    "published": "Published",
+    "updated": "Updated",
+    "ctaTitle": "Create your QR code now",
+    "ctaText": "Free, no sign-up, with your logo and colours. Download in PNG or SVG.",
+    "ctaButton": "Get started free",
+    "englishOnly": "Our articles are currently available in English and Vietnamese."
   },
   "ads": {
     "label": "Advertisement",

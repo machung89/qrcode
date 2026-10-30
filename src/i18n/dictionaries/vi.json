@@ -6,7 +6,7 @@
   "nav": {
     "generator": "Tạo mã QR",
     "scanner": "Quét mã QR",
-    "types": "Loại mã QR", "pricing": "Bảng giá",
+    "types": "Loại mã QR", "pricing": "Bảng giá", "blog": "Blog",
     "language": "Ngôn ngữ",
     "menu": "Menu"
   },
@@ -513,6 +513,22 @@
       "notFound": "Không tìm thấy yêu cầu.",
       "unknown": "Đã có lỗi, vui lòng thử lại."
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "metaTitle": "Blog mã QR – Hướng dẫn, mẹo và ý tưởng",
+    "metaDescription": "Hướng dẫn tạo, in và quét mã QR: mã QR tĩnh và động, mã QR chuyển khoản VietQR, mã QR WiFi, mẹo in mã QR và nhiều hơn nữa.",
+    "subtitle": "Hướng dẫn thực tế để tạo, in và quét mã QR hiệu quả.",
+    "readMore": "Đọc tiếp",
+    "minRead": "{n} phút đọc",
+    "toc": "Nội dung bài viết",
+    "related": "Bài viết liên quan",
+    "published": "Đăng ngày",
+    "updated": "Cập nhật",
+    "ctaTitle": "Tạo mã QR của bạn ngay",
+    "ctaText": "Miễn phí, không cần đăng ký, chèn logo và màu sắc riêng. Tải về PNG hoặc SVG.",
+    "ctaButton": "Bắt đầu miễn phí",
+    "englishOnly": "Các bài viết hiện có bằng tiếng Việt và tiếng Anh."
   },
   "ads": {
     "label": "Quảng cáo",

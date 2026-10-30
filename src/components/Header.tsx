@@ -25,6 +25,9 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <Link href={`/${locale}/pricing`} className="hidden rounded-lg px-3 py-1.5 text-slate-700 hover:bg-slate-100 md:inline">
             {dict.nav.pricing}
           </Link>
+          <Link href={`/${locale}/blog`} className="hidden rounded-lg px-3 py-1.5 text-slate-700 hover:bg-slate-100 md:inline">
+            {dict.nav.blog}
+          </Link>
         </nav>
         <LanguageSwitcher locale={locale} label={dict.nav.language} />
         <UserMenu locale={locale} labels={{ signIn: dict.dashboard.signIn, menu: dict.dashboard.menu, billing: dict.billing.title, support: dict.support.title, signOut: dict.dashboard.signOut }} />

@@ -3,7 +3,7 @@
     "title": "Gerador de QR Code grátis – Crie QR Codes com logo",
     "description": "Crie QR codes grátis para URL, WiFi, vCard, e-mail, SMS, WhatsApp, localização e eventos. Personalize cores, formas e adicione seu logo. Baixe em PNG, SVG, JPG. Sem cadastro."
   },
-  "nav": { "generator": "Gerador QR", "scanner": "Leitor QR", "types": "Tipos de QR", "pricing": "Preços", "language": "Idioma", "menu": "Menu" },
+  "nav": { "generator": "Gerador QR", "scanner": "Leitor QR", "types": "Tipos de QR", "pricing": "Preços", "blog": "Blog", "language": "Idioma", "menu": "Menu" },
   "hero": {
     "title": "Gerador de QR Code grátis",
     "subtitle": "Crie QR codes personalizados com seu logo, cores e estilo em segundos. Grátis para sempre, sem cadastro e sem expiração."
@@ -402,6 +402,22 @@
       "notFound": "Ticket não encontrado.",
       "unknown": "Algo deu errado. Tente novamente."
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "metaTitle": "Blog de QR Code – Guias e dicas",
+    "metaDescription": "Guias práticos para criar, imprimir e escanear QR Codes.",
+    "subtitle": "Guias práticos para criar, imprimir e escanear QR Codes.",
+    "readMore": "Ler mais",
+    "minRead": "{n} min de leitura",
+    "toc": "Neste artigo",
+    "related": "Artigos relacionados",
+    "published": "Publicado em",
+    "updated": "Atualizado em",
+    "ctaTitle": "Crie seu QR Code agora",
+    "ctaText": "Grátis, sem cadastro, com seu logo e cores. Baixe em PNG ou SVG.",
+    "ctaButton": "Começar grátis",
+    "englishOnly": "Por enquanto nossos artigos estão disponíveis em inglês e vietnamita."
   },
   "ads": { "label": "Publicidade", "close": "Fechar" }
 }

@@ -9,7 +9,12 @@ export function LanguageSwitcher({ locale, label }: { locale: Locale; label: str
 
   function change(next: Locale) {
     document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=31536000; samesite=lax`;
+    // Bản dịch có đường dẫn riêng (vd bài blog có slug theo ngôn ngữ): đi theo thẻ hreflang của trang
+    const alternate = document.querySelector<HTMLLinkElement>(`link[rel="alternate"][hreflang="${next}"]`);
+    if (alternate) return router.push(new URL(alternate.href).pathname + window.location.search);
     const rest = pathname.split("/").slice(2).join("/");
+    // Bài blog chưa có bản dịch ở ngôn ngữ này: về trang danh sách blog
+    if (rest.startsWith("blog/")) return router.push(`/${next}/blog`);
     router.push(`/${next}${rest ? `/${rest}` : ""}${window.location.search}`);
   }
 

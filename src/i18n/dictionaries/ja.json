@@ -6,7 +6,7 @@
   "nav": {
     "generator": "QRコード作成",
     "scanner": "QRコード読み取り",
-    "types": "QRコードの種類", "pricing": "料金プラン",
+    "types": "QRコードの種類", "pricing": "料金プラン", "blog": "ブログ",
     "language": "言語",
     "menu": "メニュー"
   },
@@ -513,6 +513,22 @@
       "notFound": "チケットが見つかりません。",
       "unknown": "エラーが発生しました。もう一度お試しください。"
     }
+  },
+  "blog": {
+    "title": "ブログ",
+    "metaTitle": "QR コードブログ – 使い方とヒント",
+    "metaDescription": "QR コードの作成、印刷、読み取りに役立つ実践ガイド。",
+    "subtitle": "QR コードの作成、印刷、読み取りに役立つ実践ガイド。",
+    "readMore": "続きを読む",
+    "minRead": "{n} 分で読めます",
+    "toc": "この記事の内容",
+    "related": "関連記事",
+    "published": "公開日",
+    "updated": "更新日",
+    "ctaTitle": "今すぐ QR コードを作成",
+    "ctaText": "無料・登録不要。ロゴや色を自由に設定して PNG または SVG でダウンロード。",
+    "ctaButton": "無料で始める",
+    "englishOnly": "記事は現在、英語とベトナム語でのみ公開しています。"
   },
   "ads": {
     "label": "広告",

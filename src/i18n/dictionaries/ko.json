@@ -6,7 +6,7 @@
   "nav": {
     "generator": "QR코드 생성",
     "scanner": "QR코드 스캔",
-    "types": "QR코드 종류", "pricing": "요금제",
+    "types": "QR코드 종류", "pricing": "요금제", "blog": "블로그",
     "language": "언어",
     "menu": "메뉴"
   },
@@ -513,6 +513,22 @@
       "notFound": "티켓을 찾을 수 없습니다.",
       "unknown": "문제가 발생했습니다. 다시 시도하세요."
     }
+  },
+  "blog": {
+    "title": "블로그",
+    "metaTitle": "QR 코드 블로그 – 가이드와 팁",
+    "metaDescription": "QR 코드를 만들고, 인쇄하고, 스캔하는 실용 가이드.",
+    "subtitle": "QR 코드를 만들고, 인쇄하고, 스캔하는 실용 가이드.",
+    "readMore": "더 읽기",
+    "minRead": "{n}분 소요",
+    "toc": "목차",
+    "related": "관련 글",
+    "published": "게시일",
+    "updated": "수정일",
+    "ctaTitle": "지금 QR 코드를 만드세요",
+    "ctaText": "무료, 가입 불필요, 로고와 색상 지정. PNG 또는 SVG로 다운로드하세요.",
+    "ctaButton": "무료로 시작하기",
+    "englishOnly": "현재 글은 영어와 베트남어로만 제공됩니다."
   },
   "ads": {
     "label": "광고",

@@ -36,6 +36,11 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           <h2 className="mb-3 text-sm font-semibold text-slate-900">{dict.footer.legal}</h2>
           <ul className="space-y-1.5 text-sm text-slate-600">
             <li>
+              <Link href={`/${locale}/blog`} className="hover:text-brand-600">
+                {dict.nav.blog}
+              </Link>
+            </li>
+            <li>
               <Link href={`/${locale}/pricing`} className="hover:text-brand-600">
                 {dict.nav.pricing}
               </Link>

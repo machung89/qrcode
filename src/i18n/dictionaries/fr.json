@@ -3,7 +3,7 @@
     "title": "Générateur de QR code gratuit – Créez des QR codes avec logo",
     "description": "Créez gratuitement des QR codes pour URL, WiFi, vCard, e-mail, SMS, WhatsApp, localisation et événements. Personnalisez couleurs, formes et logo. Téléchargez en PNG, SVG, JPG. Sans inscription."
   },
-  "nav": { "generator": "Générateur QR", "scanner": "Scanner QR", "types": "Types de QR", "pricing": "Tarifs", "language": "Langue", "menu": "Menu" },
+  "nav": { "generator": "Générateur QR", "scanner": "Scanner QR", "types": "Types de QR", "pricing": "Tarifs", "blog": "Blog", "language": "Langue", "menu": "Menu" },
   "hero": {
     "title": "Générateur de QR code gratuit",
     "subtitle": "Créez des QR codes personnalisés avec votre logo, vos couleurs et votre style en quelques secondes. Gratuit, sans inscription, sans expiration."
@@ -402,6 +402,22 @@
       "notFound": "Ticket introuvable.",
       "unknown": "Une erreur est survenue. Veuillez réessayer."
     }
+  },
+  "blog": {
+    "title": "Blog",
+    "metaTitle": "Blog QR code – Guides et conseils",
+    "metaDescription": "Guides pratiques pour créer, imprimer et scanner des QR codes.",
+    "subtitle": "Guides pratiques pour créer, imprimer et scanner des QR codes.",
+    "readMore": "Lire la suite",
+    "minRead": "{n} min de lecture",
+    "toc": "Dans cet article",
+    "related": "Articles similaires",
+    "published": "Publié le",
+    "updated": "Mis à jour le",
+    "ctaTitle": "Créez votre QR code maintenant",
+    "ctaText": "Gratuit, sans inscription, avec votre logo et vos couleurs. Téléchargez en PNG ou SVG.",
+    "ctaButton": "Commencer gratuitement",
+    "englishOnly": "Nos articles sont pour l’instant disponibles en anglais et en vietnamien."
   },
   "ads": { "label": "Publicité", "close": "Fermer" }
 }

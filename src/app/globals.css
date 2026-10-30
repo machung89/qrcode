@@ -68,6 +68,50 @@
     @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50;
   }
 
+  /* Nội dung bài blog (Markdown) */
+  .prose-blog {
+    @apply leading-relaxed text-slate-700;
+  }
+  .prose-blog > * + * {
+    @apply mt-4;
+  }
+  .prose-blog h2 {
+    @apply mt-10 scroll-mt-24 text-2xl font-bold text-slate-900;
+  }
+  .prose-blog h3 {
+    @apply mt-8 scroll-mt-24 text-lg font-semibold text-slate-900;
+  }
+  .prose-blog ul {
+    @apply list-disc space-y-1.5 ps-6;
+  }
+  .prose-blog ol {
+    @apply list-decimal space-y-1.5 ps-6;
+  }
+  .prose-blog a {
+    @apply font-medium text-brand-700 underline decoration-brand-200 underline-offset-2 hover:decoration-brand-700;
+  }
+  .prose-blog strong {
+    @apply font-semibold text-slate-900;
+  }
+  .prose-blog code {
+    @apply rounded bg-slate-100 px-1.5 py-0.5 font-mono text-sm;
+  }
+  .prose-blog aside {
+    @apply rounded-xl border-s-4 border-brand-500 bg-brand-50 p-4 text-slate-800;
+  }
+  .prose-blog .table-wrap {
+    @apply overflow-x-auto rounded-xl border border-slate-200;
+  }
+  .prose-blog table {
+    @apply w-full text-start text-sm;
+  }
+  .prose-blog th {
+    @apply bg-slate-50 px-4 py-2.5 text-start font-semibold text-slate-900;
+  }
+  .prose-blog td {
+    @apply border-t border-slate-100 px-4 py-2.5;
+  }
+
   /* Vùng quảng cáo */
   .ad-slot {
     @apply mx-auto my-6 flex w-full max-w-full flex-col items-center overflow-hidden text-center;

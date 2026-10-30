@@ -23,6 +23,14 @@ Tiếng Ả Rập hiển thị từ phải sang trái (`<html dir="rtl">`, xem `
 của Tailwind để tự lật theo hướng chữ: `ms-/me-` thay `ml-/mr-`, `ps-/pe-` thay `pl-/pr-`, `start-/end-` thay `left-/right-`, `text-start/text-end`
 thay `text-left/text-right`. Mũi tên chỉ hướng: `rtl:-scale-x-100`. Giá tiền, URL: bọc `<bdi dir="ltr">` / `dir="ltr"`.
 
+### Blog
+Bài viết ở `/{ngôn ngữ}/blog`, nội dung nằm trong `src/content/blog/` (mỗi bài một file, có bản tiếng Việt và tiếng Anh).
+- **Thêm bài**: copy một file có sẵn, đổi `id`, `date`, `cta` (công cụ gợi ý cuối bài, vd `/qr/wifi`) và nội dung từng ngôn ngữ, rồi thêm vào `src/content/blog/index.ts`.
+- **Dịch sang ngôn ngữ khác**: thêm khoá ngôn ngữ (vd `de`) vào `translations` với `slug` riêng. Trang, sitemap và hreflang tự cập nhật.
+- Nội dung viết bằng Markdown rút gọn: `## tiêu đề`, `### tiêu đề nhỏ`, `- danh sách`, `1. danh sách số`, bảng `| a | b |`, `> hộp mẹo`, `**đậm**`, `[chữ](/vi/qr/wifi)`.
+- Mô tả (description) nên dài 120–160 ký tự; tiêu đề chứa từ khoá chính.
+- Ngôn ngữ chưa có bài: trang danh sách hiện bài tiếng Anh và đặt `noindex` để tránh nội dung trùng lặp.
+
 ### SEO
 - 112 trang dựng sẵn lúc build (8 ngôn ngữ × trang chủ, 10 trang loại QR, trang quét, chính sách, điều khoản), phát thẳng từ static assets của Cloudflare.
 - Mỗi trang có title/description riêng, canonical, `hreflang` cho mọi ngôn ngữ + `x-default`, Open Graph, Twitter card.
