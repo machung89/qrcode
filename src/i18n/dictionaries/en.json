@@ -32,7 +32,7 @@
     "cornersStyle": "Corner frame style",
     "cornersDotStyle": "Corner dot style",
     "cornersColor": "Corner color",
-    "uploadLogo": "Upload logo", "logoPresets": "Ready-made logos",
+    "uploadLogo": "Upload logo", "logoPresets": "Ready-made logos", "moreLogos": "More", "close": "Close",
     "removeLogo": "Remove logo",
     "logoHint": "PNG, JPG or SVG. Square images work best.",
     "logoSize": "Logo size",

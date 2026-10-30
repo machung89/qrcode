@@ -26,7 +26,7 @@
     "cornersStyle": "Estilo da moldura do canto",
     "cornersDotStyle": "Estilo do ponto do canto",
     "cornersColor": "Cor dos cantos",
-    "uploadLogo": "Enviar logo", "logoPresets": "Logos prontos",
+    "uploadLogo": "Enviar logo", "logoPresets": "Logos prontos", "moreLogos": "Ver mais", "close": "Fechar",
     "removeLogo": "Remover logo",
     "logoHint": "PNG, JPG ou SVG. Imagens quadradas funcionam melhor.",
     "logoSize": "Tamanho do logo",

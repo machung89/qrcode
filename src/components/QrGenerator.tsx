@@ -377,7 +377,13 @@ export function QrGenerator({ initialType = "url", labels, aside, fixedData, fil
               )}
               <div className="border-t border-slate-100 pt-5">
                 <h3 className="mb-2 text-sm font-semibold text-slate-700">{g.logoPresets}</h3>
-                <LogoPresets current={design.logo} onPick={setLogo} type={type} values={values[type]} />
+                <LogoPresets
+                  current={design.logo}
+                  onPick={setLogo}
+                  type={type}
+                  values={values[type]}
+                  labels={{ title: g.logoPresets, more: g.moreLogos, close: g.close }}
+                />
               </div>
             </div>
           )}

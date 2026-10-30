@@ -32,7 +32,7 @@
     "cornersStyle": "角の枠の形",
     "cornersDotStyle": "角の中心の形",
     "cornersColor": "角の色",
-    "uploadLogo": "ロゴをアップロード", "logoPresets": "既製のロゴ",
+    "uploadLogo": "ロゴをアップロード", "logoPresets": "既製のロゴ", "moreLogos": "もっと見る", "close": "閉じる",
     "removeLogo": "ロゴを削除",
     "logoHint": "PNG・JPG・SVGに対応。正方形の画像がおすすめです。",
     "logoSize": "ロゴのサイズ",

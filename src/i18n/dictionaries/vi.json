@@ -32,7 +32,7 @@
     "cornersStyle": "Kiểu khung góc",
     "cornersDotStyle": "Kiểu chấm góc",
     "cornersColor": "Màu góc",
-    "uploadLogo": "Tải logo lên", "logoPresets": "Logo có sẵn",
+    "uploadLogo": "Tải logo lên", "logoPresets": "Logo có sẵn", "moreLogos": "Xem thêm", "close": "Đóng",
     "removeLogo": "Xóa logo",
     "logoHint": "PNG, JPG hoặc SVG. Ảnh vuông cho kết quả đẹp nhất.",
     "logoSize": "Kích thước logo",
