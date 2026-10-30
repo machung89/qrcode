@@ -347,11 +347,7 @@ export function QrGenerator({ initialType = "url", labels, aside, fixedData, fil
 
           {tab === "logo" && (
             <div className="space-y-5">
-              <div>
-                <h3 className="mb-2 text-sm font-semibold text-slate-700">{g.logoPresets}</h3>
-                <LogoPresets current={design.logo} onPick={setLogo} type={type} values={values[type]} />
-              </div>
-              <div className="flex flex-wrap items-center gap-4 border-t border-slate-100 pt-5">
+              <div className="flex flex-wrap items-center gap-4">
                 {design.logo && (
                   <img src={design.logo} alt="" className="h-16 w-16 rounded-lg border border-slate-200 object-contain p-1" />
                 )}
@@ -379,6 +375,10 @@ export function QrGenerator({ initialType = "url", labels, aside, fixedData, fil
                   <Toggle checked={design.hideDots} onChange={(v) => set("hideDots", v)} label={g.hideDots} />
                 </>
               )}
+              <div className="border-t border-slate-100 pt-5">
+                <h3 className="mb-2 text-sm font-semibold text-slate-700">{g.logoPresets}</h3>
+                <LogoPresets current={design.logo} onPick={setLogo} type={type} values={values[type]} />
+              </div>
             </div>
           )}
         </div>
