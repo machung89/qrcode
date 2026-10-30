@@ -26,7 +26,7 @@
     "cornersStyle": "Style du cadre d’angle",
     "cornersDotStyle": "Style du point d’angle",
     "cornersColor": "Couleur des angles",
-    "uploadLogo": "Importer un logo",
+    "uploadLogo": "Importer un logo", "logoPresets": "Logos prêts à l’emploi",
     "removeLogo": "Supprimer le logo",
     "logoHint": "PNG, JPG ou SVG. Les images carrées donnent le meilleur résultat.",
     "logoSize": "Taille du logo",

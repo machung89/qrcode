@@ -26,7 +26,7 @@
     "cornersStyle": "Eckrahmen-Stil",
     "cornersDotStyle": "Eckpunkt-Stil",
     "cornersColor": "Eckfarbe",
-    "uploadLogo": "Logo hochladen",
+    "uploadLogo": "Logo hochladen", "logoPresets": "Fertige Logos",
     "removeLogo": "Logo entfernen",
     "logoHint": "PNG, JPG oder SVG. Quadratische Bilder funktionieren am besten.",
     "logoSize": "Logogröße",

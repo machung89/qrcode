@@ -32,7 +32,7 @@
     "cornersStyle": "모서리 테두리 모양",
     "cornersDotStyle": "모서리 점 모양",
     "cornersColor": "모서리 색상",
-    "uploadLogo": "로고 업로드",
+    "uploadLogo": "로고 업로드", "logoPresets": "기본 로고",
     "removeLogo": "로고 삭제",
     "logoHint": "PNG, JPG, SVG 지원. 정사각형 이미지를 권장합니다.",
     "logoSize": "로고 크기",

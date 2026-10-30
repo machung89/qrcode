@@ -26,7 +26,7 @@
     "cornersStyle": "Estilo del marco de esquina",
     "cornersDotStyle": "Estilo del punto de esquina",
     "cornersColor": "Color de esquinas",
-    "uploadLogo": "Subir logo",
+    "uploadLogo": "Subir logo", "logoPresets": "Logos predefinidos",
     "removeLogo": "Quitar logo",
     "logoHint": "PNG, JPG o SVG. Las imágenes cuadradas funcionan mejor.",
     "logoSize": "Tamaño del logo",

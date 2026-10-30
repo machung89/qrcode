@@ -33,7 +33,7 @@
     "cornersStyle": "شكل إطار الزوايا",
     "cornersDotStyle": "شكل نقطة الزوايا",
     "cornersColor": "لون الزوايا",
-    "uploadLogo": "رفع شعار",
+    "uploadLogo": "رفع شعار", "logoPresets": "شعارات جاهزة",
     "removeLogo": "إزالة الشعار",
     "logoHint": "PNG أو JPG أو SVG. الصور المربعة هي الأفضل.",
     "logoSize": "حجم الشعار",

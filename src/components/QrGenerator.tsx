@@ -18,6 +18,7 @@ import {
 } from "@/lib/qr-render";
 import { buildQrData, defaultValuesFor, qrTypes, typeFields, type FieldDef, type FieldValues, type QrType } from "@/lib/qr-types";
 import { LocationPicker } from "./LocationPicker";
+import { LogoPresets } from "./LogoPresets";
 import { TypeIcon } from "./TypeIcon";
 
 export type GeneratorLabels = {
@@ -146,10 +147,13 @@ export function QrGenerator({ initialType = "url", labels, aside, fixedData, fil
     if (ok) setTimeout(() => setSaveState("idle"), 2000);
   }
 
+  // Có logo thì tăng mức sửa lỗi lên H để mã vẫn quét được
+  const setLogo = (logo: string) => setDesign((d) => ({ ...d, logo, ec: d.ec === "L" || d.ec === "M" ? "H" : d.ec }));
+
   function onLogo(file: File | undefined) {
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = () => setDesign((d) => ({ ...d, logo: String(reader.result), ec: d.ec === "L" || d.ec === "M" ? "H" : d.ec }));
+    reader.onload = () => setLogo(String(reader.result));
     reader.readAsDataURL(file);
   }
 
@@ -343,7 +347,11 @@ export function QrGenerator({ initialType = "url", labels, aside, fixedData, fil
 
           {tab === "logo" && (
             <div className="space-y-5">
-              <div className="flex flex-wrap items-center gap-4">
+              <div>
+                <h3 className="mb-2 text-sm font-semibold text-slate-700">{g.logoPresets}</h3>
+                <LogoPresets current={design.logo} onPick={setLogo} type={type} values={values[type]} />
+              </div>
+              <div className="flex flex-wrap items-center gap-4 border-t border-slate-100 pt-5">
                 {design.logo && (
                   <img src={design.logo} alt="" className="h-16 w-16 rounded-lg border border-slate-200 object-contain p-1" />
                 )}
