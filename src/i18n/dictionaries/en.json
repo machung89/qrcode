@@ -1,0 +1,363 @@
+{
+  "meta": {
+    "title": "Free QR Code Generator – Create Custom QR Codes with Logo",
+    "description": "Create free QR codes online for URLs, WiFi, vCard, email, SMS, WhatsApp, location and events. Customize colors, shapes and add your logo. Download PNG, SVG, JPG. No sign-up."
+  },
+  "nav": {
+    "generator": "QR Generator",
+    "scanner": "QR Scanner",
+    "types": "QR Types",
+    "language": "Language",
+    "menu": "Menu"
+  },
+  "hero": {
+    "title": "Free QR Code Generator",
+    "subtitle": "Create custom QR codes with your logo, colors and style in seconds. Free forever, no sign-up, codes never expire."
+  },
+  "generator": {
+    "chooseType": "Choose QR code type",
+    "content": "Content",
+    "design": "Design",
+    "logo": "Logo",
+    "preview": "Preview",
+    "download": "Download",
+    "format": "Format",
+    "size": "Size (px)",
+    "foreground": "QR color",
+    "background": "Background color",
+    "transparent": "Transparent background",
+    "gradient": "Gradient",
+    "gradientColor": "Second color",
+    "dotsStyle": "Dot style",
+    "cornersStyle": "Corner frame style",
+    "cornersDotStyle": "Corner dot style",
+    "cornersColor": "Corner color",
+    "uploadLogo": "Upload logo",
+    "removeLogo": "Remove logo",
+    "logoHint": "PNG, JPG or SVG. Square images work best.",
+    "logoSize": "Logo size",
+    "hideDots": "Hide dots behind logo",
+    "margin": "Quiet zone (margin)",
+    "errorCorrection": "Error correction",
+    "emptyHint": "Fill in the required fields to generate your QR code",
+    "reset": "Reset design",
+    "templates": "Templates",
+    "templateHint": "Pick a ready-made design, then fine-tune it in the Design and Frame tabs.",
+    "templateNames": { "classic": "Classic", "ocean": "Ocean", "sunset": "Sunset", "forest": "Forest", "royal": "Royal", "candy": "Candy", "gold": "Gold", "midnight": "Midnight" },
+    "frame": "Frame",
+    "frames": { "none": "No frame", "classic": "Label bottom", "top": "Label top", "bubble": "Bubble", "border": "Border", "caption": "Caption" },
+    "frameText": "Frame text",
+    "frameColor": "Frame color",
+    "frameTextColor": "Text color",
+    "frameDefaultText": "SCAN ME",
+    "styles": {
+      "square": "Square",
+      "dots": "Dots",
+      "rounded": "Rounded",
+      "classy": "Classy",
+      "classy-rounded": "Classy rounded",
+      "extra-rounded": "Extra rounded",
+      "dot": "Dot"
+    },
+    "ec": {
+      "L": "Low (7%)",
+      "M": "Medium (15%)",
+      "Q": "Quartile (25%)",
+      "H": "High (30%)"
+    }
+  },
+  "fields": {
+    "url": "Website URL",
+    "text": "Your text",
+    "email": "Email address",
+    "subject": "Subject",
+    "message": "Message",
+    "phone": "Phone number",
+    "ssid": "Network name (SSID)",
+    "password": "Password",
+    "encryption": "Encryption",
+    "hidden": "Hidden network",
+    "none": "No password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "organization": "Company",
+    "jobTitle": "Job title",
+    "mobile": "Mobile",
+    "workPhone": "Work phone",
+    "website": "Website",
+    "street": "Street",
+    "city": "City",
+    "zip": "ZIP code",
+    "country": "Country",
+    "note": "Note",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "eventTitle": "Event title",
+    "location": "Location",
+    "start": "Starts",
+    "end": "Ends",
+    "description": "Description",
+    "useMyLocation": "Use my current location"
+  },
+  "types": {
+    "url": {
+      "name": "URL",
+      "short": "Open any website link",
+      "title": "URL QR Code Generator",
+      "metaDescription": "Turn any link into a QR code for free. Customize colors and add your logo, then download your URL QR code in PNG or SVG.",
+      "intro": "A URL QR code sends people straight to a web page when scanned. Use it on posters, packaging, business cards and menus to drive traffic to your website, landing page or online store."
+    },
+    "text": {
+      "name": "Text",
+      "short": "Display plain text",
+      "title": "Text QR Code Generator",
+      "metaDescription": "Create a QR code that shows plain text when scanned. Works offline, free and without sign-up.",
+      "intro": "A text QR code stores a message directly inside the code, so it can be read without an internet connection. Perfect for instructions, serial numbers, short notes or hidden messages."
+    },
+    "email": {
+      "name": "Email",
+      "short": "Compose an email",
+      "title": "Email QR Code Generator",
+      "metaDescription": "Generate an email QR code with a prefilled recipient, subject and message. Free and customizable.",
+      "intro": "An email QR code opens the scanner's mail app with the recipient, subject and body already filled in. Great for customer support, feedback requests and contests."
+    },
+    "phone": {
+      "name": "Phone",
+      "short": "Call a phone number",
+      "title": "Phone Call QR Code Generator",
+      "metaDescription": "Create a QR code that dials a phone number when scanned. Free, fast and customizable.",
+      "intro": "A phone QR code lets people call you with a single scan, without typing the number. Ideal for flyers, shop windows, vehicles and business cards."
+    },
+    "sms": {
+      "name": "SMS",
+      "short": "Send a text message",
+      "title": "SMS QR Code Generator",
+      "metaDescription": "Make an SMS QR code that opens a prefilled text message. Free QR code generator with logo.",
+      "intro": "An SMS QR code opens the messaging app with your number and message ready to send. Use it for opt-ins, votes, bookings and quick feedback."
+    },
+    "wifi": {
+      "name": "WiFi",
+      "short": "Connect to WiFi",
+      "title": "WiFi QR Code Generator",
+      "metaDescription": "Create a WiFi QR code so guests can join your network without typing the password. Supports WPA, WEP and open networks.",
+      "intro": "A WiFi QR code lets guests connect to your wireless network instantly. Print it for your home, office, café, hotel or event — nobody has to type a long password again."
+    },
+    "vcard": {
+      "name": "vCard",
+      "short": "Share contact details",
+      "title": "vCard QR Code Generator",
+      "metaDescription": "Create a vCard QR code for your business card. Share your name, phone, email, company and address in one scan.",
+      "intro": "A vCard QR code saves your contact details straight into the scanner's phone book. Add it to business cards, email signatures and badges to make networking effortless."
+    },
+    "location": {
+      "name": "Location",
+      "short": "Open a map location",
+      "title": "Location QR Code Generator",
+      "metaDescription": "Generate a QR code that opens a location on Google Maps. Help customers find your shop or event easily.",
+      "intro": "A location QR code opens a precise place on the map so people can get directions in one tap. Perfect for shops, restaurants, venues and real-estate listings."
+    },
+    "event": {
+      "name": "Event",
+      "short": "Add an event to calendar",
+      "title": "Event QR Code Generator",
+      "metaDescription": "Create an event QR code that adds your event to the calendar with date, time and location.",
+      "intro": "An event QR code adds your meeting, party or conference to the scanner's calendar with all the details. Print it on invitations, tickets and posters."
+    },
+    "whatsapp": {
+      "name": "WhatsApp",
+      "short": "Start a WhatsApp chat",
+      "title": "WhatsApp QR Code Generator",
+      "metaDescription": "Create a WhatsApp QR code that opens a chat with your number and a prefilled message. Free and customizable.",
+      "intro": "A WhatsApp QR code starts a conversation with your business instantly. Use it on packaging, receipts and ads to make it easy for customers to contact you."
+    }
+  },
+  "howto": {
+    "title": "How to create a QR code",
+    "steps": [
+      { "t": "Choose a type", "d": "Pick what your QR code should do: open a link, connect to WiFi, share a contact and more." },
+      { "t": "Enter content & customize", "d": "Fill in the details, then change colors, dot shapes, corners and add your own logo." },
+      { "t": "Download & print", "d": "Download your QR code as PNG, JPG, WEBP or vector SVG in high resolution, ready for print." }
+    ]
+  },
+  "features": {
+    "title": "Why use our QR code generator?",
+    "items": [
+      { "t": "100% free", "d": "Create unlimited QR codes without registration or hidden fees." },
+      { "t": "Never expires", "d": "Static QR codes work forever — the data is stored inside the code." },
+      { "t": "Custom design", "d": "Colors, gradients, dot shapes, corner styles and your logo." },
+      { "t": "High resolution", "d": "Export up to 2000 px or as infinitely scalable SVG vectors." },
+      { "t": "Private", "d": "Codes are generated in your browser. Your data never leaves your device." },
+      { "t": "Works everywhere", "d": "Readable by every modern phone camera and QR scanner app." }
+    ]
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      { "q": "Is this QR code generator really free?", "a": "Yes. You can create and download as many QR codes as you want, for personal or commercial use, without signing up." },
+      { "q": "Do the QR codes expire?", "a": "No. These are static QR codes: the content is encoded directly in the image, so they keep working forever." },
+      { "q": "Can I add a logo to my QR code?", "a": "Yes. Open the Logo tab, upload your image and adjust its size. Use a higher error-correction level to keep the code readable." },
+      { "q": "Which file format should I download?", "a": "Use SVG for print and large formats because it scales without losing quality. PNG is best for websites and documents." },
+      { "q": "Why won't my QR code scan?", "a": "Make sure there is enough contrast between the code and background, keep a quiet zone around it, avoid an oversized logo and print it at least 2 × 2 cm." },
+      { "q": "Is my data stored?", "a": "No. QR codes are generated locally in your browser and we do not store the content you enter." }
+    ]
+  },
+  "scanner": {
+    "title": "Online QR Code Scanner",
+    "metaDescription": "Scan QR codes online from an image or your camera. Free QR code reader that works in your browser, no app needed.",
+    "intro": "Upload a picture of a QR code or use your device camera to read it instantly. Everything happens in your browser.",
+    "upload": "Upload image",
+    "dropHint": "Drag & drop an image here, paste it, or click to choose a file",
+    "camera": "Scan with camera",
+    "stopCamera": "Stop camera",
+    "result": "Result",
+    "noResult": "No QR code found in this image. Try a sharper or closer picture.",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "open": "Open link",
+    "cameraError": "Cannot access the camera. Please allow camera permission or upload an image instead."
+  },
+  "common": {
+    "home": "Home",
+    "allTypes": "All QR code types",
+    "createNow": "Create QR code"
+  },
+  "footer": {
+    "about": "Free online QR code generator with logo. Create, customize and download QR codes for any purpose.",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "tools": "Tools",
+    "legal": "Legal"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "metaDescription": "Learn how our QR code generator handles your data and cookies.",
+    "sections": [
+      { "h": "Data you enter", "p": "QR codes are generated entirely in your browser. The content you type or the logos you upload are not sent to or stored on our servers." },
+      { "h": "Cookies", "p": "We use a cookie to remember your preferred language. Third-party partners such as advertising networks and analytics providers may set their own cookies to serve and measure ads, including personalised ads based on your previous visits to this and other websites." },
+      { "h": "Advertising", "p": "This website displays ads from third-party networks (for example Google AdSense). These vendors may use cookies or similar technologies. You can opt out of personalised advertising through your browser settings or the vendor's ad settings page, such as https://adssettings.google.com." },
+      { "h": "Changes", "p": "We may update this policy from time to time. Continued use of the website means you accept the updated policy." }
+    ]
+  },
+  "terms": {
+    "title": "Terms of Use",
+    "metaDescription": "Terms and conditions for using our free QR code generator.",
+    "sections": [
+      { "h": "Use of the service", "p": "You may use this website to create QR codes for personal and commercial purposes free of charge." },
+      { "h": "Your responsibility", "p": "You are responsible for the content encoded in your QR codes. Do not create QR codes that link to illegal, harmful or deceptive content." },
+      { "h": "No warranty", "p": "The service is provided “as is”. Always test your QR codes before printing or distributing them. We are not liable for any damage resulting from their use." }
+    ]
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for does not exist or has been moved.",
+    "back": "Back to the QR generator"
+  },
+  "dashboard": {
+    "title": "My QR codes",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "loginTitle": "Sign in to your account",
+    "loginSubtitle": "Create dynamic QR codes, upload PDF files and track every scan.",
+    "continueGoogle": "Continue with Google",
+    "loginNote": "By signing in you agree to our Terms of Use and Privacy Policy.",
+    "loginError": "Sign-in failed. Please try again.",
+    "registerTitle": "Create your free account",
+    "register": "Create account",
+    "registering": "Creating account…",
+    "signingIn": "Signing in…",
+    "fullName": "Full name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "passwordHint": "At least 8 characters.",
+    "agree": "I agree to the Terms of Use and Privacy Policy",
+    "or": "or",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "signUpLink": "Sign up for free",
+    "signInLink": "Sign in",
+    "authErrors": {
+      "nameRequired": "Please enter your name.",
+      "invalidEmail": "Please enter a valid email address.",
+      "weakPassword": "Password must be 8–128 characters long.",
+      "passwordMismatch": "Passwords do not match.",
+      "agreeRequired": "Please accept the Terms of Use and Privacy Policy.",
+      "emailTaken": "This email is already registered. Please sign in instead.",
+      "invalidCredentials": "Incorrect email or password.",
+      "googleOnly": "This account uses Google sign-in. Please continue with Google.",
+      "tooManyAttempts": "Too many failed attempts. Please try again in 15 minutes.",
+      "unknown": "Something went wrong. Please try again."
+    },
+    "notConfigured": "Google sign-in has not been configured yet (GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET).",
+    "benefits": ["Edit the destination any time, even after printing", "See how many people scan, when and on which device", "Upload a PDF menu, brochure or catalogue"],
+    "menu": "Dashboard",
+    "newQr": "Create dynamic QR",
+    "empty": "You have no dynamic QR codes yet.",
+    "emptyHint": "Dynamic QR codes can be edited after printing and show you how many people scanned them.",
+    "totalCodes": "QR codes",
+    "totalScans": "Total scans",
+    "scansToday": "Scans today",
+    "scans30": "Last 30 days",
+    "scansCount": "scans",
+    "active": "Active",
+    "paused": "Paused",
+    "kindUrl": "Website URL",
+    "kindPdf": "PDF file",
+    "name": "Name",
+    "namePlaceholder": "e.g. Restaurant menu",
+    "type": "Type",
+    "targetUrl": "Destination URL",
+    "pdfFile": "PDF file",
+    "pdfHint": "PDF up to 10 MB.",
+    "currentFile": "Current file",
+    "replaceFile": "Replace PDF",
+    "create": "Create QR code",
+    "save": "Save changes",
+    "saving": "Saving…",
+    "saved": "Saved",
+    "delete": "Delete",
+    "deleteConfirm": "Delete this QR code? Printed copies will stop working.",
+    "pause": "Pause",
+    "resume": "Resume",
+    "shortLink": "Short link",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "open": "Open",
+    "settings": "Settings",
+    "stats": "Statistics",
+    "scansOverTime": "Scans over the last 30 days",
+    "uniqueVisitors": "Unique visitors",
+    "lastScan": "Last scan",
+    "never": "Never",
+    "byDevice": "Devices",
+    "byOs": "Operating systems",
+    "byBrowser": "Browsers",
+    "byCountry": "Countries",
+    "noData": "No scans yet",
+    "design": "Design & download",
+    "saveDesign": "Save design",
+    "back": "Back to dashboard",
+    "ctaTitle": "Need scan statistics or a PDF QR code?",
+    "ctaText": "Create a free account to make dynamic QR codes you can edit after printing and track every scan.",
+    "ctaButton": "Try dynamic QR — free",
+    "errors": {
+      "invalidUrl": "Please enter a valid http(s) URL.",
+      "fileRequired": "Please choose a PDF file.",
+      "fileTooLarge": "The PDF is larger than 10 MB.",
+      "fileType": "The file is not a valid PDF.",
+      "notFound": "QR code not found.",
+      "limit": "You have reached the maximum number of QR codes.",
+      "nameRequired": "Please enter a name.",
+      "unknown": "Something went wrong. Please try again."
+    },
+    "scanPage": {
+      "paused": { "title": "This QR code is paused", "text": "The owner has temporarily disabled this QR code." },
+      "missing": { "title": "QR code not found", "text": "This QR code does not exist or has been deleted." }
+    }
+  },
+  "ads": {
+    "label": "Advertisement",
+    "close": "Close"
+  }
+}

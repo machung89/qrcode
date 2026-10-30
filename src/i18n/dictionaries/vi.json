@@ -1,0 +1,363 @@
+{
+  "meta": {
+    "title": "Tạo mã QR miễn phí – Tạo QR Code có logo, tùy chỉnh màu sắc",
+    "description": "Tạo mã QR miễn phí cho link, WiFi, danh thiếp vCard, email, SMS, WhatsApp, vị trí và sự kiện. Tùy chỉnh màu, kiểu chấm, chèn logo. Tải PNG, SVG, JPG. Không cần đăng ký."
+  },
+  "nav": {
+    "generator": "Tạo mã QR",
+    "scanner": "Quét mã QR",
+    "types": "Loại mã QR",
+    "language": "Ngôn ngữ",
+    "menu": "Menu"
+  },
+  "hero": {
+    "title": "Tạo mã QR miễn phí",
+    "subtitle": "Tạo mã QR với logo, màu sắc và kiểu dáng riêng chỉ trong vài giây. Miễn phí vĩnh viễn, không cần đăng ký, mã không bao giờ hết hạn."
+  },
+  "generator": {
+    "chooseType": "Chọn loại mã QR",
+    "content": "Nội dung",
+    "design": "Thiết kế",
+    "logo": "Logo",
+    "preview": "Xem trước",
+    "download": "Tải xuống",
+    "format": "Định dạng",
+    "size": "Kích thước (px)",
+    "foreground": "Màu mã QR",
+    "background": "Màu nền",
+    "transparent": "Nền trong suốt",
+    "gradient": "Màu chuyển sắc",
+    "gradientColor": "Màu thứ hai",
+    "dotsStyle": "Kiểu chấm",
+    "cornersStyle": "Kiểu khung góc",
+    "cornersDotStyle": "Kiểu chấm góc",
+    "cornersColor": "Màu góc",
+    "uploadLogo": "Tải logo lên",
+    "removeLogo": "Xóa logo",
+    "logoHint": "PNG, JPG hoặc SVG. Ảnh vuông cho kết quả đẹp nhất.",
+    "logoSize": "Kích thước logo",
+    "hideDots": "Ẩn chấm phía sau logo",
+    "margin": "Lề (vùng trống)",
+    "errorCorrection": "Mức sửa lỗi",
+    "emptyHint": "Nhập các trường bắt buộc để tạo mã QR",
+    "reset": "Đặt lại thiết kế",
+    "templates": "Mẫu có sẵn",
+    "templateHint": "Chọn một mẫu thiết kế sẵn, sau đó tinh chỉnh thêm ở thẻ Thiết kế và Khung.",
+    "templateNames": { "classic": "Cổ điển", "ocean": "Đại dương", "sunset": "Hoàng hôn", "forest": "Rừng xanh", "royal": "Hoàng gia", "candy": "Kẹo ngọt", "gold": "Vàng kim", "midnight": "Nửa đêm" },
+    "frame": "Khung",
+    "frames": { "none": "Không khung", "classic": "Chữ phía dưới", "top": "Chữ phía trên", "bubble": "Bong bóng", "border": "Viền", "caption": "Chú thích" },
+    "frameText": "Chữ trên khung",
+    "frameColor": "Màu khung",
+    "frameTextColor": "Màu chữ",
+    "frameDefaultText": "QUÉT MÃ",
+    "styles": {
+      "square": "Vuông",
+      "dots": "Chấm tròn",
+      "rounded": "Bo tròn",
+      "classy": "Thanh lịch",
+      "classy-rounded": "Thanh lịch bo tròn",
+      "extra-rounded": "Bo tròn nhiều",
+      "dot": "Chấm"
+    },
+    "ec": {
+      "L": "Thấp (7%)",
+      "M": "Trung bình (15%)",
+      "Q": "Khá (25%)",
+      "H": "Cao (30%)"
+    }
+  },
+  "fields": {
+    "url": "Địa chỉ website (URL)",
+    "text": "Nội dung văn bản",
+    "email": "Địa chỉ email",
+    "subject": "Tiêu đề",
+    "message": "Tin nhắn",
+    "phone": "Số điện thoại",
+    "ssid": "Tên mạng (SSID)",
+    "password": "Mật khẩu",
+    "encryption": "Bảo mật",
+    "hidden": "Mạng ẩn",
+    "none": "Không mật khẩu",
+    "firstName": "Tên",
+    "lastName": "Họ",
+    "organization": "Công ty",
+    "jobTitle": "Chức danh",
+    "mobile": "Di động",
+    "workPhone": "Điện thoại cơ quan",
+    "website": "Website",
+    "street": "Địa chỉ",
+    "city": "Thành phố",
+    "zip": "Mã bưu chính",
+    "country": "Quốc gia",
+    "note": "Ghi chú",
+    "latitude": "Vĩ độ",
+    "longitude": "Kinh độ",
+    "eventTitle": "Tên sự kiện",
+    "location": "Địa điểm",
+    "start": "Bắt đầu",
+    "end": "Kết thúc",
+    "description": "Mô tả",
+    "useMyLocation": "Dùng vị trí hiện tại của tôi"
+  },
+  "types": {
+    "url": {
+      "name": "URL",
+      "short": "Mở một liên kết website",
+      "title": "Tạo mã QR cho link website",
+      "metaDescription": "Chuyển bất kỳ đường link nào thành mã QR miễn phí. Tùy chỉnh màu, chèn logo và tải mã QR URL dạng PNG hoặc SVG.",
+      "intro": "Mã QR URL đưa người quét đến thẳng một trang web. Dùng trên poster, bao bì, danh thiếp, thực đơn để tăng lượt truy cập website, landing page hoặc cửa hàng online."
+    },
+    "text": {
+      "name": "Văn bản",
+      "short": "Hiển thị văn bản",
+      "title": "Tạo mã QR văn bản",
+      "metaDescription": "Tạo mã QR hiển thị văn bản khi quét. Hoạt động không cần internet, miễn phí và không cần đăng ký.",
+      "intro": "Mã QR văn bản lưu nội dung trực tiếp trong mã nên có thể đọc mà không cần mạng. Phù hợp cho hướng dẫn, số serial, ghi chú ngắn hoặc thông điệp bí mật."
+    },
+    "email": {
+      "name": "Email",
+      "short": "Soạn sẵn một email",
+      "title": "Tạo mã QR gửi email",
+      "metaDescription": "Tạo mã QR email với người nhận, tiêu đề và nội dung soạn sẵn. Miễn phí và tùy chỉnh được.",
+      "intro": "Mã QR email mở ứng dụng thư với người nhận, tiêu đề và nội dung đã điền sẵn. Rất tiện cho chăm sóc khách hàng, thu thập phản hồi và các cuộc thi."
+    },
+    "phone": {
+      "name": "Điện thoại",
+      "short": "Gọi đến số điện thoại",
+      "title": "Tạo mã QR gọi điện",
+      "metaDescription": "Tạo mã QR tự động gọi điện đến số của bạn khi quét. Miễn phí, nhanh và tùy chỉnh.",
+      "intro": "Mã QR số điện thoại giúp khách gọi cho bạn chỉ với một lần quét, không cần gõ số. Lý tưởng cho tờ rơi, cửa hàng, xe và danh thiếp."
+    },
+    "sms": {
+      "name": "SMS",
+      "short": "Gửi tin nhắn SMS",
+      "title": "Tạo mã QR gửi tin nhắn SMS",
+      "metaDescription": "Tạo mã QR SMS mở sẵn tin nhắn soạn trước. Trình tạo mã QR miễn phí có logo.",
+      "intro": "Mã QR SMS mở ứng dụng tin nhắn với số và nội dung đã sẵn sàng để gửi. Dùng cho đăng ký, bình chọn, đặt lịch và phản hồi nhanh."
+    },
+    "wifi": {
+      "name": "WiFi",
+      "short": "Kết nối WiFi",
+      "title": "Tạo mã QR WiFi",
+      "metaDescription": "Tạo mã QR WiFi để khách kết nối mạng mà không cần nhập mật khẩu. Hỗ trợ WPA, WEP và mạng mở.",
+      "intro": "Mã QR WiFi giúp khách kết nối mạng không dây ngay lập tức. In ra cho nhà, văn phòng, quán cà phê, khách sạn hoặc sự kiện — không ai phải gõ mật khẩu dài nữa."
+    },
+    "vcard": {
+      "name": "vCard",
+      "short": "Chia sẻ danh thiếp",
+      "title": "Tạo mã QR danh thiếp vCard",
+      "metaDescription": "Tạo mã QR vCard cho danh thiếp. Chia sẻ tên, số điện thoại, email, công ty và địa chỉ chỉ với một lần quét.",
+      "intro": "Mã QR vCard lưu thông tin liên hệ của bạn thẳng vào danh bạ điện thoại người quét. In lên danh thiếp, chữ ký email, thẻ nhân viên để kết nối dễ dàng."
+    },
+    "location": {
+      "name": "Vị trí",
+      "short": "Mở vị trí trên bản đồ",
+      "title": "Tạo mã QR vị trí Google Maps",
+      "metaDescription": "Tạo mã QR mở vị trí trên Google Maps. Giúp khách tìm đến cửa hàng hoặc sự kiện của bạn dễ dàng.",
+      "intro": "Mã QR vị trí mở chính xác một địa điểm trên bản đồ để người dùng chỉ đường chỉ với một chạm. Phù hợp cho cửa hàng, nhà hàng, địa điểm tổ chức và bất động sản."
+    },
+    "event": {
+      "name": "Sự kiện",
+      "short": "Thêm sự kiện vào lịch",
+      "title": "Tạo mã QR sự kiện",
+      "metaDescription": "Tạo mã QR sự kiện để thêm vào lịch với ngày giờ và địa điểm.",
+      "intro": "Mã QR sự kiện thêm cuộc họp, bữa tiệc hay hội nghị vào lịch của người quét với đầy đủ thông tin. In lên thiệp mời, vé và poster."
+    },
+    "whatsapp": {
+      "name": "WhatsApp",
+      "short": "Mở chat WhatsApp",
+      "title": "Tạo mã QR WhatsApp",
+      "metaDescription": "Tạo mã QR WhatsApp mở cuộc trò chuyện với số của bạn và tin nhắn soạn sẵn. Miễn phí và tùy chỉnh.",
+      "intro": "Mã QR WhatsApp bắt đầu cuộc trò chuyện với doanh nghiệp của bạn ngay lập tức. Dùng trên bao bì, hóa đơn và quảng cáo để khách liên hệ dễ dàng."
+    }
+  },
+  "howto": {
+    "title": "Cách tạo mã QR",
+    "steps": [
+      { "t": "Chọn loại mã", "d": "Chọn chức năng cho mã QR: mở link, kết nối WiFi, chia sẻ danh thiếp và nhiều hơn nữa." },
+      { "t": "Nhập nội dung & tùy chỉnh", "d": "Điền thông tin, sau đó đổi màu, kiểu chấm, kiểu góc và chèn logo của bạn." },
+      { "t": "Tải xuống & in", "d": "Tải mã QR dạng PNG, JPG, WEBP hoặc vector SVG độ phân giải cao, sẵn sàng để in." }
+    ]
+  },
+  "features": {
+    "title": "Vì sao nên dùng trình tạo mã QR của chúng tôi?",
+    "items": [
+      { "t": "Miễn phí 100%", "d": "Tạo không giới hạn mã QR, không cần đăng ký, không phí ẩn." },
+      { "t": "Không hết hạn", "d": "Mã QR tĩnh hoạt động mãi mãi — dữ liệu nằm ngay trong mã." },
+      { "t": "Thiết kế riêng", "d": "Màu sắc, chuyển sắc, kiểu chấm, kiểu góc và logo của bạn." },
+      { "t": "Độ phân giải cao", "d": "Xuất ảnh đến 2000 px hoặc vector SVG phóng to không vỡ." },
+      { "t": "Riêng tư", "d": "Mã được tạo ngay trên trình duyệt. Dữ liệu không rời khỏi thiết bị của bạn." },
+      { "t": "Quét mọi nơi", "d": "Đọc được bằng camera mọi điện thoại hiện đại và ứng dụng quét QR." }
+    ]
+  },
+  "faq": {
+    "title": "Câu hỏi thường gặp",
+    "items": [
+      { "q": "Trình tạo mã QR này có thật sự miễn phí?", "a": "Có. Bạn có thể tạo và tải bao nhiêu mã QR tùy thích, cho mục đích cá nhân hoặc thương mại, không cần đăng ký." },
+      { "q": "Mã QR có bị hết hạn không?", "a": "Không. Đây là mã QR tĩnh: nội dung được mã hóa trực tiếp trong hình ảnh nên hoạt động vĩnh viễn." },
+      { "q": "Tôi có thể chèn logo vào mã QR không?", "a": "Có. Mở thẻ Logo, tải ảnh lên và chỉnh kích thước. Nên chọn mức sửa lỗi cao để mã vẫn quét tốt." },
+      { "q": "Nên tải định dạng nào?", "a": "Dùng SVG cho in ấn và khổ lớn vì phóng to không giảm chất lượng. PNG phù hợp cho website và tài liệu." },
+      { "q": "Vì sao mã QR của tôi không quét được?", "a": "Hãy đảm bảo mã và nền có độ tương phản cao, chừa lề xung quanh, logo không quá to và in kích thước tối thiểu 2 × 2 cm." },
+      { "q": "Dữ liệu của tôi có bị lưu lại không?", "a": "Không. Mã QR được tạo ngay trên trình duyệt và chúng tôi không lưu nội dung bạn nhập." }
+    ]
+  },
+  "scanner": {
+    "title": "Quét mã QR online",
+    "metaDescription": "Quét mã QR trực tuyến từ ảnh hoặc camera. Công cụ đọc mã QR miễn phí ngay trên trình duyệt, không cần cài ứng dụng.",
+    "intro": "Tải ảnh chứa mã QR lên hoặc dùng camera để đọc ngay lập tức. Mọi thứ được xử lý trên trình duyệt của bạn.",
+    "upload": "Tải ảnh lên",
+    "dropHint": "Kéo thả ảnh vào đây, dán ảnh, hoặc bấm để chọn file",
+    "camera": "Quét bằng camera",
+    "stopCamera": "Tắt camera",
+    "result": "Kết quả",
+    "noResult": "Không tìm thấy mã QR trong ảnh. Hãy thử ảnh rõ nét hoặc chụp gần hơn.",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép!",
+    "open": "Mở liên kết",
+    "cameraError": "Không thể truy cập camera. Hãy cấp quyền camera hoặc tải ảnh lên."
+  },
+  "common": {
+    "home": "Trang chủ",
+    "allTypes": "Tất cả loại mã QR",
+    "createNow": "Tạo mã QR"
+  },
+  "footer": {
+    "about": "Công cụ tạo mã QR có logo miễn phí. Tạo, tùy chỉnh và tải mã QR cho mọi mục đích.",
+    "rights": "Bảo lưu mọi quyền.",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản sử dụng",
+    "tools": "Công cụ",
+    "legal": "Pháp lý"
+  },
+  "privacy": {
+    "title": "Chính sách bảo mật",
+    "metaDescription": "Tìm hiểu cách trình tạo mã QR của chúng tôi xử lý dữ liệu và cookie.",
+    "sections": [
+      { "h": "Dữ liệu bạn nhập", "p": "Mã QR được tạo hoàn toàn trên trình duyệt. Nội dung bạn nhập và logo bạn tải lên không được gửi hay lưu trên máy chủ của chúng tôi." },
+      { "h": "Cookie", "p": "Chúng tôi dùng cookie để ghi nhớ ngôn ngữ bạn chọn. Các đối tác bên thứ ba như mạng quảng cáo và công cụ phân tích có thể đặt cookie riêng để hiển thị và đo lường quảng cáo, bao gồm quảng cáo cá nhân hóa dựa trên các lần truy cập trước của bạn." },
+      { "h": "Quảng cáo", "p": "Website hiển thị quảng cáo từ các mạng bên thứ ba (ví dụ Google AdSense). Các nhà cung cấp này có thể dùng cookie hoặc công nghệ tương tự. Bạn có thể tắt quảng cáo cá nhân hóa trong cài đặt trình duyệt hoặc trang cài đặt quảng cáo của nhà cung cấp, ví dụ https://adssettings.google.com." },
+      { "h": "Thay đổi", "p": "Chúng tôi có thể cập nhật chính sách này theo thời gian. Việc tiếp tục sử dụng website đồng nghĩa với việc bạn chấp nhận chính sách mới." }
+    ]
+  },
+  "terms": {
+    "title": "Điều khoản sử dụng",
+    "metaDescription": "Điều khoản và điều kiện khi sử dụng trình tạo mã QR miễn phí.",
+    "sections": [
+      { "h": "Sử dụng dịch vụ", "p": "Bạn được sử dụng website này để tạo mã QR cho mục đích cá nhân và thương mại hoàn toàn miễn phí." },
+      { "h": "Trách nhiệm của bạn", "p": "Bạn chịu trách nhiệm về nội dung được mã hóa trong mã QR. Không tạo mã QR dẫn đến nội dung bất hợp pháp, gây hại hoặc lừa đảo." },
+      { "h": "Không bảo đảm", "p": "Dịch vụ được cung cấp “nguyên trạng”. Hãy luôn kiểm tra mã QR trước khi in hoặc phát hành. Chúng tôi không chịu trách nhiệm cho thiệt hại phát sinh từ việc sử dụng." }
+    ]
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "text": "Trang bạn tìm không tồn tại hoặc đã được di chuyển.",
+    "back": "Quay lại trang tạo mã QR"
+  },
+  "dashboard": {
+    "title": "Mã QR của tôi",
+    "signIn": "Đăng nhập",
+    "signOut": "Đăng xuất",
+    "loginTitle": "Đăng nhập tài khoản",
+    "loginSubtitle": "Tạo mã QR động, tải file PDF lên và theo dõi từng lượt quét.",
+    "continueGoogle": "Tiếp tục với Google",
+    "loginNote": "Khi đăng nhập, bạn đồng ý với Điều khoản sử dụng và Chính sách bảo mật.",
+    "loginError": "Đăng nhập không thành công. Vui lòng thử lại.",
+    "registerTitle": "Tạo tài khoản miễn phí",
+    "register": "Đăng ký",
+    "registering": "Đang tạo tài khoản…",
+    "signingIn": "Đang đăng nhập…",
+    "fullName": "Họ và tên",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "confirmPassword": "Nhập lại mật khẩu",
+    "passwordHint": "Tối thiểu 8 ký tự.",
+    "agree": "Tôi đồng ý với Điều khoản sử dụng và Chính sách bảo mật",
+    "or": "hoặc",
+    "noAccount": "Chưa có tài khoản?",
+    "haveAccount": "Đã có tài khoản?",
+    "signUpLink": "Đăng ký miễn phí",
+    "signInLink": "Đăng nhập",
+    "authErrors": {
+      "nameRequired": "Vui lòng nhập họ tên.",
+      "invalidEmail": "Vui lòng nhập email hợp lệ.",
+      "weakPassword": "Mật khẩu phải dài từ 8 đến 128 ký tự.",
+      "passwordMismatch": "Mật khẩu nhập lại không khớp.",
+      "agreeRequired": "Vui lòng đồng ý với Điều khoản sử dụng và Chính sách bảo mật.",
+      "emailTaken": "Email này đã được đăng ký. Vui lòng đăng nhập.",
+      "invalidCredentials": "Email hoặc mật khẩu không đúng.",
+      "googleOnly": "Tài khoản này đăng nhập bằng Google. Vui lòng chọn Tiếp tục với Google.",
+      "tooManyAttempts": "Bạn đã nhập sai quá nhiều lần. Vui lòng thử lại sau 15 phút.",
+      "unknown": "Có lỗi xảy ra. Vui lòng thử lại."
+    },
+    "notConfigured": "Chưa cấu hình đăng nhập Google (GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET).",
+    "benefits": ["Đổi link đích bất cứ lúc nào, kể cả sau khi đã in", "Biết bao nhiêu người quét, lúc nào, bằng thiết bị gì", "Tải lên PDF thực đơn, brochure, catalogue"],
+    "menu": "Bảng điều khiển",
+    "newQr": "Tạo mã QR động",
+    "empty": "Bạn chưa có mã QR động nào.",
+    "emptyHint": "Mã QR động có thể sửa nội dung sau khi in và cho biết có bao nhiêu người đã quét.",
+    "totalCodes": "Mã QR",
+    "totalScans": "Tổng lượt quét",
+    "scansToday": "Lượt quét hôm nay",
+    "scans30": "30 ngày qua",
+    "scansCount": "lượt quét",
+    "active": "Đang chạy",
+    "paused": "Tạm dừng",
+    "kindUrl": "Link website",
+    "kindPdf": "File PDF",
+    "name": "Tên",
+    "namePlaceholder": "VD: Thực đơn nhà hàng",
+    "type": "Loại",
+    "targetUrl": "Link đích",
+    "pdfFile": "File PDF",
+    "pdfHint": "PDF tối đa 10 MB.",
+    "currentFile": "File hiện tại",
+    "replaceFile": "Thay file PDF",
+    "create": "Tạo mã QR",
+    "save": "Lưu thay đổi",
+    "saving": "Đang lưu…",
+    "saved": "Đã lưu",
+    "delete": "Xóa",
+    "deleteConfirm": "Xóa mã QR này? Các bản đã in sẽ ngừng hoạt động.",
+    "pause": "Tạm dừng",
+    "resume": "Chạy lại",
+    "shortLink": "Link rút gọn",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép!",
+    "open": "Mở",
+    "settings": "Cài đặt",
+    "stats": "Thống kê",
+    "scansOverTime": "Lượt quét 30 ngày qua",
+    "uniqueVisitors": "Người dùng duy nhất",
+    "lastScan": "Lần quét gần nhất",
+    "never": "Chưa có",
+    "byDevice": "Thiết bị",
+    "byOs": "Hệ điều hành",
+    "byBrowser": "Trình duyệt",
+    "byCountry": "Quốc gia",
+    "noData": "Chưa có lượt quét",
+    "design": "Thiết kế & tải xuống",
+    "saveDesign": "Lưu thiết kế",
+    "back": "Quay lại bảng điều khiển",
+    "ctaTitle": "Cần thống kê lượt quét hoặc mã QR cho file PDF?",
+    "ctaText": "Tạo tài khoản miễn phí để dùng mã QR động: sửa được sau khi in và theo dõi từng lượt quét.",
+    "ctaButton": "Dùng thử mã QR động miễn phí",
+    "errors": {
+      "invalidUrl": "Vui lòng nhập link http(s) hợp lệ.",
+      "fileRequired": "Vui lòng chọn file PDF.",
+      "fileTooLarge": "File PDF lớn hơn 10 MB.",
+      "fileType": "File không phải PDF hợp lệ.",
+      "notFound": "Không tìm thấy mã QR.",
+      "limit": "Bạn đã đạt số lượng mã QR tối đa.",
+      "nameRequired": "Vui lòng nhập tên.",
+      "unknown": "Có lỗi xảy ra. Vui lòng thử lại."
+    },
+    "scanPage": {
+      "paused": { "title": "Mã QR đang tạm dừng", "text": "Chủ sở hữu đã tạm thời tắt mã QR này." },
+      "missing": { "title": "Không tìm thấy mã QR", "text": "Mã QR này không tồn tại hoặc đã bị xóa." }
+    }
+  },
+  "ads": {
+    "label": "Quảng cáo",
+    "close": "Đóng"
+  }
+}

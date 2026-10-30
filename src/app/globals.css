@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe6ff;
+  --color-brand-200: #bfd2ff;
+  --color-brand-500: #3b6cf6;
+  --color-brand-600: #2753e6;
+  --color-brand-700: #1f42c4;
+  --color-brand-900: #172a6b;
+  /* Inter không có chữ Nhật/Hàn: dùng font hệ thống làm dự phòng (không tải thêm file font) */
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+    Meiryo, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans JP", "Noto Sans KR", sans-serif;
+}
+
+/* Đặt trong layer để class tiện ích (flex, py-3, text-xs...) ghi đè được khi cần */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #f6f8fc;
+    color: #0f172a;
+  }
+
+  /* Từ ghép dài (tiếng Đức...) tự ngắt có gạch nối theo lang của trang, không làm tràn màn hình hẹp */
+  h1,
+  h2,
+  h3 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Tiếng Hàn: xuống dòng theo từ thay vì cắt giữa âm tiết; tiếng Nhật: quy tắc ngắt dòng chuẩn */
+  :lang(ko) {
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  :lang(ja) {
+    line-break: strict;
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-100;
+  }
+
+  .label {
+    @apply mb-1 block text-sm font-medium text-slate-700;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  /* Vùng quảng cáo */
+  .ad-slot {
+    @apply mx-auto my-6 flex w-full max-w-full flex-col items-center overflow-hidden text-center;
+  }
+  .ad-label {
+    @apply mb-1 text-[10px] tracking-wider text-slate-400 uppercase;
+  }
+  .ad-unit {
+    @apply flex w-full justify-center;
+  }
+}
