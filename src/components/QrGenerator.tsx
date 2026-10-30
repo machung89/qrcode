@@ -72,6 +72,7 @@ export function QrGenerator({ initialType = "url", labels, aside, fixedData, fil
   const [format, setFormat] = useState<FileExtension>("png");
   const [size, setSize] = useState(1000);
   const [preview, setPreview] = useState<string | null>(null);
+  const [locateState, setLocateState] = useState<"idle" | "locating" | "denied" | "unavailable" | "unsupported">("idle");
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
   const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">("idle");
 
@@ -153,11 +154,24 @@ export function QrGenerator({ initialType = "url", labels, aside, fixedData, fil
   }
 
   function fillMyLocation() {
-    navigator.geolocation?.getCurrentPosition((pos) =>
+    if (!window.isSecureContext || !navigator.geolocation) return setLocateState("unsupported");
+    setLocateState("locating");
+    const done = (pos: GeolocationPosition) => {
       setValues((v) => ({
         ...v,
         location: { lat: pos.coords.latitude.toFixed(6), lng: pos.coords.longitude.toFixed(6) },
-      })),
+      }));
+      setLocateState("idle");
+    };
+    const fail = (err: GeolocationPositionError) => setLocateState(err.code === err.PERMISSION_DENIED ? "denied" : "unavailable");
+    // Thử GPS trước; điện thoại trong nhà hay bị quá giờ -> thử lại bằng định vị mạng (wifi/trạm phát)
+    navigator.geolocation.getCurrentPosition(
+      done,
+      (err) =>
+        err.code === err.PERMISSION_DENIED
+          ? fail(err)
+          : navigator.geolocation.getCurrentPosition(done, fail, { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 }),
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 },
     );
   }
 
@@ -220,9 +234,14 @@ export function QrGenerator({ initialType = "url", labels, aside, fixedData, fil
                 <Field key={`${type}-${field.name}`} field={field} value={values[type][field.name] ?? ""} onChange={setField} labels={f} />
               ))}
               {type === "location" && (
-                <button type="button" onClick={fillMyLocation} className="btn-ghost col-span-2 justify-self-start">
-                  <TypeIcon type="location" className="h-4 w-4" /> {f.useMyLocation}
-                </button>
+                <div className="col-span-2">
+                  <button type="button" onClick={fillMyLocation} disabled={locateState === "locating"} className="btn-ghost">
+                    <TypeIcon type="location" className="h-4 w-4" /> {locateState === "locating" ? f.locating : f.useMyLocation}
+                  </button>
+                  {locateState === "denied" && <p className="mt-2 text-sm text-red-600">{f.locationDenied}</p>}
+                  {locateState === "unavailable" && <p className="mt-2 text-sm text-red-600">{f.locationUnavailable}</p>}
+                  {locateState === "unsupported" && <p className="mt-2 text-sm text-red-600">{f.locationUnsupported}</p>}
+                </div>
               )}
             </div>
           )}

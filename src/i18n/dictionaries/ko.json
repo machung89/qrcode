@@ -97,7 +97,11 @@
     "start": "시작",
     "end": "종료",
     "description": "설명",
-    "useMyLocation": "현재 위치 사용"
+    "useMyLocation": "현재 위치 사용",
+    "locating": "위치를 가져오는 중...",
+    "locationDenied": "위치 권한이 차단되어 있습니다. 브라우저 설정에서 이 사이트의 위치를 허용하고(휴대폰 위치도 켜고) 다시 시도하세요. Google 지도의 좌표를 붙여 넣을 수도 있습니다.",
+    "locationUnavailable": "위치를 가져오지 못했습니다. 위치/GPS를 켜고 다시 시도하거나 Google 지도의 좌표를 붙여 넣으세요.",
+    "locationUnsupported": "이 브라우저에서는 위치를 공유할 수 없습니다. 카카오톡, Facebook 등 앱 안에서 링크를 열었다면 Chrome 또는 Safari로 여세요."
   },
   "types": {
     "url": {

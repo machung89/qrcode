@@ -54,7 +54,11 @@
     "jobTitle": "Cargo", "mobile": "Celular", "workPhone": "Telefone comercial", "website": "Site", "street": "Rua",
     "city": "Cidade", "zip": "CEP", "country": "País", "note": "Observação", "latitude": "Latitude", "longitude": "Longitude",
     "eventTitle": "Título do evento", "location": "Local", "start": "Início", "end": "Fim", "description": "Descrição",
-    "useMyLocation": "Usar minha localização atual"
+    "useMyLocation": "Usar minha localização atual",
+    "locating": "Obtendo sua localização...",
+    "locationDenied": "O acesso à localização está bloqueado. Permita a localização para este site nas configurações do navegador (e ative a localização do celular) e tente novamente. Você também pode colar coordenadas do Google Maps.",
+    "locationUnavailable": "Não foi possível obter sua localização. Ative a localização/GPS e tente novamente, ou cole coordenadas do Google Maps.",
+    "locationUnsupported": "Este navegador não pode compartilhar sua localização. Se você abriu o link dentro do Facebook ou Messenger, abra-o no Chrome ou Safari."
   },
   "types": {
     "url": { "name": "URL", "short": "Abrir um link", "title": "Gerador de QR Code para URL", "metaDescription": "Transforme qualquer link em QR code grátis. Personalize cores, adicione seu logo e baixe em PNG ou SVG.", "intro": "Um QR code de URL leva as pessoas direto para uma página da web. Use em cartazes, embalagens, cartões de visita e cardápios para gerar tráfego." },

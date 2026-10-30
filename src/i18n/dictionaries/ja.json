@@ -97,7 +97,11 @@
     "start": "開始",
     "end": "終了",
     "description": "説明",
-    "useMyLocation": "現在地を使う"
+    "useMyLocation": "現在地を使う",
+    "locating": "現在地を取得中...",
+    "locationDenied": "位置情報へのアクセスがブロックされています。ブラウザの設定でこのサイトの位置情報を許可し（スマホの位置情報もオンにして）、もう一度お試しください。Google マップの座標を貼り付けることもできます。",
+    "locationUnavailable": "現在地を取得できませんでした。位置情報／GPS をオンにして再度お試しいただくか、Google マップの座標を貼り付けてください。",
+    "locationUnsupported": "このブラウザでは位置情報を利用できません。LINE や Facebook などのアプリ内でリンクを開いた場合は、Chrome または Safari で開いてください。"
   },
   "types": {
     "url": {

@@ -54,7 +54,11 @@
     "jobTitle": "Position", "mobile": "Mobil", "workPhone": "Telefon (geschäftlich)", "website": "Website", "street": "Straße",
     "city": "Stadt", "zip": "PLZ", "country": "Land", "note": "Notiz", "latitude": "Breitengrad", "longitude": "Längengrad",
     "eventTitle": "Titel des Termins", "location": "Ort", "start": "Beginn", "end": "Ende", "description": "Beschreibung",
-    "useMyLocation": "Meinen aktuellen Standort verwenden"
+    "useMyLocation": "Meinen aktuellen Standort verwenden",
+    "locating": "Standort wird ermittelt...",
+    "locationDenied": "Der Standortzugriff ist blockiert. Erlaube den Standort für diese Seite in den Browsereinstellungen (und aktiviere die Ortung am Handy) und versuche es erneut. Du kannst auch Koordinaten aus Google Maps einfügen.",
+    "locationUnavailable": "Standort konnte nicht ermittelt werden. Aktiviere Ortung/GPS und versuche es erneut oder füge Koordinaten aus Google Maps ein.",
+    "locationUnsupported": "Dieser Browser kann deinen Standort nicht teilen. Wenn du den Link in Facebook oder Messenger geöffnet hast, öffne ihn stattdessen in Chrome oder Safari."
   },
   "types": {
     "url": { "name": "URL", "short": "Website-Link öffnen", "title": "URL-QR-Code-Generator", "metaDescription": "Verwandeln Sie jeden Link kostenlos in einen QR-Code. Farben anpassen, Logo hinzufügen und als PNG oder SVG herunterladen.", "intro": "Ein URL-QR-Code führt beim Scannen direkt auf eine Webseite. Nutzen Sie ihn auf Plakaten, Verpackungen, Visitenkarten und Speisekarten." },

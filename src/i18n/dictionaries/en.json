@@ -97,7 +97,11 @@
     "start": "Starts",
     "end": "Ends",
     "description": "Description",
-    "useMyLocation": "Use my current location"
+    "useMyLocation": "Use my current location",
+    "locating": "Getting your location...",
+    "locationDenied": "Location access is blocked. Allow location for this site in your browser settings (and turn on Location on your phone), then try again. You can also paste coordinates from Google Maps.",
+    "locationUnavailable": "Could not get your location. Turn on Location / GPS and try again, or paste coordinates from Google Maps.",
+    "locationUnsupported": "This browser cannot share your location. If you opened the link inside Zalo, Facebook or Messenger, open it in Chrome or Safari instead."
   },
   "types": {
     "url": {
