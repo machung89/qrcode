@@ -8,8 +8,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { isLocale, locales, ogLocales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { extractHeadMeta } from "@/lib/ads/meta";
-import { getActiveAds } from "@/lib/ads/store";
+import { siteMetaTags } from "@/lib/ads/meta";
 import { alternatesFor, siteName, siteUrl } from "@/lib/site";
 import "../globals.css";
 
@@ -18,7 +17,6 @@ const inter = Inter({ subsets: ["latin", "latin-ext", "vietnamese"], variable: "
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
-
 
 // URL không có trong danh sách -> 404 toàn cục (app/not-found.tsx)
 export const dynamicParams = false;
@@ -29,7 +27,6 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const dict = getDictionary(locale);
-  const ads = await getActiveAds(locale);
   return {
     metadataBase: new URL(siteUrl),
     title: { default: dict.meta.title, template: `%s | ${siteName}` },
@@ -46,7 +43,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
     },
     twitter: { card: "summary_large_image", title: dict.meta.title, description: dict.meta.description },
     robots: { index: true, follow: true },
-    other: extractHeadMeta(ads),
+    other: siteMetaTags(),
   };
 }
 
@@ -54,12 +51,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const dict = getDictionary(locale);
-  const ads = await getActiveAds(locale);
 
   return (
     <html lang={locale} className={inter.variable}>
       <body className="min-h-screen font-sans antialiased">
-        <AdsProvider units={ads}>
+        <AdsProvider locale={locale}>
           <Header locale={locale} dict={dict} />
           <AdSlot placement="header_banner" label={dict.ads.label} className="px-4" />
           <main>{children}</main>

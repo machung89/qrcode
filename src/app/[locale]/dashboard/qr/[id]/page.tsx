@@ -19,7 +19,7 @@ export const dynamicParams = true;
 export async function generateMetadata({ params }: PageProps<"/[locale]/dashboard/qr/[id]">): Promise<Metadata> {
   const { locale, id } = await params;
   const user = await getUser();
-  const qr = user ? getQr(user.id, id) : undefined;
+  const qr = user ? await getQr(user.id, id) : null;
   return isLocale(locale) && qr ? { title: `${qr.name} – ${getDictionary(locale).dashboard.stats}` } : {};
 }
 
@@ -35,13 +35,13 @@ export default async function QrDetailPage({ params }: PageProps<"/[locale]/dash
   const { locale, id } = await params;
   if (!isLocale(locale)) notFound();
   const user = await requireUser(locale);
-  const qr = getQr(user.id, id);
+  const qr = await getQr(user.id, id);
   // Mã không tồn tại hoặc của người khác -> về danh sách
   if (!qr) redirect(`/${locale}/dashboard`);
 
   const dict = getDictionary(locale);
   const t = dict.dashboard;
-  const stats = getStats(qr.id);
+  const stats = await getStats(qr.id);
   const shortUrl = `${siteUrl}/r/${qr.slug}`;
   const num = new Intl.NumberFormat(locale);
   const dateTime = new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeStyle: "short" });

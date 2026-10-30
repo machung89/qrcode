@@ -5,7 +5,19 @@ import type { Device, Placement, PublicAdUnit } from "@/lib/ads/types";
 
 const AdsContext = createContext<PublicAdUnit[]>([]);
 
-export function AdsProvider({ units, children }: { units: PublicAdUnit[]; children: React.ReactNode }) {
+/** Trang công khai là trang tĩnh: quảng cáo được tải phía trình duyệt nên admin lưu là có hiệu lực ngay. */
+export function AdsProvider({ locale, children }: { locale: string; children: React.ReactNode }) {
+  const [units, setUnits] = useState<PublicAdUnit[]>([]);
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`/api/ads?locale=${locale}`)
+      .then((r) => (r.ok ? (r.json() as Promise<PublicAdUnit[]>) : []))
+      .then((data: PublicAdUnit[]) => !cancelled && setUnits(Array.isArray(data) ? data : []))
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [locale]);
   return <AdsContext.Provider value={units}>{children}</AdsContext.Provider>;
 }
 

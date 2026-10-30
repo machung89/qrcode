@@ -76,6 +76,6 @@ export async function saveDesignAction(id: string, saved: SavedDesign): Promise<
   if (saved.design.logo && !/^data:image\/[\w.+-]+;base64,/.test(saved.design.logo)) saved.design.logo = null;
   const json = JSON.stringify({ design: saved.design, frame: saved.frame });
   if (json.length > 1_500_000) return false;
-  saveDesign(user.id, id, json);
+  await saveDesign(user.id, id, json);
   return true;
 }

@@ -1,22 +1,14 @@
-import type { PublicAdUnit } from "./types";
-
 /**
- * Lấy các thẻ <meta name="..." content="..."> trong mã đặt ở vị trí "head"
- * (vd: google-adsense-account, xác minh site) để render phía server,
- * vì bot xác minh của mạng quảng cáo không chạy JavaScript.
+ * Thẻ <meta> xác minh website (vd google-adsense-account, google-site-verification).
+ * Trang công khai là trang tĩnh dựng lúc build, nên thẻ meta lấy từ biến môi trường SITE_META_TAGS
+ * (đặt ở Build variables của Cloudflare), dạng: "google-adsense-account=ca-pub-123;google-site-verification=abc".
+ * Đổi giá trị thì cần deploy lại để có hiệu lực.
  */
-export function extractHeadMeta(units: PublicAdUnit[]): Record<string, string> {
+export function siteMetaTags(): Record<string, string> {
   const out: Record<string, string> = {};
-  for (const unit of units) {
-    if (unit.placement !== "head") continue;
-    for (const tag of unit.code.match(/<meta\b[^>]*>/gi) ?? []) {
-      const attrs: Record<string, string> = {};
-      for (const m of tag.matchAll(/([\w:-]+)\s*=\s*("([^"]*)"|'([^']*)')/g)) {
-        attrs[m[1].toLowerCase()] = m[3] ?? m[4] ?? "";
-      }
-      const name = attrs.name || attrs.property;
-      if (name && attrs.content !== undefined) out[name] = attrs.content;
-    }
+  for (const pair of (process.env.SITE_META_TAGS ?? "").split(";")) {
+    const i = pair.indexOf("=");
+    if (i > 0) out[pair.slice(0, i).trim()] = pair.slice(i + 1).trim();
   }
   return out;
 }

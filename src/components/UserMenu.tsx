@@ -16,10 +16,19 @@ export function UserMenu({ locale, labels }: { locale: Locale; labels: { signIn:
   // Tải lại khi đổi trang: đăng nhập/đăng ký bằng form chuyển trang phía client nên header không mount lại
   const pathname = usePathname();
   useEffect(() => {
+    // Chưa từng đăng nhập (không có cookie đánh dấu) -> khỏi gọi server, tiết kiệm CPU của Worker
+    if (!/(?:^|;\s*)qr_li=1/.test(document.cookie)) {
+      setMe(null);
+      return;
+    }
     let cancelled = false;
     fetch("/api/auth/me", { cache: "no-store" })
-      .then((r) => r.json())
-      .then((d: { user: Me }) => !cancelled && setMe(d.user))
+      .then((r) => r.json() as Promise<{ user: Me }>)
+      .then((d: { user: Me }) => {
+        // Phiên đã hết hạn: bỏ cookie đánh dấu để lần sau không gọi lại
+        if (!d.user) document.cookie = "qr_li=; max-age=0; path=/";
+        if (!cancelled) setMe(d.user);
+      })
       .catch(() => !cancelled && setMe(null));
     return () => {
       cancelled = true;

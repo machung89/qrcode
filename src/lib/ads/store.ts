@@ -1,28 +1,29 @@
 import "server-only";
-import { promises as fs } from "fs";
-import path from "path";
+import { db } from "../db";
 import { emptyConfig, placements, type AdsConfig, type AdUnit, type PublicAdUnit } from "./types";
 
-const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), "data");
-const FILE = path.join(DATA_DIR, "ads.json");
+const KEY = "ads";
 
 export async function readAdsConfig(): Promise<AdsConfig> {
   try {
-    const parsed = JSON.parse(await fs.readFile(FILE, "utf8"));
-    return sanitizeConfig(parsed);
+    const row = await (await db()).prepare("SELECT value FROM settings WHERE key = ?").bind(KEY).first<{ value: string }>();
+    return row ? sanitizeConfig(JSON.parse(row.value)) : structuredClone(emptyConfig);
   } catch {
     return structuredClone(emptyConfig);
   }
 }
 
 export async function writeAdsConfig(config: AdsConfig) {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  const tmp = `${FILE}.${Date.now()}.tmp`;
-  await fs.writeFile(tmp, JSON.stringify(config, null, 2), "utf8");
-  await fs.rename(tmp, FILE);
+  await (await db())
+    .prepare(
+      `INSERT INTO settings (key, value, updated_at) VALUES (?, ?, ?)
+       ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at`,
+    )
+    .bind(KEY, JSON.stringify(config), Date.now())
+    .run();
 }
 
-/** Chuẩn hoá dữ liệu nhận từ file hoặc từ form admin. */
+/** Chuẩn hoá dữ liệu nhận từ CSDL hoặc từ form admin. */
 export function sanitizeConfig(input: unknown): AdsConfig {
   const obj = (input ?? {}) as Partial<AdsConfig>;
   const units = Array.isArray(obj.units) ? obj.units : [];
@@ -45,7 +46,7 @@ export function sanitizeConfig(input: unknown): AdsConfig {
   };
 }
 
-/** Các mẫu quảng cáo đang bật cho 1 ngôn ngữ (dùng ở phía public). */
+/** Các mẫu quảng cáo đang bật cho 1 ngôn ngữ (trả cho trình duyệt qua /api/ads). */
 export async function getActiveAds(locale: string): Promise<PublicAdUnit[]> {
   const config = await readAdsConfig();
   if (!config.enabled) return [];

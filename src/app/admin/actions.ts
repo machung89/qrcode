@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { checkPassword, createSession, destroySession, isAuthenticated } from "@/lib/auth";
 import { sanitizeConfig, writeAdsConfig } from "@/lib/ads/store";
@@ -27,9 +26,6 @@ export async function saveConfig(input: AdsConfig): Promise<{ ok: boolean; error
   try {
     const config = sanitizeConfig(input);
     await writeAdsConfig(config);
-    // Tạo lại các trang tĩnh để áp dụng quảng cáo mới
-    revalidatePath("/", "layout");
-    revalidatePath("/[locale]", "layout");
     return { ok: true, config };
   } catch (e) {
     return { ok: false, error: `Không lưu được: ${(e as Error).message}` };

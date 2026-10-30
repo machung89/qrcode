@@ -18,16 +18,17 @@ function messagePage(request: NextRequest, kind: "paused" | "missing", status: n
 
 export async function GET(request: NextRequest, { params }: RouteContext<"/r/[slug]">) {
   const { slug } = await params;
-  const qr = findBySlug(slug);
+  const qr = await findBySlug(slug);
   if (!qr) return messagePage(request, "missing", 404);
   if (!qr.active) return messagePage(request, "paused", 410);
 
   const ua = parseUserAgent(request.headers.get("user-agent") ?? "");
   if (!ua.bot && request.method === "GET") {
-    const ip = (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim() || request.headers.get("x-real-ip") || "unknown";
+    const ip =
+      request.headers.get("cf-connecting-ip") || (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim() || request.headers.get("x-real-ip") || "unknown";
     // Quốc gia lấy từ header của CDN (Cloudflare / Vercel) nếu có
     const country = (request.headers.get("cf-ipcountry") || request.headers.get("x-vercel-ip-country") || "").toUpperCase();
-    recordScan(qr.id, { ip, device: ua.device, os: ua.os, browser: ua.browser, country: /^[A-Z]{2}$/.test(country) && country !== "XX" ? country : "Unknown" });
+    await recordScan(qr.id, { ip, device: ua.device, os: ua.os, browser: ua.browser, country: /^[A-Z]{2}$/.test(country) && country !== "XX" ? country : "Unknown" });
   }
 
   const target = qr.kind === "pdf" ? (qr.file_id ? new URL(`/f/${qr.file_id}`, request.url).toString() : null) : qr.target_url;

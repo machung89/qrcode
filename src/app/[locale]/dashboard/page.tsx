@@ -18,8 +18,7 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/das
   if (!isLocale(locale)) notFound();
   const user = await requireUser(locale);
   const t = getDictionary(locale).dashboard;
-  const codes = listQrs(user.id);
-  const totals = userTotals(user.id);
+  const [codes, totals] = await Promise.all([listQrs(user.id), userTotals(user.id)]);
   const date = new Intl.DateTimeFormat(locale, { dateStyle: "medium" });
   const num = new Intl.NumberFormat(locale);
 

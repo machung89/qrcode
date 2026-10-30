@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const profile = await googleProfile(code, saved.verifier);
-    await startSession(upsertGoogleUser(profile));
+    await startSession(await upsertGoogleUser(profile));
   } catch (e) {
     console.error("Google sign-in failed:", e);
     return fail();

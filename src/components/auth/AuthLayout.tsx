@@ -10,11 +10,10 @@ type Props = {
   /** Thông báo lỗi từ đăng nhập Google (?error=) */
   notice?: string;
   footer: { text: string; link: string; href: string };
-  children: React.ReactNode;
 };
 
-/** Khung chung của trang đăng nhập / đăng ký: lợi ích bên trái, form + nút Google bên phải. */
-export function AuthLayout({ locale, t, title, notice, footer, children }: Props) {
+/** Trang đăng nhập / đăng ký: chỉ dùng tài khoản Google (lần đăng nhập đầu tiên tự tạo tài khoản). */
+export function AuthLayout({ locale, t, title, notice, footer }: Props) {
   const google = googleConfigured();
   return (
     <div className="mx-auto grid max-w-5xl gap-10 px-4 py-10 md:grid-cols-2 md:items-center md:py-16">
@@ -33,32 +32,29 @@ export function AuthLayout({ locale, t, title, notice, footer, children }: Props
 
       <div className="card space-y-5 p-6 sm:p-8">
         {notice && <p className="rounded-lg bg-amber-50 p-3 text-sm text-amber-800">{notice}</p>}
-        <>
-            {/* Luôn hiện nút Google; chưa cấu hình thì làm mờ và nhắc cách bật */}
-            <a
-              href={`/api/auth/google?locale=${locale}`}
-              aria-disabled={!google}
-              tabIndex={google ? undefined : -1}
-              className={`flex w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50 ${
-                google ? "" : "pointer-events-none opacity-50"
-              }`}
-            >
-              <svg viewBox="0 0 48 48" className="h-5 w-5" aria-hidden="true">
-                <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.5z" />
-                <path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z" />
-                <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z" />
-                <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.5z" />
-              </svg>
-              {t.continueGoogle}
-            </a>
-            {!google && notice !== t.notConfigured && <p className="-mt-2 text-center text-xs text-amber-700">{t.notConfigured}</p>}
-            <div className="flex items-center gap-3 text-xs text-slate-400 uppercase">
-              <span className="h-px flex-1 bg-slate-200" />
-              {t.or}
-              <span className="h-px flex-1 bg-slate-200" />
-            </div>
-          </>
-        {children}
+        {/* Luôn hiện nút Google; chưa cấu hình thì làm mờ và nhắc cách bật */}
+        <a
+          href={`/api/auth/google?locale=${locale}`}
+          aria-disabled={!google}
+          tabIndex={google ? undefined : -1}
+          className={`flex w-full items-center justify-center gap-3 rounded-lg border border-slate-300 bg-white px-4 py-3 font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50 ${
+            google ? "" : "pointer-events-none opacity-50"
+          }`}
+        >
+          <svg viewBox="0 0 48 48" className="h-5 w-5" aria-hidden="true">
+            <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.5z" />
+            <path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z" />
+            <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z" />
+            <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.5z" />
+          </svg>
+          {t.continueGoogle}
+        </a>
+        {!google && notice !== t.notConfigured && <p className="-mt-2 text-center text-xs text-amber-700">{t.notConfigured}</p>}
+        <p className="text-center text-xs text-slate-500">
+          <Link href={`/${locale}/terms`} className="hover:underline">
+            {t.loginNote}
+          </Link>
+        </p>
         <p className="border-t border-slate-100 pt-4 text-center text-sm text-slate-600">
           {footer.text}{" "}
           <Link href={footer.href} className="font-semibold text-brand-600 hover:underline">

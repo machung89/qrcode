@@ -7,7 +7,7 @@ import { placements, type AdsConfig, type AdUnit, type Device, type Placement } 
 import { logout, saveConfig } from "./actions";
 
 const placementInfo: Record<Placement, { name: string; desc: string }> = {
-  head: { name: "Trong <head> (toàn trang)", desc: "Script khởi tạo mạng quảng cáo, Auto Ads, thẻ meta xác minh, Analytics..." },
+  head: { name: "Trong <head> (toàn trang)", desc: "Script khởi tạo mạng quảng cáo, Auto Ads, Analytics... (thẻ meta xác minh: dùng biến SITE_META_TAGS)" },
   body_end: { name: "Cuối <body> (toàn trang)", desc: "Popunder, social bar, push notification, script chạy cuối trang." },
   header_banner: { name: "Banner dưới menu", desc: "Banner ngang ở đầu mọi trang (728×90, 970×90, responsive)." },
   below_generator: { name: "Dưới công cụ tạo/quét QR", desc: "Vị trí có tỉ lệ xem cao nhất, ngay dưới khung tạo mã." },
@@ -327,8 +327,8 @@ function UnitEditor({ unit, onCancel, onSave }: { unit: AdUnit; onCancel: () => 
             placeholder="<script async src=...></script>"
           />
           <p className="mt-1 text-xs text-slate-500">
-            Dán nguyên văn mã từ mạng quảng cáo. Thẻ &lt;script&gt; sẽ được thực thi. Thẻ &lt;meta&gt; đặt ở vị trí &lt;head&gt; được render sẵn từ server để
-            xác minh website.
+            Dán nguyên văn mã từ mạng quảng cáo. Thẻ &lt;script&gt; sẽ được thực thi. Thẻ &lt;meta&gt; xác minh website (vd google-adsense-account) cần có sẵn
+            trong HTML: khai báo ở biến môi trường SITE_META_TAGS trên Cloudflare (xem README) thay vì dán ở đây.
           </p>
         </div>
 

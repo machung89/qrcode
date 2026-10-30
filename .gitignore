@@ -8,3 +8,6 @@ next-env.d.ts
 data/ads.json
 data/app.db*
 data/uploads/
+.open-next
+.wrangler
+.dev.vars*

@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "qrcode",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-10-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "qrcode" }],
+  // CSDL: người dùng, phiên đăng nhập, mã QR động, lượt quét, cấu hình quảng cáo
+  // Tạo bằng: npx wrangler d1 create qrcode-db  -> dán database_id vào đây
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "qrcode-db",
+      "database_id": "0a9d1ac2-3d14-4bb7-8b3a-fc0a7e8418b5",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // File PDF người dùng tải lên. Tạo bằng: npx wrangler r2 bucket create qrcode-files
+  "r2_buckets": [{ "binding": "FILES", "bucket_name": "qrcode-files" }],
+  // Tên miền: www tự chuyển 301 về tên miền gốc (xem src/middleware.ts)
+  "routes": [
+    { "pattern": "qrcode-ge.com", "custom_domain": true },
+    { "pattern": "www.qrcode-ge.com", "custom_domain": true }
+  ],
+  "observability": { "enabled": true }
+}
