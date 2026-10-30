@@ -489,6 +489,7 @@ function Field({
           autoComplete="off"
         />
       )}
+      {field.hint && <p className="mt-1 text-xs text-slate-500">{labels[field.hint]}</p>}
     </div>
   );
 }

@@ -107,7 +107,20 @@
     "searching": "検索中...",
     "searchError": "現在検索できません。地図を直接クリックしてください。",
     "noPlaceFound": "場所が見つかりません。別の名前でお試しください。",
-    "mapHint": "地図をクリックするか、ピンをドラッグして正確な位置を指定します。"
+    "mapHint": "地図をクリックするか、ピンをドラッグして正確な位置を指定します。",
+    "platform": "プラットフォーム",
+    "username": "ユーザー名またはプロフィールのリンク",
+    "appStore": "App Store のリンク",
+    "googlePlay": "Google Play のリンク",
+    "appHint": "少なくとも 1 つ入力してください。iPhone は App Store、Android は Google Play を開きます。",
+    "bank": "銀行",
+    "accountNumber": "口座番号",
+    "amount": "金額",
+    "transferNote": "振込メモ",
+    "transferNoteHint": "アクセント記号なし、50 文字まで。空欄なら支払う人が入力します。",
+    "currency": "通貨",
+    "coin": "コイン",
+    "walletAddress": "ウォレットアドレス"
   },
   "types": {
     "url": {
@@ -179,6 +192,41 @@
       "title": "WhatsAppのQRコード作成",
       "metaDescription": "あなたの番号とメッセージ入りでWhatsAppのチャットが開くQRコードを無料で作成できます。",
       "intro": "WhatsAppのQRコードを読み取ると、すぐにあなたのビジネスとのチャットが始まります。商品パッケージ、レシート、広告に載せれば、お客様が気軽に問い合わせできます。"
+    },
+    "social": {
+      "name": "SNS",
+      "short": "SNS のプロフィールを開く",
+      "title": "SNS 用 QR コード作成",
+      "metaDescription": "Facebook、Instagram、TikTok、YouTube、Telegram、LinkedIn などのプロフィール用 QR コードを無料で作成。ロゴも入れられます。",
+      "intro": "SNS の QR コードは読み取るだけでプロフィールを開き、すぐにフォローしてもらえます。パッケージ、店頭、チラシ、名刺に印刷してフォロワーを増やしましょう。"
+    },
+    "app": {
+      "name": "アプリ",
+      "short": "アプリをダウンロード",
+      "title": "アプリダウンロード用 QR コード作成",
+      "metaDescription": "アプリ用の QR コードを 1 つで：iPhone は App Store、Android は Google Play を開きます。無料でカスタマイズ可能。",
+      "intro": "アプリの QR コードは端末を判別して適切なストアを自動で開きます。iPhone・iPad は App Store、Android は Google Play。ポスター、パッケージ、店頭販促に最適です。"
+    },
+    "bank": {
+      "name": "銀行振込",
+      "short": "VietQR で受け取る（ベトナム）",
+      "title": "VietQR 銀行振込 QR コード作成",
+      "metaDescription": "ベトナムの銀行振込用 VietQR コードを作成。口座番号、金額、振込メモが自動入力されます。",
+      "intro": "VietQR コードなら、ベトナムのどの銀行アプリでも振込できます。銀行、口座番号、金額、振込メモが自動入力されるので入力ミスがありません。店舗、請求書、オンライン注文に最適です。"
+    },
+    "paypal": {
+      "name": "PayPal",
+      "short": "PayPal で受け取る",
+      "title": "PayPal QR コード作成",
+      "metaDescription": "金額と通貨を指定できる PayPal.me の QR コードを無料で作成。",
+      "intro": "PayPal の QR コードは PayPal.me のページを開き、数秒で支払いを受け取れます。金額の指定も可能。フリーランス、マルシェ、チップ、寄付に最適です。"
+    },
+    "crypto": {
+      "name": "暗号資産",
+      "short": "暗号資産を受け取る",
+      "title": "暗号資産ウォレット QR コード作成",
+      "metaDescription": "Bitcoin、Ethereum、Litecoin、Dogecoin のウォレットアドレス用 QR コードを作成。金額の指定も可能です。",
+      "intro": "暗号資産の QR コードならウォレットアドレスをコピーミスなく共有でき、ウォレットアプリからすぐに送金できます。Bitcoin、Ethereum、Litecoin、Dogecoin、Bitcoin Cash に対応。"
     }
   },
   "howto": {
@@ -421,7 +469,9 @@
     "addToGoogle": "Googleカレンダーに追加",
     "downloadIcs": ".icsをダウンロード（Apple・Outlook）",
     "wifiHint": "スマートフォンのWi-Fi設定を開き、このネットワークを選んでパスワードを貼り付けてください。",
-    "createOwn": "無料でQRコードを作成する"
+    "createOwn": "無料でQRコードを作成する",
+    "copyAddress": "アドレスをコピー",
+    "openWallet": "ウォレットアプリで開く"
   },
   "support": {
     "title": "サポート",

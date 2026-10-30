@@ -2,7 +2,7 @@ import { type NextRequest } from "next/server";
 import { detectLocale } from "@/i18n/detect";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { contentOf, findBySlug, recordScan, typeOf } from "@/lib/dynamic-qr";
-import { redirectTarget } from "@/lib/dynamic-types";
+import { appIds, appStoreTarget, redirectTarget } from "@/lib/dynamic-types";
 import { parseUserAgent } from "@/lib/user-agent";
 
 export const dynamic = "force-dynamic";
@@ -35,8 +35,13 @@ export async function GET(request: NextRequest, { params }: RouteContext<"/r/[sl
   let target: string | null;
   if (type === "url") target = qr.target_url;
   else if (type === "pdf") target = qr.file_id ? new URL(`/f/${qr.file_id}`, request.url).toString() : null;
-  else if (type === "location" || type === "whatsapp") target = redirectTarget(type, contentOf(qr) ?? {});
-  // Văn bản, WiFi, vCard, email, điện thoại, SMS, sự kiện: mở trang hiển thị theo ngôn ngữ người quét
+  else if (type === "location" || type === "whatsapp" || type === "social" || type === "paypal") target = redirectTarget(type, contentOf(qr) ?? {});
+  else if (type === "app") {
+    const { ios, android } = appIds(contentOf(qr) ?? {});
+    // Máy tính (không biết mở cửa hàng nào): trang hiển thị có cả hai nút
+    target = appStoreTarget(request.headers.get("user-agent") ?? "", ios, android) ?? new URL(`/${detectLocale(request)}/q/${qr.slug}`, request.url).toString();
+  }
+  // Văn bản, WiFi, vCard, email, điện thoại, SMS, sự kiện, ví crypto: mở trang hiển thị theo ngôn ngữ người quét
   else target = new URL(`/${detectLocale(request)}/q/${qr.slug}`, request.url).toString();
   if (!target) return messagePage(request, "missing", 404);
   return new Response(null, { status: 302, headers: { Location: target, "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } });

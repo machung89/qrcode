@@ -6,7 +6,10 @@ Chạy trên **Cloudflare Workers** (qua [OpenNext](https://opennext.js.org/clou
 
 ## Tính năng
 
-- **10 loại mã QR**: URL, văn bản, email, điện thoại, SMS, WiFi, vCard, vị trí (Google Maps), sự kiện (lịch), WhatsApp.
+- **15 loại mã QR**: URL, văn bản, email, điện thoại, SMS, WiFi, vCard, vị trí (Google Maps, chọn trên bản đồ), sự kiện (lịch), WhatsApp,
+  mạng xã hội (Facebook, Instagram, TikTok, YouTube, Zalo, Telegram…), ứng dụng (iPhone mở App Store, Android mở Google Play qua `/r/app`),
+  chuyển khoản ngân hàng VietQR (chuẩn NAPAS, danh sách mã BIN trong `src/lib/qr-types.ts`), PayPal, ví tiền mã hoá.
+  Chuyển khoản chỉ có dạng mã tĩnh: app ngân hàng không đọc được link chuyển hướng của mã động.
 - **Thiết kế**: 8 mẫu có sẵn, 6 kiểu khung có chữ, màu, gradient, nền trong suốt, kiểu chấm/góc, mức sửa lỗi, chèn logo.
 - **Tải xuống** PNG / JPG / WEBP (300–2000 px) hoặc SVG vector. Mã QR tĩnh được tạo hoàn toàn trên trình duyệt.
 - **Quét mã QR** từ ảnh (tải lên, kéo thả, dán) hoặc camera.

@@ -9,7 +9,7 @@ import { isLocale } from "@/i18n/config";
 import { getDictionary, type Dictionary } from "@/i18n/get-dictionary";
 import { contentOf, findBySlug, typeOf } from "@/lib/dynamic-qr";
 import { effectivePlan, planLimits } from "@/lib/plans";
-import { buildQrData, googleCalendarUrl, type FieldValues, type QrType } from "@/lib/qr-types";
+import { appIds, appStoreUrl, buildQrData, cryptoCoins, googleCalendarUrl, playStoreUrl, type FieldValues, type QrType } from "@/lib/qr-types";
 
 // Trang hiển thị nội dung mã QR động (văn bản, WiFi, vCard...). Không cho Google index.
 export const dynamicParams = true;
@@ -183,6 +183,42 @@ function Body({ type, c, slug, dict, locale }: { type: QrType; c: FieldValues; s
         </>
       );
     }
+    case "app": {
+      // Mở trên máy tính (điện thoại đã được chuyển thẳng tới cửa hàng)
+      const { ios, android } = appIds(c);
+      return (
+        <>
+          {ios && (
+            <a href={appStoreUrl(ios)} target="_blank" rel="noopener" className={primaryCls}>
+              App Store
+            </a>
+          )}
+          {android && (
+            <a href={playStoreUrl(android)} target="_blank" rel="noopener" className={primaryCls}>
+              Google Play
+            </a>
+          )}
+        </>
+      );
+    }
+    case "crypto":
+      return (
+        <>
+          <dl>
+            <Row label={f.coin}>{cryptoCoins.find((x) => x.id === c.coin)?.name ?? c.coin}</Row>
+            <Row label={f.walletAddress}>
+              <span dir="ltr" className="font-mono text-sm break-all">
+                {c.address}
+              </span>
+            </Row>
+            {c.amount && <Row label={f.amount}>{c.amount}</Row>}
+          </dl>
+          <CopyButton value={c.address ?? ""} label={l.copyAddress} copied={l.copied} className={primaryCls} />
+          <a href={buildQrData("crypto", c)} className="btn-ghost w-full py-3">
+            {l.openWallet}
+          </a>
+        </>
+      );
     default:
       return null;
   }

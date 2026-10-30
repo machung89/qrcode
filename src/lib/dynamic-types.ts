@@ -1,12 +1,15 @@
 // Các loại mã QR động. Dùng được ở cả server và trình duyệt.
-import { buildQrData, typeFields, type FieldValues, type QrType } from "./qr-types";
+import { appIds, appStoreUrl, buildQrData, cryptoCoins, playStoreUrl, socialPlatforms, typeFields, type FieldValues, type QrType } from "./qr-types";
 
 export type DynamicType = QrType | "pdf";
 
-export const dynamicTypes: DynamicType[] = ["url", "pdf", "text", "email", "phone", "sms", "wifi", "vcard", "location", "event", "whatsapp"];
+// Không có "bank": app ngân hàng chỉ đọc mã VietQR gốc, không đọc được link chuyển hướng của mã động
+export const dynamicTypes: DynamicType[] = [
+  "url", "pdf", "text", "email", "phone", "sms", "wifi", "vcard", "location", "event", "whatsapp", "social", "app", "paypal", "crypto",
+];
 
 /** Khi quét: chuyển thẳng tới đích. Các loại còn lại mở trang hiển thị /{ngôn ngữ}/q/{mã}. */
-export const redirectTypes: DynamicType[] = ["url", "pdf", "location", "whatsapp"];
+export const redirectTypes: DynamicType[] = ["url", "pdf", "location", "whatsapp", "social", "paypal", "app"];
 
 export function isDynamicType(value: unknown): value is DynamicType {
   return typeof value === "string" && (dynamicTypes as string[]).includes(value);
@@ -58,14 +61,31 @@ export function validateContent(type: QrType, input: FieldValues): { content: Fi
     return { error: "invalidValue" };
   }
   if (type === "event" && content.end && content.end < content.start) return { error: "invalidValue" };
+  // Không dựng được nội dung mã (tên PayPal sai, địa chỉ ví sai, không có mã ứng dụng...) -> giá trị không hợp lệ
+  if ((type === "social" || type === "app" || type === "paypal" || type === "crypto" || type === "bank") && !buildQrData(type, content)) {
+    return { error: type === "app" && !content.ios && !content.android ? "required" : "invalidValue" };
+  }
   if (content.website && !/^https?:\/\//i.test(content.website)) content.website = `https://${content.website}`;
   return { content };
 }
 
-/** Đích chuyển hướng cho location / whatsapp. */
+/** Đích chuyển hướng cho location / whatsapp / social / paypal (app: xem appStoreTarget). */
 export function redirectTarget(type: QrType, content: FieldValues) {
   return buildQrData(type, content) || null;
 }
+
+/** Mã ứng dụng: iPhone/iPad -> App Store, Android -> Google Play; null nếu không chọn được (máy tính). */
+export function appStoreTarget(userAgent: string, ios: string | null, android: string | null) {
+  const isIos = /iPhone|iPad|iPod/i.test(userAgent);
+  const isAndroid = /Android/i.test(userAgent);
+  if (isIos && ios) return appStoreUrl(ios);
+  if (isAndroid && android) return playStoreUrl(android);
+  // Điện thoại nhưng chỉ có cửa hàng của hệ kia: vẫn mở cửa hàng đó (vd link web của App Store)
+  if (isIos || isAndroid) return ios ? appStoreUrl(ios) : android ? playStoreUrl(android) : null;
+  return null;
+}
+
+export { appIds };
 
 /** Mô tả ngắn hiển thị trong danh sách mã. */
 export function summarize(type: DynamicType, content: FieldValues | null, extra: { url?: string | null; fileName?: string | null }) {
@@ -91,6 +111,18 @@ export function summarize(type: DynamicType, content: FieldValues | null, extra:
       return c.lat && c.lng ? `${c.lat}, ${c.lng}` : "";
     case "event":
       return [c.title, c.start?.replace("T", " ")].filter(Boolean).join(" · ");
+    case "social":
+      return [socialPlatforms.find((p) => p.id === c.platform)?.name, c.username].filter(Boolean).join(" · ");
+    case "app": {
+      const ids = appIds(c);
+      return [ids.ios && "App Store", ids.android && "Google Play"].filter(Boolean).join(" + ");
+    }
+    case "paypal":
+      return [c.username, c.amount && `${c.amount} ${c.currency ?? ""}`.trim()].filter(Boolean).join(" · ");
+    case "crypto":
+      return [cryptoCoins.find((x) => x.id === c.coin)?.name, c.address && `${c.address.slice(0, 8)}…${c.address.slice(-6)}`].filter(Boolean).join(" · ");
+    case "bank":
+      return c.account ?? "";
   }
 }
 

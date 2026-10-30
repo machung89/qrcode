@@ -103,6 +103,7 @@ export function DynamicFields({ type, labels, values }: Props) {
                 autoComplete="off"
               />
             )}
+            {field.hint && <p className="mt-1 text-xs text-slate-500">{text(field.hint)}</p>}
           </div>
         );
       })}

@@ -107,7 +107,20 @@
     "searching": "검색 중...",
     "searchError": "지금은 검색할 수 없습니다. 지도를 직접 클릭하세요.",
     "noPlaceFound": "장소를 찾을 수 없습니다. 다른 이름으로 시도하세요.",
-    "mapHint": "지도를 클릭하거나 핀을 끌어 정확한 위치를 지정하세요."
+    "mapHint": "지도를 클릭하거나 핀을 끌어 정확한 위치를 지정하세요.",
+    "platform": "플랫폼",
+    "username": "사용자 이름 또는 프로필 링크",
+    "appStore": "App Store 링크",
+    "googlePlay": "Google Play 링크",
+    "appHint": "하나 이상 입력하세요. iPhone은 App Store, Android는 Google Play를 엽니다.",
+    "bank": "은행",
+    "accountNumber": "계좌번호",
+    "amount": "금액",
+    "transferNote": "이체 메모",
+    "transferNoteHint": "악센트 없이 최대 50자. 비워 두면 보내는 사람이 입력합니다.",
+    "currency": "통화",
+    "coin": "코인",
+    "walletAddress": "지갑 주소"
   },
   "types": {
     "url": {
@@ -179,6 +192,41 @@
       "title": "WhatsApp QR코드 생성",
       "metaDescription": "내 번호와 미리 입력한 메시지로 WhatsApp 채팅이 열리는 QR코드를 무료로 만드세요.",
       "intro": "WhatsApp QR코드를 스캔하면 바로 비즈니스와의 대화가 시작됩니다. 제품 포장, 영수증, 광고에 넣어 고객이 쉽게 연락할 수 있게 하세요."
+    },
+    "social": {
+      "name": "소셜 미디어",
+      "short": "소셜 프로필 열기",
+      "title": "소셜 미디어 QR 코드 생성기",
+      "metaDescription": "Facebook, Instagram, TikTok, YouTube, Telegram, LinkedIn 프로필용 QR 코드를 무료로 만들고 로고를 넣으세요.",
+      "intro": "소셜 미디어 QR 코드는 스캔 한 번으로 프로필을 열어 바로 팔로우하게 합니다. 포장, 매장, 전단지, 명함에 넣어 팔로워를 늘리세요."
+    },
+    "app": {
+      "name": "앱",
+      "short": "앱 다운로드",
+      "title": "앱 다운로드 QR 코드 생성기",
+      "metaDescription": "앱용 QR 코드 하나로: iPhone은 App Store, Android는 Google Play로 연결됩니다. 무료이며 꾸밀 수 있습니다.",
+      "intro": "앱 QR 코드는 휴대폰을 감지해 알맞은 스토어를 자동으로 엽니다. iPhone·iPad는 App Store, Android는 Google Play. 포스터, 포장, 매장 프로모션에 좋습니다."
+    },
+    "bank": {
+      "name": "계좌 이체",
+      "short": "VietQR로 받기 (베트남)",
+      "title": "VietQR 계좌 이체 QR 코드 생성기",
+      "metaDescription": "베트남 계좌 이체용 VietQR 코드를 만드세요. 계좌번호, 금액, 메모가 자동으로 입력됩니다.",
+      "intro": "VietQR 코드로 베트남의 모든 은행 앱에서 송금받을 수 있습니다. 은행, 계좌번호, 금액, 메모가 미리 입력되어 오타 걱정이 없습니다. 매장, 청구서, 온라인 주문에 적합합니다."
+    },
+    "paypal": {
+      "name": "PayPal",
+      "short": "PayPal로 받기",
+      "title": "PayPal QR 코드 생성기",
+      "metaDescription": "금액과 통화를 미리 정할 수 있는 PayPal.me QR 코드를 무료로 만드세요.",
+      "intro": "PayPal QR 코드는 PayPal.me 페이지를 열어 몇 초 만에 결제를 받을 수 있게 합니다. 금액 지정도 가능합니다. 프리랜서, 노점, 팁, 기부에 좋습니다."
+    },
+    "crypto": {
+      "name": "암호화폐",
+      "short": "암호화폐 받기",
+      "title": "암호화폐 지갑 QR 코드 생성기",
+      "metaDescription": "Bitcoin, Ethereum, Litecoin, Dogecoin 지갑 주소용 QR 코드를 만드세요. 금액 지정도 가능합니다.",
+      "intro": "암호화폐 QR 코드는 지갑 주소를 복사 오류 없이 공유해 지갑 앱에서 바로 송금할 수 있게 합니다. Bitcoin, Ethereum, Litecoin, Dogecoin, Bitcoin Cash를 지원합니다."
     }
   },
   "howto": {
@@ -421,7 +469,9 @@
     "addToGoogle": "Google 캘린더에 추가",
     "downloadIcs": ".ics 다운로드 (Apple, Outlook)",
     "wifiHint": "휴대폰의 Wi-Fi 설정에서 이 네트워크를 선택하고 비밀번호를 붙여넣으세요.",
-    "createOwn": "나만의 QR코드 무료로 만들기"
+    "createOwn": "나만의 QR코드 무료로 만들기",
+    "copyAddress": "주소 복사",
+    "openWallet": "지갑 앱에서 열기"
   },
   "support": {
     "title": "고객 지원",

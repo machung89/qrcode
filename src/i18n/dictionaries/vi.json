@@ -107,7 +107,20 @@
     "searching": "Đang tìm...",
     "searchError": "Chưa tìm kiếm được lúc này. Hãy bấm trực tiếp lên bản đồ.",
     "noPlaceFound": "Không tìm thấy địa điểm. Thử tên khác.",
-    "mapHint": "Bấm lên bản đồ hoặc kéo ghim để chọn đúng vị trí."
+    "mapHint": "Bấm lên bản đồ hoặc kéo ghim để chọn đúng vị trí.",
+    "platform": "Nền tảng",
+    "username": "Tên người dùng hoặc link trang",
+    "appStore": "Link App Store",
+    "googlePlay": "Link Google Play",
+    "appHint": "Nhập ít nhất một link. iPhone mở App Store, Android mở Google Play.",
+    "bank": "Ngân hàng",
+    "accountNumber": "Số tài khoản",
+    "amount": "Số tiền",
+    "transferNote": "Nội dung chuyển khoản",
+    "transferNoteHint": "Không dấu, tối đa 50 ký tự. Để trống thì người chuyển tự nhập.",
+    "currency": "Loại tiền",
+    "coin": "Loại coin",
+    "walletAddress": "Địa chỉ ví"
   },
   "types": {
     "url": {
@@ -179,6 +192,41 @@
       "title": "Tạo mã QR WhatsApp",
       "metaDescription": "Tạo mã QR WhatsApp mở cuộc trò chuyện với số của bạn và tin nhắn soạn sẵn. Miễn phí và tùy chỉnh.",
       "intro": "Mã QR WhatsApp bắt đầu cuộc trò chuyện với doanh nghiệp của bạn ngay lập tức. Dùng trên bao bì, hóa đơn và quảng cáo để khách liên hệ dễ dàng."
+    },
+    "social": {
+      "name": "Mạng xã hội",
+      "short": "Mở trang mạng xã hội",
+      "title": "Tạo mã QR mạng xã hội",
+      "metaDescription": "Tạo mã QR cho trang Facebook, Instagram, TikTok, YouTube, Zalo, Telegram, LinkedIn của bạn. Miễn phí, chèn logo.",
+      "intro": "Mã QR mạng xã hội đưa người xem tới thẳng trang của bạn để theo dõi chỉ với một lần quét. In lên bao bì, cửa hàng, tờ rơi và danh thiếp để tăng lượt theo dõi."
+    },
+    "app": {
+      "name": "Ứng dụng",
+      "short": "Tải ứng dụng",
+      "title": "Tạo mã QR tải ứng dụng",
+      "metaDescription": "Một mã QR cho ứng dụng của bạn: iPhone mở App Store, Android mở Google Play. Miễn phí, tùy chỉnh được.",
+      "intro": "Mã QR ứng dụng tự nhận biết điện thoại của người quét và mở đúng cửa hàng: App Store trên iPhone, iPad và Google Play trên Android. Phù hợp cho poster, bao bì và khuyến mãi tại cửa hàng."
+    },
+    "bank": {
+      "name": "Chuyển khoản",
+      "short": "Nhận tiền qua VietQR",
+      "title": "Tạo mã QR chuyển khoản ngân hàng (VietQR)",
+      "metaDescription": "Tạo mã VietQR nhận tiền chuyển khoản. Khách quét bằng app ngân hàng bất kỳ, số tài khoản, số tiền và nội dung được điền sẵn.",
+      "intro": "Mã VietQR giúp khách chuyển khoản cho bạn bằng bất kỳ app ngân hàng nào: ngân hàng, số tài khoản, số tiền và nội dung chuyển khoản được điền sẵn, không lo gõ nhầm. Phù hợp cho cửa hàng, hoá đơn và đơn hàng online."
+    },
+    "paypal": {
+      "name": "PayPal",
+      "short": "Nhận tiền qua PayPal",
+      "title": "Tạo mã QR PayPal",
+      "metaDescription": "Tạo mã QR PayPal.me để nhận thanh toán, có thể đặt sẵn số tiền và loại tiền. Miễn phí, tùy chỉnh được.",
+      "intro": "Mã QR PayPal mở trang PayPal.me của bạn để người khác thanh toán trong vài giây, có thể kèm số tiền định sẵn. Phù hợp cho freelancer, bán hàng, tiền tip và quyên góp."
+    },
+    "crypto": {
+      "name": "Tiền mã hoá",
+      "short": "Nhận tiền mã hoá",
+      "title": "Tạo mã QR ví tiền mã hoá",
+      "metaDescription": "Tạo mã QR cho địa chỉ ví Bitcoin, Ethereum, Litecoin, Dogecoin, có thể kèm số tiền.",
+      "intro": "Mã QR tiền mã hoá chia sẻ địa chỉ ví mà không lo sai khi sao chép, app ví quét là gửi được ngay. Hỗ trợ Bitcoin, Ethereum, Litecoin, Dogecoin và Bitcoin Cash."
     }
   },
   "howto": {
@@ -421,7 +469,9 @@
     "addToGoogle": "Thêm vào Google Calendar",
     "downloadIcs": "Tải file .ics (Apple, Outlook)",
     "wifiHint": "Mở cài đặt Wi-Fi trên điện thoại, chọn mạng này rồi dán mật khẩu.",
-    "createOwn": "Tạo mã QR của riêng bạn miễn phí"
+    "createOwn": "Tạo mã QR của riêng bạn miễn phí",
+    "copyAddress": "Sao chép địa chỉ ví",
+    "openWallet": "Mở bằng app ví"
   },
   "support": {
     "title": "Hỗ trợ",

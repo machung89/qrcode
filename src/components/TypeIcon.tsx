@@ -60,6 +60,37 @@ const paths: Record<QrType, React.ReactNode> = {
       <path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-1.8-1.8l.8-1-1-2Z" />
     </>
   ),
+  social: (
+    <>
+      <circle cx="18" cy="5" r="2.5" />
+      <circle cx="6" cy="12" r="2.5" />
+      <circle cx="18" cy="19" r="2.5" />
+      <path d="m8.2 10.8 7.6-4.6M8.2 13.2l7.6 4.6" />
+    </>
+  ),
+  app: (
+    <>
+      <rect x="6" y="2.5" width="12" height="19" rx="2.5" />
+      <path d="M12 7v7M9 11.5l3 3 3-3M10 18.5h4" />
+    </>
+  ),
+  bank: (
+    <>
+      <path d="M3 9.5 12 4l9 5.5M4 20h16M5 10v8M9.5 10v8M14.5 10v8M19 10v8" />
+    </>
+  ),
+  paypal: (
+    <>
+      <path d="M7 20H4.5L7 4h6.5a4 4 0 0 1 0 8H9.5L8.5 18" />
+      <path d="M10 8h4" />
+    </>
+  ),
+  crypto: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 7.5v9M11.5 6.5v1M11.5 16.5v1M9.5 8h3.5a2 2 0 0 1 0 4H9.5h4a2 2 0 0 1 0 4H9.5" />
+    </>
+  ),
 };
 
 export function TypeIcon({ type, className = "h-5 w-5" }: { type: QrType; className?: string }) {

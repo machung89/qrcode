@@ -64,7 +64,20 @@
     "searching": "Buscando...",
     "searchError": "La búsqueda no está disponible ahora. Haz clic en el mapa.",
     "noPlaceFound": "No se encontraron lugares. Prueba otro nombre.",
-    "mapHint": "Haz clic en el mapa o arrastra el marcador para fijar la ubicación exacta."
+    "mapHint": "Haz clic en el mapa o arrastra el marcador para fijar la ubicación exacta.",
+    "platform": "Plataforma",
+    "username": "Usuario o enlace del perfil",
+    "appStore": "Enlace de App Store",
+    "googlePlay": "Enlace de Google Play",
+    "appHint": "Introduce al menos uno. iPhone abre la App Store y Android abre Google Play.",
+    "bank": "Banco",
+    "accountNumber": "Número de cuenta",
+    "amount": "Importe",
+    "transferNote": "Concepto",
+    "transferNoteHint": "Sin acentos, hasta 50 caracteres. Déjalo vacío para que lo escriba quien paga.",
+    "currency": "Moneda",
+    "coin": "Moneda cripto",
+    "walletAddress": "Dirección del monedero"
   },
   "types": {
     "url": { "name": "URL", "short": "Abrir un enlace web", "title": "Generador de código QR para URL", "metaDescription": "Convierte cualquier enlace en un código QR gratis. Personaliza colores, añade tu logo y descárgalo en PNG o SVG.", "intro": "Un código QR de URL lleva a las personas directamente a una página web al escanearlo. Úsalo en carteles, envases, tarjetas y menús para atraer tráfico a tu web o tienda online." },
@@ -76,7 +89,42 @@
     "vcard": { "name": "vCard", "short": "Compartir contacto", "title": "Generador de código QR vCard", "metaDescription": "Crea un código QR vCard para tu tarjeta de visita. Comparte nombre, teléfono, email, empresa y dirección en un escaneo.", "intro": "Un código QR vCard guarda tus datos de contacto directamente en la agenda del teléfono. Añádelo a tarjetas, firmas de email y acreditaciones." },
     "location": { "name": "Ubicación", "short": "Abrir una ubicación", "title": "Generador de código QR de ubicación", "metaDescription": "Genera un código QR que abre una ubicación en Google Maps. Ayuda a tus clientes a encontrar tu negocio.", "intro": "Un código QR de ubicación abre un lugar exacto en el mapa para obtener indicaciones con un toque. Perfecto para tiendas, restaurantes y eventos." },
     "event": { "name": "Evento", "short": "Añadir evento al calendario", "title": "Generador de código QR de evento", "metaDescription": "Crea un código QR de evento que lo añade al calendario con fecha, hora y lugar.", "intro": "Un código QR de evento añade tu reunión, fiesta o conferencia al calendario con todos los detalles. Imprímelo en invitaciones, entradas y carteles." },
-    "whatsapp": { "name": "WhatsApp", "short": "Iniciar chat de WhatsApp", "title": "Generador de código QR de WhatsApp", "metaDescription": "Crea un código QR de WhatsApp que abre un chat con tu número y un mensaje predefinido.", "intro": "Un código QR de WhatsApp inicia una conversación con tu negocio al instante. Úsalo en envases, recibos y anuncios." }
+    "whatsapp": { "name": "WhatsApp", "short": "Iniciar chat de WhatsApp", "title": "Generador de código QR de WhatsApp", "metaDescription": "Crea un código QR de WhatsApp que abre un chat con tu número y un mensaje predefinido.", "intro": "Un código QR de WhatsApp inicia una conversación con tu negocio al instante. Úsalo en envases, recibos y anuncios." },
+    "social": {
+      "name": "Redes sociales",
+      "short": "Abrir un perfil social",
+      "title": "Generador de QR para redes sociales",
+      "metaDescription": "Crea un código QR para tu perfil de Facebook, Instagram, TikTok, YouTube, Telegram o LinkedIn. Gratis y con tu logo.",
+      "intro": "Un código QR de redes sociales lleva a las personas directamente a tu perfil para que te sigan con un solo escaneo. Ponlo en envases, escaparates, folletos y tarjetas."
+    },
+    "app": {
+      "name": "App",
+      "short": "Descargar una app",
+      "title": "Generador de QR para descargar apps",
+      "metaDescription": "Un solo código QR para tu app: los usuarios de iPhone van a la App Store y los de Android a Google Play. Gratis y personalizable.",
+      "intro": "Un código QR de app detecta el teléfono y abre la tienda correcta automáticamente: App Store en iPhone y iPad, Google Play en Android. Ideal para carteles, envases y promociones."
+    },
+    "bank": {
+      "name": "Transferencia",
+      "short": "Cobrar por VietQR (Vietnam)",
+      "title": "Generador de QR para transferencias VietQR",
+      "metaDescription": "Crea un código VietQR para recibir transferencias bancarias en Vietnam con cuenta, importe y concepto ya rellenados.",
+      "intro": "Un código VietQR permite que te paguen con cualquier app bancaria de Vietnam: banco, número de cuenta, importe y concepto se rellenan solos. Ideal para tiendas, facturas y pedidos online."
+    },
+    "paypal": {
+      "name": "PayPal",
+      "short": "Cobrar con PayPal",
+      "title": "Generador de códigos QR de PayPal",
+      "metaDescription": "Crea un código QR de PayPal.me para recibir pagos con importe y moneda predefinidos. Gratis y personalizable.",
+      "intro": "Un código QR de PayPal abre tu página PayPal.me para que te paguen en segundos, con un importe opcional. Ideal para autónomos, mercadillos, propinas y donaciones."
+    },
+    "crypto": {
+      "name": "Cripto",
+      "short": "Recibir criptomonedas",
+      "title": "Generador de QR para monederos cripto",
+      "metaDescription": "Crea un código QR para tu dirección de Bitcoin, Ethereum, Litecoin o Dogecoin, con importe opcional.",
+      "intro": "Un código QR cripto comparte la dirección de tu monedero sin errores de copia, para que las apps de monedero envíen el pago al instante. Compatible con Bitcoin, Ethereum, Litecoin, Dogecoin y Bitcoin Cash."
+    }
   },
   "howto": {
     "title": "Cómo crear un código QR",
@@ -310,7 +358,9 @@
     "addToGoogle": "Añadir a Google Calendar",
     "downloadIcs": "Descargar .ics (Apple, Outlook)",
     "wifiHint": "Abre los ajustes de Wi-Fi de tu móvil, elige esta red y pega la contraseña.",
-    "createOwn": "Crea tu propio código QR gratis"
+    "createOwn": "Crea tu propio código QR gratis",
+    "copyAddress": "Copiar dirección",
+    "openWallet": "Abrir en la app del monedero"
   },
   "support": {
     "title": "Soporte",
