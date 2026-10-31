@@ -17,7 +17,8 @@ Chạy trên **Cloudflare Workers** (qua [OpenNext](https://opennext.js.org/clou
 ### Đa ngôn ngữ
 9 ngôn ngữ: `en, vi, es, fr, de, pt, ja, ko, ar`, URL dạng `/vi/qr/wifi`. Truy cập `/` sẽ tự chuyển theo cookie hoặc ngôn ngữ trình duyệt.
 
-Thêm ngôn ngữ: tạo `src/i18n/dictionaries/xx.json` (khóa nào thiếu sẽ tự dùng tiếng Anh), rồi thêm `xx` vào `src/i18n/config.ts` và `src/i18n/get-dictionary.ts`.
+Thêm ngôn ngữ: tạo `src/i18n/dictionaries/xx.json` (khóa nào thiếu sẽ tự dùng tiếng Anh), rồi thêm `xx` vào `src/i18n/config.ts` và `src/i18n/get-dictionary.ts`,
+và thêm cờ `public/flags/xx.svg` (lấy từ [flag-icons](https://github.com/lipis/flag-icons), giấy phép MIT, thư mục `flags/4x3`).
 
 Tiếng Ả Rập hiển thị từ phải sang trái (`<html dir="rtl">`, xem `localeDir` trong `src/i18n/config.ts`). Khi viết giao diện, dùng class logic
 của Tailwind để tự lật theo hướng chữ: `ms-/me-` thay `ml-/mr-`, `ps-/pe-` thay `pl-/pr-`, `start-/end-` thay `left-/right-`, `text-start/text-end`

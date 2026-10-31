@@ -1,0 +1,2 @@
+Flags from flag-icons 7.6.0 (https://github.com/lipis/flag-icons), MIT License,
+Copyright (c) 2013 Panayiotis Lipiridis. es.svg is a simplified civil flag drawn for this site.
