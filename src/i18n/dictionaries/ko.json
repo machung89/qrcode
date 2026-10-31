@@ -430,6 +430,7 @@
     "startFree": "무료로 시작",
     "buy": "PayPal로 구매",
     "extend": "PayPal로 연장",
+    "redirecting": "PayPal로 이동 중…",
     "current": "현재 요금제",
     "popular": "가장 인기",
     "loading": "가격 불러오는 중…",

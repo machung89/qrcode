@@ -430,6 +430,7 @@
     "startFree": "Start free",
     "buy": "Buy with PayPal",
     "extend": "Extend with PayPal",
+    "redirecting": "Redirecting to PayPal…",
     "current": "Current plan",
     "popular": "Most popular",
     "loading": "Loading prices…",

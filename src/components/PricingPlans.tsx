@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { paidPlans, planLimits, plans, type PaidPlan, type Period, type Plan } from "@/lib/plans";
 
@@ -19,6 +19,10 @@ const fill = (text: string, vars: Record<string, string | number>) => text.repla
 export function PricingPlans({ locale, t, currentPlan }: Props) {
   const [period, setPeriod] = useState<Period>("year");
   const [data, setData] = useState<Prices | null>(null);
+  // Gói đang được gửi sang PayPal: khoá mọi nút mua để không tạo 2 đơn khi bấm đúp
+  const [submitting, setSubmitting] = useState<Plan | null>(null);
+  // Cờ đồng bộ: hai cú bấm liên tiếp xảy ra trước khi React kịp vẽ lại nút bị khoá
+  const locked = useRef(false);
 
   useEffect(() => {
     fetch("/api/billing/plans")
@@ -26,6 +30,26 @@ export function PricingPlans({ locale, t, currentPlan }: Props) {
       .then(setData)
       .catch(() => setData({ enabled: false, currency: "USD", prices: { personal: { month: 0, year: 0 }, business: { month: 0, year: 0 } } }));
   }, []);
+
+  // Bấm "Quay lại" từ PayPal: trình duyệt khôi phục trang từ bộ nhớ đệm (bfcache) -> mở khoá nút
+  useEffect(() => {
+    const reset = (e: PageTransitionEvent) => {
+      if (!e.persisted) return;
+      locked.current = false;
+      setSubmitting(null);
+    };
+    window.addEventListener("pageshow", reset);
+    return () => window.removeEventListener("pageshow", reset);
+  }, []);
+
+  function onCheckout(e: React.FormEvent, plan: Plan) {
+    if (locked.current) {
+      e.preventDefault();
+      return;
+    }
+    locked.current = true;
+    setSubmitting(plan);
+  }
 
   const money = (value: number) =>
     data ? new Intl.NumberFormat(locale, { style: "currency", currency: data.currency, maximumFractionDigits: data.currency === "JPY" ? 0 : 2 }).format(value) : "";
@@ -113,12 +137,26 @@ export function PricingPlans({ locale, t, currentPlan }: Props) {
               ) : data && !data.enabled ? (
                 <p className="rounded-lg bg-slate-50 p-3 text-center text-sm text-slate-500">{t.unavailable}</p>
               ) : (
-                <form action="/api/paypal/checkout" method="post">
+                <form action="/api/paypal/checkout" method="post" onSubmit={(e) => onCheckout(e, plan)}>
                   <input type="hidden" name="plan" value={plan} />
                   <input type="hidden" name="period" value={period} />
                   <input type="hidden" name="locale" value={locale} />
-                  <button type="submit" className={`${popular ? "btn-primary" : "btn-ghost"} w-full py-3`} disabled={!data}>
-                    {isCurrent ? t.extend : t.buy}
+                  <button
+                    type="submit"
+                    className={`${popular ? "btn-primary" : "btn-ghost"} w-full py-3`}
+                    disabled={!data || !!submitting}
+                    aria-busy={submitting === plan}
+                  >
+                    {submitting === plan ? (
+                      <>
+                        <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden="true" />
+                        {t.redirecting}
+                      </>
+                    ) : isCurrent ? (
+                      t.extend
+                    ) : (
+                      t.buy
+                    )}
                   </button>
                   {isCurrent && <p className="mt-2 text-center text-xs font-medium text-brand-700">✓ {t.current}</p>}
                 </form>
