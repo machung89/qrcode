@@ -123,3 +123,13 @@
     @apply flex w-full justify-center;
   }
 }
+
+/* iOS Safari tự phóng to trang khi chạm vào ô nhập có chữ < 16px: trên thiết bị cảm ứng ô nhập dùng 16px.
+   Đặt ngoài layer để thắng cả class tiện ích (text-sm, text-xs...) của từng ô. Không dùng maximum-scale vì sẽ chặn người dùng phóng to bằng hai ngón */
+@media (pointer: coarse) {
+  input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"]),
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
